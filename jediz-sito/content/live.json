@@ -1,0 +1,56 @@
+{
+  "_help": "Date live. Il sito divide da solo le date in 'prossime' e 'passate' in base al giorno. Formato data: AAAA-MM-GG, ora: HH:MM.",
+  "intro": "Dal vivo i brani cambiano forma: arrangiamenti nuovi, suonati da una band.",
+  "band": [
+    {
+      "name": "Jediz",
+      "role": "voce"
+    },
+    {
+      "name": "Tommaso Marino",
+      "role": "chitarra"
+    },
+    {
+      "name": "Tommaso Bonifazi Razzanti",
+      "role": "basso"
+    },
+    {
+      "name": "Gregorio De Rosa",
+      "role": "piano"
+    },
+    {
+      "name": "Luca Lo Presti",
+      "role": "batteria"
+    }
+  ],
+  "formation_note": "",
+  "dates": [
+    {
+      "date": "2026-09-27",
+      "time": "18:30",
+      "title": "Jediz with the Band",
+      "venue": "Giardini dell'Acqua Paola — Fontanone del Gianicolo",
+      "city": "Roma",
+      "context": "Eventi a Fontana 2026",
+      "description": "Primo concerto a Roma con la band. I brani riarrangiati per il live e un anticipo del nuovo album.",
+      "ticket_url": "",
+      "ticket_label": "Biglietti",
+      "info_url": "https://www.romatoday.it/eventi/jediz-concerto-band-gianicolo-acqua-paola.html",
+      "info_label": "Informazioni",
+      "formation": "band"
+    },
+    {
+      "date": "2026-09-02",
+      "time": "",
+      "title": "Apertura del concerto di Ernia",
+      "venue": "Porto turistico",
+      "city": "Pescara",
+      "context": "Festival dannunziano",
+      "description": "",
+      "ticket_url": "",
+      "info_url": "",
+      "formation": ""
+    }
+  ],
+  "tour_note": "Tour estivo 2026: date da inserire."
+}

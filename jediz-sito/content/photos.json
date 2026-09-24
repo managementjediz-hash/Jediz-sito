@@ -1,0 +1,12 @@
+{
+  "_help": "Foto. Mettere i file in /assets/img/foto/ (lato lungo 2000px, jpg qualità 80). Facoltativo \"thumb\": versione leggera da 800px per la griglia. \"shape\": \"tall\", \"wide\" o \"square\".",
+  "categories": ["Live", "Backstage", "Ritratti", "Cinema"],
+  "photos": [
+    { "src": "", "alt": "", "category": "Ritratti", "caption": "", "credit": "", "shape": "tall" },
+    { "src": "", "alt": "", "category": "Live", "caption": "", "credit": "", "shape": "wide" },
+    { "src": "", "alt": "", "category": "Backstage", "caption": "", "credit": "", "shape": "square" },
+    { "src": "", "alt": "", "category": "Live", "caption": "", "credit": "", "shape": "square" },
+    { "src": "", "alt": "", "category": "Cinema", "caption": "", "credit": "", "shape": "wide" },
+    { "src": "", "alt": "", "category": "Ritratti", "caption": "", "credit": "", "shape": "tall" }
+  ]
+}
