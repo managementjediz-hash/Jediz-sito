@@ -389,8 +389,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .hero-main { display: grid; gap: 28px 48px; margin-top: clamp(20px, 4vw, 48px); padding-bottom: clamp(36px, 5vw, 64px); }
 @media (min-width: 900px) { .hero-main { grid-template-columns: 6fr 6fr; align-items: end; } }
 .hero-main .wordmark { margin: 0; line-height: 0; }
-.hero-main .wordmark .logo-img { width: min(78vw, 600px); height: auto; }
-@media (min-width: 900px) { .hero-main .wordmark .logo-img { width: clamp(300px, 44vw, 600px); margin-left: -1.5%; } }
+.hero-main .wordmark .logo-img { width: min(60vw, 420px); height: auto; }
+@media (min-width: 900px) { .@media (min-width: 900px) { .hero-main .wordmark .logo-img { width: clamp(240px, 32vw, 420px); margin-left: -1.5%; } }
 .hero-main .hero-claim { margin: 0; padding: 0; display: grid; gap: 14px; grid-template-columns: 1fr; }
 .hero-main .hero-actions { margin-top: 10px; }
 .mark .logo-img { height: 40px; width: auto; }
