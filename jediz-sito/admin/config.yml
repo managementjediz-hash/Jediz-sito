@@ -1,13 +1,14 @@
 # Pannello contenuti JEDIZ (Decap CMS)
 # Modifica i file in /content. A ogni salvataggio l'hosting ricostruisce il sito (node build.mjs).
 # Accesso con account GitHub (OAuth fornito da Netlify).
+# Il sito sta nella cartella jediz-sito/ del repository: tutti i percorsi partono da lì.
 backend:
   name: github
   repo: managementjediz-hash/Jediz-sito
   branch: main
 
 locale: it
-media_folder: "assets/uploads"
+media_folder: "jediz-sito/assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
@@ -16,7 +17,7 @@ collections:
     files:
       - name: "live"
         label: "Date e formazione"
-        file: "content/live.json"
+        file: "jediz-sito/content/live.json"
         fields:
           - { name: intro, label: "Introduzione", widget: text }
           - name: dates
@@ -52,7 +53,7 @@ collections:
     files:
       - name: "videos"
         label: "Video"
-        file: "content/videos.json"
+        file: "jediz-sito/content/videos.json"
         fields:
           - { name: categories, label: "Categorie", widget: list }
           - name: videos
@@ -73,7 +74,7 @@ collections:
     files:
       - name: "documents"
         label: "Documenti e rassegna stampa"
-        file: "content/documents.json"
+        file: "jediz-sito/content/documents.json"
         fields:
           - name: documents
             label: "Documenti"
@@ -88,7 +89,7 @@ collections:
               - { name: version, label: "Versione", widget: string, required: false }
               - { name: date, label: "Data (AAAA-MM-GG)", widget: string, required: false }
               - { name: pages, label: "Pagine", widget: string, required: false }
-              - { name: file, label: "PDF", widget: file, required: false, media_folder: "/assets/docs", public_folder: "assets/docs" }
+              - { name: file, label: "PDF", widget: file, required: false, media_folder: "/jediz-sito/assets/docs", public_folder: "assets/docs" }
               - { name: thumb, label: "Anteprima (immagine)", widget: image, required: false }
               - { name: status, label: "Stato", widget: select, options: [{ label: "Pubblicato", value: "ready" }, { label: "In preparazione", value: "draft" }] }
 
@@ -97,7 +98,7 @@ collections:
     files:
       - name: "releases"
         label: "Discografia"
-        file: "content/releases.json"
+        file: "jediz-sito/content/releases.json"
         fields:
           - name: releases
             label: "Uscite"
@@ -133,7 +134,7 @@ collections:
                   - { name: title, label: "Titolo", widget: string }
                   - { name: feat, label: "Featuring", widget: string, required: false }
                   - { name: duration, label: "Durata (m:ss)", widget: string }
-                  - { name: audio, label: "File audio completo (mp3)", widget: file, required: false, media_folder: "/assets/audio", public_folder: "assets/audio" }
+                  - { name: audio, label: "File audio completo (mp3)", widget: file, required: false, media_folder: "/jediz-sito/assets/audio", public_folder: "assets/audio" }
                   - { name: preview, label: "Anteprima (link)", widget: string, required: false }
 
   - name: "media"
@@ -141,7 +142,7 @@ collections:
     files:
       - name: "media"
         label: "Articoli, interviste, radio"
-        file: "content/media.json"
+        file: "jediz-sito/content/media.json"
         fields:
           - { name: intro, label: "Introduzione", widget: text }
           - name: items
@@ -162,7 +163,7 @@ collections:
     files:
       - name: "cinema"
         label: "Lavori per il cinema"
-        file: "content/cinema.json"
+        file: "jediz-sito/content/cinema.json"
         fields:
           - { name: intro, label: "Introduzione", widget: text }
           - name: works
@@ -189,7 +190,7 @@ collections:
     files:
       - name: "texts"
         label: "Testi"
-        file: "content/texts.json"
+        file: "jediz-sito/content/texts.json"
         fields:
           - { name: intro, label: "Introduzione", widget: text }
           - { name: pdf_code, label: "Codice PDF in archivio", widget: string }
@@ -211,7 +212,7 @@ collections:
     files:
       - name: "photos"
         label: "Foto"
-        file: "content/photos.json"
+        file: "jediz-sito/content/photos.json"
         fields:
           - { name: categories, label: "Categorie", widget: list }
           - name: photos
@@ -231,14 +232,14 @@ collections:
     files:
       - name: "bio"
         label: "Bio"
-        file: "content/bio.json"
+        file: "jediz-sito/content/bio.json"
         fields:
           - { name: short, label: "Bio breve", widget: text }
           - { name: long, label: "Bio estesa (paragrafi)", widget: list, field: { name: p, label: "Paragrafo", widget: text } }
           - { name: pdf_code, label: "Codice PDF in archivio", widget: string }
       - name: "site"
         label: "Impostazioni, social e contatti"
-        file: "content/site.json"
+        file: "jediz-sito/content/site.json"
         fields:
           - { name: url, label: "Indirizzo del sito", widget: string }
           - { name: name, label: "Nome", widget: string }
