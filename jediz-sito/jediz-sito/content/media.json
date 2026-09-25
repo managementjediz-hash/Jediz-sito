@@ -1,0 +1,70 @@
+{
+  "_help": "Media: articoli, interviste, radio, podcast, video. \"type\": Articolo | Intervista | Radio | Podcast | Video. \"topic\" raggruppa le uscite legate allo stesso evento o progetto (lasciarlo vuoto per le uscite generiche). Data: AAAA-MM-GG oppure AAAA-MM.",
+  "intro": "Articoli, interviste e passaggi radio.",
+  "items": [
+    {
+      "outlet": "Corriere della Sera — Roma",
+      "title": "Jediz, il rapper di San Lorenzo torna a casa e chiude l'estate al Fontanone del Gianicolo",
+      "type": "Articolo",
+      "date": "2026-09-24",
+      "topic": "Jediz with the Band · Gianicolo, 27.09.2026",
+      "url": "https://roma.corriere.it/notizie/cultura-e-spettacoli/26_settembre_24/jediz-il-rapper-di-san-lorenzo-torna-a-casa-e-chiude-l-estate-al-fontanone-del-gianicolo-b57f3bd4-1ecb-4091-a4b3-2b2f5eda0xlk_amp.shtml"
+    },
+    {
+      "outlet": "Corriere dello Sport",
+      "title": "Jediz, il rapper di San Lorenzo torna a casa e chiude l'estate al Fontanone del Gianicolo",
+      "type": "Articolo",
+      "date": "2026-09-21",
+      "topic": "Jediz with the Band · Gianicolo, 27.09.2026",
+      "url": "https://www.corrieredellosport.it/news/attualit/spettacolo/2026/09/21-151399010/jediz_il_rapper_di_san_lorenzo_torna_a_casa_e_chiude_l_estate_al_fontanone_del_gianicolo"
+    },
+    {
+      "outlet": "Zazoom",
+      "title": "Jediz, il rapper di San Lorenzo torna a casa e chiude l'estate al Fontanone del Gianicolo",
+      "type": "Articolo",
+      "date": "2026-09-24",
+      "topic": "Jediz with the Band · Gianicolo, 27.09.2026",
+      "url": "https://www.zazoom.it/2026-09-24/jediz-il-rapper-di-san-lorenzo-torna-a-casa-e-chiude-lestate-al-fontanone-del-gianicolo/19719430/"
+    },
+    {
+      "outlet": "Facebook",
+      "title": "Video",
+      "type": "Video",
+      "date": "2026-09",
+      "topic": "Jediz with the Band · Gianicolo, 27.09.2026",
+      "url": "https://www.facebook.com/watch/?v=685201558784143"
+    },
+    {
+      "outlet": "RomaToday",
+      "title": "Jediz porta la band al Gianicolo: concerto nei Giardini dell'Acqua Paola",
+      "type": "Articolo",
+      "date": "2026-09",
+      "topic": "Jediz with the Band · Gianicolo, 27.09.2026",
+      "url": "https://www.romatoday.it/eventi/jediz-concerto-band-gianicolo-acqua-paola.html"
+    },
+    {
+      "outlet": "La Capitale",
+      "title": "Eventi a Fontana 2026, spettacoli al Gianicolo fino al 29 settembre",
+      "type": "Articolo",
+      "date": "2026-09",
+      "topic": "Jediz with the Band · Gianicolo, 27.09.2026",
+      "url": "https://www.lacapitale.it/articolo/eventi-a-fontana-gianicolo-roma-settembre-2026"
+    },
+    {
+      "outlet": "Radio Globo",
+      "title": "Roma, al Fontanone del Gianicolo un mese di cultura, arte, musica e teatro",
+      "type": "Articolo",
+      "date": "2026-08",
+      "topic": "Jediz with the Band · Gianicolo, 27.09.2026",
+      "url": "https://radioglobo.it/183331/roma-al-fontanone-del-gianicolo-un-mese-di-cultura-arte-musica-e-teatro"
+    },
+    {
+      "outlet": "Italian Directory",
+      "title": "Jediz, il rapper di San Lorenzo, torna a casa e chiude l'estate al Fontanone del Gianicolo",
+      "type": "Articolo",
+      "date": "2026-09",
+      "topic": "Jediz with the Band · Gianicolo, 27.09.2026",
+      "url": "https://italiandirectory.com/jediz-il-rapper-di-san-lorenzo-torna-a-casa-e-chiude-lestate-al-fontanone-del-gianicolo/"
+    }
+  ]
+}
