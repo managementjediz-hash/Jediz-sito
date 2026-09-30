@@ -1,14 +1,10 @@
 {
   "_help": "Impostazioni generali. I campi vuoti (\"\") vengono mostrati sul sito come segnaposto 'da inserire'.",
-  "url": "https://www.jediz.it",
   "_url_note": "Dominio definitivo da confermare: serve per sitemap, canonical e Open Graph.",
-  "name": "JEDIZ",
-  "person": "Elia Pergola",
+  "logo_on_light": "assets/img/logo-dark.svg",
   "city": "Roma",
-  "lang": "it",
-  "claim": "Due nomi, la stessa penna.",
-  "subclaim": "Rap, scrittura, band dal vivo. Roma.",
-  "description": "Jediz: rap scritto a Roma e suonato dal vivo con una band. Musica, live, video, cinema, testi e materiali per addetti ai lavori.",
+  "logo": "assets/img/logo-light.svg",
+  "name": "JEDIZ",
   "social": [
     {
       "label": "Spotify",
@@ -23,12 +19,12 @@
     {
       "label": "YouTube",
       "handle": "",
-      "url": ""
+      "url": "https://www.youtube.com/channel/UCVr8BwX7YnYxzrdmUu0EdiQ"
     },
     {
       "label": "TikTok",
       "handle": "",
-      "url": ""
+      "url": "https://www.tiktok.com/@eliajediz"
     },
     {
       "label": "Apple Music",
@@ -36,37 +32,41 @@
       "url": "https://music.apple.com/it/artist/jediz/1265907453"
     }
   ],
+  "lang": "it",
+  "url": "https://www.jediz.it",
   "contacts": [
     {
       "id": "booking",
       "label": "Booking / Live",
       "note": "Date, festival, rassegne, formazione con band.",
-      "name": "",
-      "email": ""
+      "name": "Management Jediz",
+      "email": "management.jediz@gmail.com"
     },
     {
       "id": "press",
       "label": "Press / Media",
       "note": "Interviste, materiali stampa, accrediti.",
-      "name": "",
-      "email": ""
+      "name": "Management Jediz",
+      "email": "management.jediz@gmail.com"
     },
     {
       "id": "collab",
       "label": "Collaborazioni",
       "note": "Cinema, sincronizzazioni, featuring, progetti.",
-      "name": "",
-      "email": ""
+      "name": "Management Jediz",
+      "email": "management.jediz@gmail.com"
     },
     {
       "id": "info",
       "label": "Contatti generali",
       "note": "Tutto il resto.",
-      "name": "",
-      "email": ""
+      "name": "Management Jediz",
+      "email": "management.jediz@gmail.com"
     }
   ],
-  "logo": "assets/img/logo-light.svg",
-  "logo_on_light": "assets/img/logo-dark.svg",
-  "_logo_help": "Logo: file SVG (consigliato) o PNG trasparente in assets/img/. \"logo\" = versione chiara per sfondi scuri; \"logo_on_light\" = versione scura per sfondi chiari (se manca, il sito inverte i colori della prima). Se entrambi vuoti, viene usata la scritta JEDIZ."
+  "person": "Elia Pergola",
+  "_logo_help": "Logo: file SVG (consigliato) o PNG trasparente in assets/img/. \"logo\" = versione chiara per sfondi scuri; \"logo_on_light\" = versione scura per sfondi chiari (se manca, il sito inverte i colori della prima). Se entrambi vuoti, viene usata la scritta JEDIZ.",
+  "claim": "Due nomi, la stessa penna.",
+  "subclaim": "Rap, scrittura, band dal vivo. Roma.",
+  "description": "Jediz: rap scritto a Roma e suonato dal vivo con una band. Musica, live, video, cinema, testi e materiali per addetti ai lavori."
 }
