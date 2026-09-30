@@ -24,6 +24,12 @@ build.mjs       generatore
 Pagine: `/` · `/musica/` · `/live/` · `/video/` · `/archivio/` · `/cinema/` · `/testi/` · `/foto/` · `/bio/` · `/contatti/` · `404`.
 Il generatore produce anche `sitemap.xml`, `robots.txt`, meta Open Graph, dati strutturati (artista, album, concerti) e `_headers` per la cache.
 
+## Dove sta il sito
+
+- Repository: `github.com/managementjediz-hash/Jediz-sito` (i file sono nella cartella `jediz-sito/`).
+- Hosting: Netlify, progetto `venerable-bunny-587ab2` — base directory `jediz-sito`, build `node build.mjs`, publish `jediz-sito/dist`. Ogni modifica su `main` pubblica il sito da sola.
+- Pannello: `/admin`, accesso con GitHub (OAuth App "Jediz sito" installata in Netlify → Access & security → OAuth).
+
 ## Aggiornare i contenuti
 
 Due modi, a scelta.

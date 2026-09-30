@@ -39,6 +39,8 @@ const todayRome = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Rome" }).
 const toSec = (mmss) => { const [m, s] = mmss.split(":").map(Number); return m * 60 + s; };
 const fmtTotal = (sec) => `${Math.floor(sec / 60)}′${String(sec % 60).padStart(2, "0")}″`;
 const slug = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+const ytId = (s = "") => { const m = String(s).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/); return m ? m[1] : /^[\w-]{11}$/.test(s) ? s : ""; };
+const dmId = (s = "") => { const m = String(s).match(/dailymotion\.com\/video\/([a-z0-9]+)|dai\.ly\/([a-z0-9]+)/i); return m ? m[1] || m[2] : ""; };
 const abs = (p) => site.url.replace(/\/$/, "") + "/" + p.replace(/^\//, "");
 
 // ---------- dati derivati ----------
@@ -48,8 +50,16 @@ const datesSorted = [...live.dates].sort((a, b) => a.date.localeCompare(b.date))
 const upcoming = datesSorted.filter((d) => d.date >= todayRome);
 const past = datesSorted.filter((d) => d.date < todayRome).reverse();
 const next = upcoming[0];
+const featuredDates = datesSorted.filter((d) => d.featured).reverse();
 const docs = docsData.documents;
 const docByCode = (c) => docs.find((d) => d.code === c);
+const MAKING = "Making of";
+const makingProjects = ["Dr. Jediz & Mr. I", "Hikikomori (La mia quarantena)", "BurnOut in Barna"];
+const makingVideos = videosData.videos.filter((v) => v.category === MAKING);
+const mainVideos = videosData.videos.filter((v) => v.category !== MAKING);
+const projectsWithClips = [...new Set(makingVideos.map((v) => v.project).filter(Boolean))];
+const makingList = [...makingProjects.filter((p) => !projectsWithClips.length || projectsWithClips.includes(p)), ...projectsWithClips.filter((p) => !makingProjects.includes(p))];
+const relByTitle = (t) => releases.find((r) => r.title === t && r.tracks && r.tracks.length) || releases.find((r) => r.title === t);
 
 // ---------- pagine e percorsi ----------
 const PAGES = [
@@ -105,6 +115,13 @@ function logo(c, onLight = false) {
   return `<img class="logo-img${invert}" src="${esc(c.asset(src))}" alt="JEDIZ" width="1000" height="851">`;
 }
 
+// immagini caricate dal pannello: Netlify le ridimensiona al volo (niente foto da 8 MB in pagina)
+function img(c, path, w) {
+  if (!path) return "";
+  if (PREVIEW || isExt(path) || /\.svg$/i.test(path)) return c.asset(path);
+  return `/.netlify/images?url=/${encodeURI(path.replace(/^\//, ""))}&w=${w}&q=78`;
+}
+
 function cover(rel, c, size = "") {
   const t = esc(rel.title).replace(/ &amp; /, " &amp;<em> ") + (rel.title.includes(" & ") ? "</em>" : "");
   const fallback = `<div class="cover-fallback" aria-hidden="true"><span class="mono">${esc(rel.type)} · ${year(rel.date)}</span><span class="cf-title">${t}</span><span class="cf-meta mono"><span>Jediz</span><span>${rel.cover ? "" : "copertina da inserire"}</span></span></div>`;
@@ -157,11 +174,22 @@ function slate(d, c, withLink = true) {
 }
 
 function dateRow(d, isPast = false) {
+  const links = [!isPast && (d.ticket_url || d.ticket_label !== "") ? extLink(d.ticket_url, d.ticket_label || "Biglietti") : "", d.info_url ? extLink(d.info_url, d.info_label || "Informazioni") : ""].join("");
   return `<li class="date-row${isPast ? " past" : ""}">
   <span class="when">${dDot(d.date)}${d.time ? ` · ${esc(d.time)}` : ""}</span>
-  <span class="what"><b>${esc(d.title)}</b>${d.description ? `<span class="mute">${esc(d.description)}</span>` : ""}${!isPast && (d.ticket_url || d.info_url || true) ? `<span class="links-row" style="margin-top:8px">${!isPast ? extLink(d.ticket_url, d.ticket_label || "Biglietti") : ""}${d.info_url ? extLink(d.info_url, d.info_label || "Informazioni") : ""}</span>` : ""}</span>
-  <span class="where">${esc(d.venue)}<br>${esc(d.city)}</span>
+  <span class="what"><b>${esc(d.title)}</b>${d.context ? `<span class="mono mute">${esc(d.context)}</span>` : ""}${d.description ? `<span class="mute">${esc(d.description)}</span>` : ""}${d.lineup && isPast ? `<span class="mute small">Con ${esc(d.lineup)}</span>` : ""}${!isPast && d.price ? `<span class="mono">Ingresso ${esc(d.price)}</span>` : ""}${links ? `<span class="links-row" style="margin-top:8px">${links}</span>` : ""}</span>
+  <span class="where">${d.venue ? esc(d.venue) : ph("luogo")}${d.address ? `<br>${esc(d.address)}` : ""}<br>${esc(d.city)}</span>
 </li>`;
+}
+
+// locandina + dati essenziali (home e pagina Live)
+function gigCard(d, c) {
+  const up = d.date >= todayRome;
+  const cap = `${dDot(d.date)} · ${d.city} — ${d.title}`;
+  const poster = d.poster
+    ? `<button class="pf gig-poster" type="button" data-lb="${esc(img(c, d.poster, 1600))}" data-cap="${esc(cap)}" aria-label="Apri la locandina: ${esc(d.title)}"><img src="${esc(d.poster_thumb ? c.asset(d.poster_thumb) : img(c, d.poster, 600))}" alt="Locandina: ${esc(d.title)}, ${esc(d.city)}" loading="lazy" decoding="async"></button>`
+    : `<div class="pf gig-poster">${phBlock("Locandina da inserire")}</div>`;
+  return `<article class="gig${up ? " is-next" : ""}"${up ? ` data-expires="${d.date}" data-keep` : ""}>${poster}<div class="gig-meta mono"><span>${dDot(d.date)}</span><span>${esc(d.city)}</span></div><h3>${esc(d.title)}</h3><p class="mute">${d.venue ? esc(d.venue.split(" — ")[0]) : ""}${up ? ` <span class="tag mono">Prossima</span>` : ""}</p></article>`;
 }
 
 function lineup() {
@@ -169,13 +197,24 @@ function lineup() {
 }
 
 function videoCard(v, c) {
+  v = { ...v, youtube: ytId(v.youtube) || ytId(v.url) };
+  if (v.youtube && ytId(v.url)) v.url = "";
   const title = v.title ? esc(v.title) : ph("titolo");
+  const label = esc(v.title || "Video");
   let frame;
-  if (v.youtube) {
-    const thumb = v.thumb ? c.asset(v.thumb) : `https://i.ytimg.com/vi/${esc(v.youtube)}/hqdefault.jpg`;
-    frame = `<div class="vframe"><img src="${thumb}" alt="" loading="lazy" decoding="async" width="480" height="360"><a class="vplay" href="https://www.youtube.com/watch?v=${esc(v.youtube)}" target="_blank" rel="noopener" data-yt="${esc(v.youtube)}" aria-label="Guarda: ${esc(v.title)}"><span>${ICON.play.replace('class="i-play" ', "")}</span></a></div>`;
+  if (v.file) {
+    // video caricato sul sito (mp4): si carica solo quando si preme play
+    frame = `<div class="vframe"><video controls playsinline preload="none"${v.poster ? ` poster="${esc(img(c, v.poster, 1200))}"` : ""} aria-label="${label}"><source src="${esc(c.asset(v.file))}" type="video/mp4"></video></div>`;
+  } else if (v.youtube) {
+    const thumb = v.thumb ? img(c, v.thumb, 960) : `https://i.ytimg.com/vi/${esc(v.youtube)}/hqdefault.jpg`;
+    frame = `<div class="vframe"><img src="${thumb}" alt="" loading="lazy" decoding="async" width="480" height="360"><a class="vplay" href="https://www.youtube.com/watch?v=${esc(v.youtube)}" target="_blank" rel="noopener" data-yt="${esc(v.youtube)}" aria-label="Guarda: ${label}"><span>${ICON.play.replace('class="i-play" ', "")}</span></a></div>`;
+  } else if (v.url) {
+    // video su un'altra piattaforma (Instagram, Facebook, Vimeo…): anteprima e link esterno
+    const bg = v.poster || v.thumb;
+    frame = `<div class="vframe">${bg ? `<img src="${esc(img(c, bg, 960))}" alt="" loading="lazy" decoding="async">` : `<div class="vframe-bg"></div>`}<a class="vplay" href="${esc(v.url)}" target="_blank" rel="noopener" aria-label="Guarda: ${label}"><span>${ICON.play.replace('class="i-play" ', "")}</span></a></div>`;
   } else frame = `<div class="vframe">${phBlock(`Video · ${v.category} · da inserire`)}</div>`;
-  return `<article class="vcard" data-cat="${esc(v.category)}">${frame}<div class="vmeta mono"><span>${esc(v.category)}</span><span>${v.date ? dDot(v.date) : ""}</span></div><h3>${title}</h3>${v.description ? `<p>${esc(v.description)}</p>` : ""}</article>`;
+  if (v.vertical) frame = frame.replace('<div class="vframe">', '<div class="vframe vertical">');
+  return `<article class="vcard${v.vertical ? " is-vertical" : ""}" data-cat="${esc(v.category)}">${frame}<div class="vmeta mono"><span>${esc(v.category)}</span><span>${v.date ? dDot(v.date) : ""}</span></div><h3>${title}</h3>${v.description ? `<p>${esc(v.description)}</p>` : ""}</article>`;
 }
 
 function filters(cats, group) {
@@ -197,7 +236,7 @@ function docCard(d, c) {
 
 function photoItem(p, c) {
   const inner = p.src
-    ? `<button class="pf" type="button" data-lb="${esc(c.asset(p.src))}" data-cap="${esc(p.caption)}${p.credit ? " — foto " + esc(p.credit) : ""}" aria-label="Apri foto: ${esc(p.alt || p.caption)}"><img src="${esc(c.asset(p.thumb || p.src))}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></button>`
+    ? `<button class="pf" type="button" data-lb="${esc(img(c, p.src, 2000))}" data-cap="${esc(p.caption)}${p.credit ? " — foto " + esc(p.credit) : ""}" aria-label="Apri foto: ${esc(p.alt || p.caption)}"><img src="${esc(p.thumb ? c.asset(p.thumb) : img(c, p.src, 900))}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></button>`
     : `<div class="pf">${phBlock(`Foto · ${p.category}`)}</div>`;
   return `<figure class="ph-item ${esc(p.shape || "square")}" data-cat="${esc(p.category)}">${inner}<figcaption class="mono"><span>${p.caption ? esc(p.caption) : esc(p.category)}</span><span>${p.credit ? "© " + esc(p.credit) : ""}</span></figcaption></figure>`;
 }
@@ -271,6 +310,11 @@ ${body(c)}
     <div class="foot-base mono"><span>© ${todayRome.slice(0, 4)} Jediz</span><a href="${c.to("contatti")}">Contatti</a></div>
   </div>
 </footer>
+<div class="lightbox" hidden data-lightbox role="dialog" aria-modal="true" aria-label="Immagine">
+  <div class="lb-top mono"><span data-lb-count></span><button type="button" class="copy" data-lb-close>Chiudi ✕</button></div>
+  <div class="lb-stage"><img alt="" data-lb-img></div>
+  <p class="lb-cap mono" data-lb-cap></p>
+</div>
 <div class="mini t-night" data-mini aria-hidden="true">
   <button class="ctl play" type="button" data-mini-play aria-label="Riproduci o metti in pausa">${ICON.play}${ICON.pause}</button>
   <div class="mini-t"><b data-mini-title></b><div class="mini-bar"><i data-mini-bar></i></div></div>
@@ -327,13 +371,9 @@ pages.home = layout("home", {
 
 <section class="band t-paper" aria-labelledby="h-live">
   <div class="wrap">
-    ${secHead({ label: "Live", meta: ["Con la band"], title: `<span id="h-live">Dal vivo</span>`, lede: esc(live.intro) })}
-    <div class="rail"><div class="rail-meta"><span class="mono mute">Date</span></div>
-      <div class="stack" style="--s:40px">
-        ${upcoming.length ? `<ol class="dates">${upcoming.slice(0, 3).map((d) => dateRow(d)).join("")}</ol>` : `<p>Nuove date in arrivo.</p>`}
-        <div class="stack" style="--s:14px"><p class="mono mute">Formazione</p>${lineup()}</div>
-      </div>
-    </div>
+    ${secHead({ label: "Live", meta: [`${datesSorted.length} date`, `${year(datesSorted[0]?.date)}–${year(datesSorted[datesSorted.length - 1]?.date)}`], title: `<span id="h-live">Dal vivo</span>`, lede: esc(live.intro) })}
+    <div class="gigs">${featuredDates.slice(0, 6).map((d) => gigCard(d, c)).join("")}</div>
+    <div class="rail" style="margin-top:clamp(40px,6vw,72px)"><div class="rail-meta"><span class="mono mute">Formazione</span></div>${lineup()}</div>
     <div class="sec-foot"><a class="link-arrow" href="${c.to("live")}">Tutte le date e il live</a></div>
   </div>
 </section>
@@ -387,7 +427,7 @@ ${pageHead({ c, label: "Musica", title: `Dr. Jediz <span class="it">&amp; Mr. I<
 <section class="band t-paper" aria-labelledby="h-disco">
   <div class="wrap">
     ${secHead({ label: "Discografia", meta: [`${releases.length} uscite`, `${year(releases[releases.length - 1].date)}–${year(releases[0].date)}`], title: `<span id="h-disco">Uscite</span>`, lede: "Dal 2020 a oggi. Ogni uscita porta alle piattaforme." })}
-    <div class="disco">${releases.filter((r) => r !== album).map((r) => `<article class="rel">${cover(r, c, "sm")}<div class="meta mono"><span>${esc(r.type)}</span><span>${dDot(r.date)}</span></div><h3>${esc(r.title)}</h3>${r.note ? `<p class="note">${esc(r.note)}</p>` : ""}<div class="links-row">${r.links.length ? r.links.map((l) => extLink(l.url, l.label)).join("") : ph("link da inserire")}</div></article>`).join("")}</div>
+    <div class="disco">${releases.filter((r) => r !== album).map((r) => `<article class="rel">${cover(r, c, "sm")}<div class="meta mono"><span>${esc(r.type)}</span><span>${dDot(r.date)}</span></div><h3>${esc(r.title)}</h3>${r.note ? `<p class="note">${esc(r.note)}</p>` : ""}<div class="links-row">${r.links.length ? r.links.map((l) => extLink(l.url, l.label)).join("") : ph("link da inserire")}${makingVideos.some((v) => v.project === r.title) ? `<a class="link-arrow" href="${c.to("video", "#making-" + slug(r.title))}">Making of</a>` : ""}</div></article>`).join("")}</div>
     <div class="sec-foot">${site.social.filter((s) => ["Spotify", "Apple Music"].includes(s.label)).map((s) => extLink(s.url, `Jediz su ${s.label}`)).join("")}</div>
   </div>
 </section>`,
@@ -435,20 +475,39 @@ ${next ? `<section class="band t-night" aria-labelledby="h-next" data-expires="$
     <div class="rail-meta"><span class="mono" id="h-past">Date passate</span><span class="mono mute">${past.length}</span></div>
     <div class="stack" style="--s:16px"><ol class="dates">${past.map((d) => dateRow(d, true)).join("")}</ol>${live.tour_note ? `<p>${ph(live.tour_note)}</p>` : ""}</div>
   </div>
+</section>
+<section class="band t-night" aria-labelledby="h-posters">
+  <div class="wrap">
+    ${secHead({ label: "Locandine", meta: [`${datesSorted.filter((d) => d.poster).length} locandine`], title: `<span id="h-posters">Le date</span>` })}
+    <div class="gigs">${[...datesSorted].reverse().map((d) => gigCard(d, c)).join("")}</div>
+  </div>
 </section>`,
 });
 
 pages.video = layout("video", {
   theme: "t-night",
   title: "Video",
-  description: "Video di Jediz: live, session, videoclip, backstage, cinema.",
+  description: "Video di Jediz: live, session, videoclip, making of, backstage, cinema.",
   body: (c) => `
-${pageHead({ c, label: "Video", title: "Video", lede: "Live, session, videoclip, backstage e lavori per il cinema." })}
+${pageHead({ c, label: "Video", title: "Video", lede: "Live, session, videoclip, making of, backstage e lavori per il cinema." })}
 <section class="band t-night" style="padding-top:0" aria-label="Elenco video">
   <div class="wrap">
-    ${filters(videosData.categories, "video")}
-    <div class="vgrid feature" data-filterable="video">${videosData.videos.map((v) => videoCard(v, c)).join("")}</div>
-    <div class="sec-foot">${extLink(site.social.find((s) => s.label === "YouTube")?.url, "Canale YouTube")}</div>
+    ${filters(videosData.categories.filter((k) => k !== MAKING), "video")}
+    <div class="vgrid feature" data-filterable="video">${mainVideos.map((v) => videoCard(v, c)).join("")}</div>
+    <div class="sec-foot"><a class="link-arrow" href="#making-of">Making of</a>${extLink(site.social.find((s) => s.label === "YouTube")?.url, "Canale YouTube")}</div>
+  </div>
+</section>
+<section class="band t-paper" id="making-of" aria-labelledby="h-making">
+  <div class="wrap">
+    ${secHead({ label: "Making of", meta: [makingVideos.length ? `${makingVideos.length} clip` : "", `${makingList.length} progetti`].filter(Boolean), title: `<span id="h-making">Come sono nati</span>`, lede: "Studio, provini, set, prove. Il dietro le quinte dei dischi." })}
+    ${makingList.map((p) => {
+      const clips = makingVideos.filter((v) => v.project === p);
+      const r = relByTitle(p);
+      return `<div class="rail making" id="making-${slug(p)}">
+      <div class="rail-meta making-meta">${r ? cover(r, c, "sm") : ""}<span class="mono">${esc(p)}</span><span class="mono mute">${r ? `${esc(r.type)} · ${year(r.date)}` : ""}${clips.length ? ` · ${clips.length} clip` : ""}</span></div>
+      <div class="making-strip">${clips.length ? clips.map((v) => videoCard(v, c)).join("") : `<div class="vcard is-vertical"><div class="vframe vertical">${phBlock("Clip da inserire")}</div></div><div class="vcard is-vertical"><div class="vframe vertical">${phBlock("Clip da inserire")}</div></div><div class="vcard is-vertical"><div class="vframe vertical">${phBlock("Clip da inserire")}</div></div>`}</div>
+    </div>`;
+    }).join("")}
   </div>
 </section>`,
 });
@@ -471,31 +530,58 @@ ${pageHead({ c, label: "Archivio", title: "Archivio", lede: "Documenti per chi l
 </section>`,
 });
 
-const typeOrder = ["Intervista", "Articolo", "Radio", "Podcast", "Video"];
+const typeOrder = ["Intervista", "Video", "Radio", "Podcast", "Articolo", "Social", "Segnalazione"];
+// anteprima video: YouTube (link o ID), Dailymotion, oppure immagine "thumb"
+const mediaPreview = (it) => {
+  const yt = ytId(it.youtube) || ytId(it.url);
+  if (yt) return { yt, thumb: `https://i.ytimg.com/vi/${yt}/hqdefault.jpg` };
+  const dm = dmId(it.url);
+  if (dm) return { thumb: `https://www.dailymotion.com/thumbnail/video/${dm}` };
+  if (it.thumb) return { thumb: it.thumb, local: true };
+  return null;
+};
+const mediaVideos = media.items.filter((it) => mediaPreview(it));
+const mediaList = media.items.filter((it) => !mediaPreview(it));
 const mediaGroups = [];
-[...media.items].sort((a, b) => (b.date || "").localeCompare(a.date || "")).forEach((it) => {
+[...mediaList].sort((a, b) => (b.date || "").localeCompare(a.date || "")).forEach((it) => {
   const key = it.topic || "Altre uscite";
   let g = mediaGroups.find((x) => x.key === key);
   if (!g) mediaGroups.push((g = { key, items: [] }));
   g.items.push(it);
 });
-mediaGroups.forEach((g) => g.items.sort((a, b) => typeOrder.indexOf(a.type) - typeOrder.indexOf(b.type) || (b.date || "").localeCompare(a.date || "")));
+mediaGroups.forEach((g) => g.items.sort((a, b) => (typeOrder.indexOf(a.type) + 1 || 99) - (typeOrder.indexOf(b.type) + 1 || 99) || (b.date || "").localeCompare(a.date || "")));
 const mDate = (d) => (d ? d.split("-").reverse().join(".") : "");
+function mediaVideoCard(it, c) {
+  const pv = mediaPreview(it);
+  const thumb = pv.local ? img(c, pv.thumb, 960) : pv.thumb;
+  const play = `<span>${ICON.play.replace('class="i-play" ', "")}</span>`;
+  const link = pv.yt
+    ? `<a class="vplay" href="https://www.youtube.com/watch?v=${esc(pv.yt)}" target="_blank" rel="noopener" data-yt="${esc(pv.yt)}" aria-label="Guarda: ${esc(it.title)}">${play}</a>`
+    : `<a class="vplay" href="${esc(it.url)}" target="_blank" rel="noopener" aria-label="Guarda: ${esc(it.title)}">${play}</a>`;
+  return `<article class="vcard"><div class="vframe"><img src="${esc(thumb)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">${link}</div><div class="vmeta mono"><span>${esc(it.outlet)} · ${esc(it.type)}</span><span>${mDate(it.date)}</span></div><h3>${esc(it.title)}</h3>${it.topic ? `<p>${esc(it.topic)}</p>` : ""}</article>`;
+}
+const hasInterviews = media.items.some((it) => ["Intervista", "Radio", "Podcast"].includes(it.type));
 pages.media = layout("media", {
   theme: "t-paper",
   title: "Media",
-  description: "Jediz sulla stampa: articoli, interviste, radio.",
+  description: "Jediz sulla stampa: interviste, articoli, video, segnalazioni.",
   body: (c) => `
 ${pageHead({ c, label: "Media", title: "Media", lede: esc(media.intro) })}
-${mediaGroups.map((g, gi) => `<section class="band t-paper"${gi === 0 ? ' style="padding-top:0"' : ' style="padding-top:0"'} aria-label="${esc(g.key)}">
+${mediaVideos.length ? `<section class="band t-night" aria-labelledby="h-mvideo">
+  <div class="wrap">
+    ${secHead({ label: "Video", meta: [`${mediaVideos.length} ${mediaVideos.length === 1 ? "video" : "video"}`], title: `<span id="h-mvideo">Video e interviste</span>` })}
+    <div class="vgrid">${mediaVideos.map((it) => mediaVideoCard(it, c)).join("")}</div>
+  </div>
+</section>` : ""}
+${mediaGroups.map((g, gi) => `<section class="band t-paper"${gi === 0 && !mediaVideos.length ? ' style="padding-top:0"' : gi > 0 ? ' style="padding-top:0"' : ""} aria-label="${esc(g.key)}">
   <div class="wrap rail">
     <div class="rail-meta"><span class="mono">${esc(g.key)}</span><span class="mono mute">${g.items.length} ${g.items.length === 1 ? "uscita" : "uscite"}</span></div>
     <ul class="press">${g.items.map((p) => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener"><span class="o">${esc(p.outlet)}<br><span class="mute">${esc(p.type)}</span></span><span class="t">${esc(p.title)}</span><span class="dt">${mDate(p.date)}</span></a></li>`).join("")}</ul>
   </div>
 </section>`).join("")}
-<section class="band t-paper" style="padding-top:0" aria-label="Da aggiungere">
+${hasInterviews ? "" : `<section class="band t-paper" style="padding-top:0" aria-label="Da aggiungere">
   <div class="wrap rail"><div class="rail-meta"><span class="mono">Interviste</span></div><p>${ph("interviste, radio e podcast da inserire")}</p></div>
-</section>
+</section>`}
 <section class="band t-night" aria-labelledby="h-forpress">
   <div class="wrap rail"><div class="rail-meta"><span class="mono">Per la stampa</span></div>
   <div class="stack" style="--s:20px"><h2 class="serif" style="font-size:var(--step-3);line-height:1.05" id="h-forpress">Materiali e contatti</h2><p class="measure mute">Bio, foto stampa e presentazione del progetto sono nell'archivio.</p><div class="links-row"><a class="link-arrow" href="${c.to("archivio")}">Archivio</a><a class="link-arrow" href="${c.to("contatti", "#press")}">Press / Media</a></div></div></div>
@@ -563,11 +649,7 @@ ${pageHead({ c, label: "Foto", title: "Foto", lede: "Una selezione: live, backst
     <div class="sec-foot"><a class="link-arrow" href="${c.to("archivio", "#jdz-06")}">Foto stampa in alta risoluzione</a></div>
   </div>
 </section>
-<div class="lightbox" hidden data-lightbox role="dialog" aria-modal="true" aria-label="Foto">
-  <div class="lb-top mono"><span data-lb-count></span><button type="button" class="copy" data-lb-close>Chiudi ✕</button></div>
-  <div class="lb-stage"><img alt="" data-lb-img></div>
-  <p class="lb-cap mono" data-lb-cap></p>
-</div>`,
+`,
 });
 
 const bioDoc = docByCode(bio.pdf_code);

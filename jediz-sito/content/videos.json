@@ -1,10 +1,65 @@
 {
-  "_help": "Video. \"youtube\" = solo l'ID del video (la parte dopo v= nell'indirizzo). La miniatura viene presa da YouTube in automatico, oppure indicare \"thumb\". Categorie consigliate: Live, Session, Videoclip, Backstage, Cinema.",
-  "categories": ["Live", "Session", "Videoclip", "Backstage", "Cinema"],
+  "_help": "Video. Tre modi: \"file\" = mp4 caricato sul sito (clip brevi, max 20 MB, con \"poster\" come copertina); \"youtube\" = link o ID YouTube (anche Shorts); \"url\" = link a Instagram/Facebook/Vimeo. Categoria \"Making of\" + \"project\" (titolo del disco) = compare nella sezione Making of. \"vertical\": true per clip in formato verticale 9:16.",
+  "categories": [
+    "Live",
+    "Session",
+    "Videoclip",
+    "Making of",
+    "Backstage",
+    "Cinema"
+  ],
   "videos": [
-    { "title": "", "category": "Live", "date": "", "description": "", "youtube": "", "thumb": "" },
-    { "title": "", "category": "Videoclip", "date": "", "description": "", "youtube": "", "thumb": "" },
-    { "title": "", "category": "Session", "date": "", "description": "", "youtube": "", "thumb": "" },
-    { "title": "", "category": "Cinema", "date": "", "description": "", "youtube": "", "thumb": "" }
+    {
+      "title": "",
+      "category": "Live",
+      "date": "",
+      "description": "",
+      "youtube": "",
+      "thumb": "",
+      "file": "",
+      "poster": "",
+      "url": "",
+      "project": "",
+      "vertical": false
+    },
+    {
+      "title": "",
+      "category": "Videoclip",
+      "date": "",
+      "description": "",
+      "youtube": "",
+      "thumb": "",
+      "file": "",
+      "poster": "",
+      "url": "",
+      "project": "",
+      "vertical": false
+    },
+    {
+      "title": "",
+      "category": "Session",
+      "date": "",
+      "description": "",
+      "youtube": "",
+      "thumb": "",
+      "file": "",
+      "poster": "",
+      "url": "",
+      "project": "",
+      "vertical": false
+    },
+    {
+      "title": "",
+      "category": "Cinema",
+      "date": "",
+      "description": "",
+      "youtube": "",
+      "thumb": "",
+      "file": "",
+      "poster": "",
+      "url": "",
+      "project": "",
+      "vertical": false
+    }
   ]
 }

@@ -18,7 +18,11 @@
 
   /* date scadute: se la pagina è più vecchia della data, nasconde la "prossima data" */
   const today = new Date(Date.now() + 2 * 3600e3).toISOString().slice(0, 10);
-  $$("[data-expires]").forEach((el) => { if (el.dataset.expires < today) el.hidden = true; });
+  $$("[data-expires]").forEach((el) => {
+    if (el.dataset.expires >= today) return;
+    if (el.hasAttribute("data-keep")) { el.classList.remove("is-next"); el.querySelectorAll(".tag").forEach((t) => t.remove()); }
+    else el.hidden = true;
+  });
 
   /* ---------- player ---------- */
   const root = $("[data-player]");
@@ -102,6 +106,7 @@
       $("[data-mini-play]", mini).addEventListener("click", toggle);
       $("[data-mini-close]", mini).addEventListener("click", () => { audio.pause(); mini.classList.remove("show"); });
     }
+    document.addEventListener("jdz:pause-audio", () => audio.pause());
     const saved = store.get("jdz-player");
     if (saved && tracks[saved.i]) load(saved.i, false); else load(0, false);
   }
@@ -117,6 +122,12 @@
     f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
     f.allowFullscreen = true;
     frame.replaceChildren(f);
+  }));
+
+  /* un solo video alla volta; mette in pausa il player musicale */
+  $$("video").forEach((vd) => vd.addEventListener("play", () => {
+    $$("video").forEach((o) => { if (o !== vd) o.pause(); });
+    document.dispatchEvent(new CustomEvent("jdz:pause-audio"));
   }));
 
   /* ---------- filtri ---------- */

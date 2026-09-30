@@ -8,14 +8,26 @@
       "kind": "Cortometraggio",
       "year": "2026",
       "credits": [
-        { "role": "Regia", "value": "Antonio Maria Castaldo" },
-        { "role": "Produzione", "value": "Yagi Media" },
-        { "role": "Brano", "value": "Tempo al tempo — Jediz" },
-        { "role": "Utilizzo", "value": "Colonna sonora" }
+        {
+          "role": "Regia",
+          "value": "Antonio Maria Castaldo"
+        },
+        {
+          "role": "Produzione",
+          "value": "Yagi Media"
+        },
+        {
+          "role": "Brano",
+          "value": "Tempo al tempo — Jediz"
+        },
+        {
+          "role": "Utilizzo",
+          "value": "Colonna sonora"
+        }
       ],
       "description": "Tempo al tempo è stata scelta come colonna sonora del cortometraggio.",
       "_note": "La stampa (RomaToday) riporta la presentazione del film alla Biennale di Venezia: se confermato, aggiungerlo come credit 'Presentato a'.",
-      "listen_url": "https://music.apple.com/it/album/tempo-al-tempo-single/1860105940",
+      "listen_url": "https://open.spotify.com/album/5QTFNUmXBvwkpPzAUVXWvd",
       "video_id": "",
       "image": ""
     }

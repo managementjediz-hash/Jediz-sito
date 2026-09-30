@@ -11,19 +11,14 @@
   "description": "Jediz: rap scritto a Roma e suonato dal vivo con una band. Musica, live, video, cinema, testi e materiali per addetti ai lavori.",
   "social": [
     {
-      "label": "Instagram",
-      "handle": "@eliajediz",
-      "url": "https://www.instagram.com/eliajediz/"
-    },
-    {
       "label": "Spotify",
       "handle": "Jediz",
       "url": "https://open.spotify.com/artist/1cJflLivZHAwIctBkyQRy9"
     },
     {
-      "label": "Apple Music",
-      "handle": "Jediz",
-      "url": "https://music.apple.com/it/artist/jediz/1265907453"
+      "label": "Instagram",
+      "handle": "@eliajediz",
+      "url": "https://www.instagram.com/eliajediz/"
     },
     {
       "label": "YouTube",
@@ -34,6 +29,11 @@
       "label": "TikTok",
       "handle": "",
       "url": ""
+    },
+    {
+      "label": "Apple Music",
+      "handle": "Jediz",
+      "url": "https://music.apple.com/it/artist/jediz/1265907453"
     }
   ],
   "contacts": [

@@ -1,5 +1,5 @@
 {
-  "_help": "Discografia. La prima uscita con \"featured\": true è quella nel player della home. Per ogni brano: \"audio\" = file completo in /assets/audio/ (consigliato, mp3 128–192 kbps); se manca, il player usa \"preview\" (anteprima di 30 secondi). \"on_album\" = singolo già contenuto in un album/EP: appare in discografia ma non viene ripetuto nel player.",
+  "_help": "Discografia. La prima uscita con \"featured\": true è quella nel player della home. Per ogni brano: \"audio\" = file completo in /assets/audio/ (consigliato, mp3 128–192 kbps); se manca, il player usa \"preview\" (anteprima di 30 secondi). Il primo link (Spotify) è quello principale. \"on_album\" = singolo già contenuto in un album/EP: appare in discografia ma non viene ripetuto nel player.",
   "releases": [
     {
       "slug": "dr-jediz-mr-i",
@@ -35,7 +35,7 @@
       "links": [
         {
           "label": "Spotify",
-          "url": "https://open.spotify.com/artist/1cJflLivZHAwIctBkyQRy9"
+          "url": "https://open.spotify.com/album/13YQMwnCH24gtleAcNxY6e"
         },
         {
           "label": "Apple Music",
@@ -125,6 +125,10 @@
       "on_album": "Dr. Jediz & Mr. I",
       "links": [
         {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/2le06ANkVRKaesRWUDWZm9"
+        },
+        {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/dr-jediz-mr-i-single/1888953185"
         }
@@ -139,6 +143,10 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c4/e6/2e/c4e62ea6-ffb9-b990-b851-cbffff7389aa/artwork.jpg/600x600bb.jpg",
       "on_album": "Dr. Jediz & Mr. I",
       "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/1k7IL3zgmqYWvS6gUXvDrD"
+        },
         {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/the-worm-single/1881496336"
@@ -155,6 +163,10 @@
       "on_album": "Dr. Jediz & Mr. I",
       "links": [
         {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/12UmQufC0h8GrHh3Xcan2t"
+        },
+        {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/a-met%C3%A0-single/1875746826"
         }
@@ -170,6 +182,10 @@
       "on_album": "Dr. Jediz & Mr. I",
       "links": [
         {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/7vsehh2CvJ4j1fj7ORHAtD"
+        },
+        {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/questione-di-scelte-musica-single/1866003443"
         }
@@ -184,6 +200,10 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/3c/ef/583cef78-032a-92b0-21df-4a7335514399/artwork.jpg/600x600bb.jpg",
       "note": "Colonna sonora del cortometraggio Straordinaria.",
       "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/5QTFNUmXBvwkpPzAUVXWvd"
+        },
         {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/tempo-al-tempo-single/1860105940"
@@ -206,6 +226,10 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/96/d3/e2/96d3e2b3-ec2f-8e4c-6e62-d58a24eb282f/artwork.jpg/600x600bb.jpg",
       "links": [
         {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/2eVX5Blfzk9GevwS6Vybl3"
+        },
+        {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/rapper-avvocato-single/1852479145"
         }
@@ -227,6 +251,10 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4f/89/f0/4f89f023-930a-7137-9a7a-f2d17b144ec9/artwork.jpg/600x600bb.jpg",
       "links": [
         {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/67JHnCVY932U0TgYGHlWS9"
+        },
+        {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/cala-piccola-2025-single/1843868551"
         }
@@ -241,6 +269,40 @@
       ]
     },
     {
+      "slug": "oramai",
+      "type": "Singolo",
+      "title": "OraMai",
+      "date": "2022-12-21",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/fa/c9/69/fac96966-6a75-8cb4-e23b-c9dc81c6e185/cover.jpg/600x600bb.jpg",
+      "note": "Con Caligola.",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/0ngvJD89YqJLqOIx02jaEc"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/oramai-single/1659286400"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Ora",
+          "feat": "Caligola",
+          "duration": "3:41",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/22/0b/fd/220bfd50-b957-e288-f2a7-8e935f046adb/mzaf_6542896692181055711.plus.aac.p.m4a"
+        },
+        {
+          "title": "Mai",
+          "feat": "Caligola",
+          "duration": "3:24",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/94/34/f2/9434f2b1-dec2-ccb7-aed0-93f068b28175/mzaf_2560193065525228831.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
       "slug": "burnout-in-barna",
       "type": "EP",
       "title": "BurnOut in Barna",
@@ -248,6 +310,10 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/51/e6/cc/51e6cc02-6744-5ea9-670d-270bf4e6d89f/artwork.jpg/600x600bb.jpg",
       "note": "Con Eva Herklots, FLAKKA, Tommaso Fabozzi.",
       "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/7G9xV3eTy8AztZhujJfUau"
+        },
         {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/burnout-in-barna-ep/1628617330"
@@ -304,6 +370,10 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/6a/c3/0f/6ac30fa7-4671-ed55-2cb5-da71e18156c1/artwork.jpg/600x600bb.jpg",
       "links": [
         {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/artist/1cJflLivZHAwIctBkyQRy9"
+        },
+        {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/il-folle-volo-ep/1584169767"
         }
@@ -344,6 +414,10 @@
       "date": "2020-12-04",
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fe/03/d4/fe03d4c2-b822-7d92-be7e-08ae6afe5212/195448886689.jpg/600x600bb.jpg",
       "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/3W19zXBNcd3zjMg8UhRgP1"
+        },
         {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/hikikomori-la-mia-quarantena-ep/1543808609"
@@ -395,6 +469,10 @@
       "note": "Con Caligola.",
       "on_album": "Il Folle Volo",
       "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/2R39LsVkh0AUAWZ2anX7CE"
+        },
         {
           "label": "Apple Music",
           "url": "https://music.apple.com/it/album/piazzale-belvedere-cala-piccola-feat-caligola-single/1536636513"
