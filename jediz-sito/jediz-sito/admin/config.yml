@@ -70,7 +70,10 @@ collections:
               - { name: category, label: "Categoria", widget: string }
               - { name: date, label: "Data (AAAA-MM-GG)", widget: string, required: false }
               - { name: description, label: "Descrizione breve", widget: text, required: false }
+              - { name: file, label: "File video (mp4, max 20 MB)", widget: file, required: false, media_folder: "/jediz-sito/assets/video", public_folder: "assets/video", hint: "Per video caricati sul sito. Esporta in mp4 H.264, 720p o 1080p, clip brevi." }
+              - { name: poster, label: "Immagine di copertina", widget: image, required: false, hint: "Il fotogramma mostrato prima di premere play." }
               - { name: youtube, label: "ID YouTube (dopo v=)", widget: string, required: false }
+              - { name: url, label: "Link a un'altra piattaforma (Instagram, Facebook, Vimeo…)", widget: string, required: false }
               - { name: thumb, label: "Miniatura personalizzata", widget: image, required: false }
 
   - name: "documents"
@@ -157,10 +160,12 @@ collections:
             fields:
               - { name: outlet, label: "Testata / programma", widget: string }
               - { name: title, label: "Titolo", widget: string }
-              - { name: type, label: "Tipo", widget: select, options: ["Intervista", "Articolo", "Radio", "Podcast", "Video"] }
+              - { name: type, label: "Tipo", widget: select, options: ["Intervista", "Video", "Radio", "Podcast", "Articolo", "Social", "Segnalazione"] }
               - { name: date, label: "Data (AAAA-MM-GG o AAAA-MM)", widget: string }
               - { name: topic, label: "Evento / progetto (raggruppa)", widget: string, required: false }
-              - { name: url, label: "Link", widget: string }
+              - { name: url, label: "Link", widget: string, hint: "Per un video YouTube o Dailymotion basta incollare qui il link: l'anteprima compare da sola in cima alla pagina Media." }
+              - { name: youtube, label: "ID YouTube (facoltativo)", widget: string, required: false, hint: "Solo se il video YouTube è diverso dal link (es. un'intervista scritta con un video dentro)." }
+              - { name: thumb, label: "Immagine di anteprima (facoltativa)", widget: image, required: false, hint: "Per video di altre piattaforme (Facebook, Instagram): con un'immagine il video compare tra le anteprime." }
 
   - name: "cinema"
     label: "Cinema"
@@ -224,7 +229,7 @@ collections:
             widget: list
             summary: "{{fields.category}} — {{fields.caption}}"
             fields:
-              - { name: src, label: "Immagine", widget: image }
+              - { name: src, label: "Immagine", widget: image, media_folder: "/jediz-sito/assets/img/foto", public_folder: "assets/img/foto", hint: "Qualsiasi dimensione: il sito la ridimensiona da solo." }
               - { name: alt, label: "Descrizione per accessibilità", widget: string }
               - { name: category, label: "Categoria", widget: string }
               - { name: caption, label: "Didascalia", widget: string, required: false }

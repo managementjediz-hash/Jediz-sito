@@ -106,6 +106,7 @@
       $("[data-mini-play]", mini).addEventListener("click", toggle);
       $("[data-mini-close]", mini).addEventListener("click", () => { audio.pause(); mini.classList.remove("show"); });
     }
+    document.addEventListener("jdz:pause-audio", () => audio.pause());
     const saved = store.get("jdz-player");
     if (saved && tracks[saved.i]) load(saved.i, false); else load(0, false);
   }
@@ -121,6 +122,12 @@
     f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
     f.allowFullscreen = true;
     frame.replaceChildren(f);
+  }));
+
+  /* un solo video alla volta; mette in pausa il player musicale */
+  $$("video").forEach((vd) => vd.addEventListener("play", () => {
+    $$("video").forEach((o) => { if (o !== vd) o.pause(); });
+    document.dispatchEvent(new CustomEvent("jdz:pause-audio"));
   }));
 
   /* ---------- filtri ---------- */

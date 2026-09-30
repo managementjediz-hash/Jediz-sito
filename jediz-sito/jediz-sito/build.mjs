@@ -106,6 +106,13 @@ function logo(c, onLight = false) {
   return `<img class="logo-img${invert}" src="${esc(c.asset(src))}" alt="JEDIZ" width="1000" height="851">`;
 }
 
+// immagini caricate dal pannello: Netlify le ridimensiona al volo (niente foto da 8 MB in pagina)
+function img(c, path, w) {
+  if (!path) return "";
+  if (PREVIEW || isExt(path) || /\.svg$/i.test(path)) return c.asset(path);
+  return `/.netlify/images?url=/${encodeURI(path.replace(/^\//, ""))}&w=${w}&q=78`;
+}
+
 function cover(rel, c, size = "") {
   const t = esc(rel.title).replace(/ &amp; /, " &amp;<em> ") + (rel.title.includes(" & ") ? "</em>" : "");
   const fallback = `<div class="cover-fallback" aria-hidden="true"><span class="mono">${esc(rel.type)} · ${year(rel.date)}</span><span class="cf-title">${t}</span><span class="cf-meta mono"><span>Jediz</span><span>${rel.cover ? "" : "copertina da inserire"}</span></span></div>`;
@@ -171,7 +178,7 @@ function gigCard(d, c) {
   const up = d.date >= todayRome;
   const cap = `${dDot(d.date)} · ${d.city} — ${d.title}`;
   const poster = d.poster
-    ? `<button class="pf gig-poster" type="button" data-lb="${esc(c.asset(d.poster))}" data-cap="${esc(cap)}" aria-label="Apri la locandina: ${esc(d.title)}"><img src="${esc(c.asset(d.poster_thumb || d.poster))}" alt="Locandina: ${esc(d.title)}, ${esc(d.city)}" loading="lazy" decoding="async"></button>`
+    ? `<button class="pf gig-poster" type="button" data-lb="${esc(img(c, d.poster, 1600))}" data-cap="${esc(cap)}" aria-label="Apri la locandina: ${esc(d.title)}"><img src="${esc(d.poster_thumb ? c.asset(d.poster_thumb) : img(c, d.poster, 600))}" alt="Locandina: ${esc(d.title)}, ${esc(d.city)}" loading="lazy" decoding="async"></button>`
     : `<div class="pf gig-poster">${phBlock("Locandina da inserire")}</div>`;
   return `<article class="gig${up ? " is-next" : ""}"${up ? ` data-expires="${d.date}" data-keep` : ""}>${poster}<div class="gig-meta mono"><span>${dDot(d.date)}</span><span>${esc(d.city)}</span></div><h3>${esc(d.title)}</h3><p class="mute">${d.venue ? esc(d.venue.split(" — ")[0]) : ""}${up ? ` <span class="tag mono">Prossima</span>` : ""}</p></article>`;
 }
@@ -182,10 +189,18 @@ function lineup() {
 
 function videoCard(v, c) {
   const title = v.title ? esc(v.title) : ph("titolo");
+  const label = esc(v.title || "Video");
   let frame;
-  if (v.youtube) {
-    const thumb = v.thumb ? c.asset(v.thumb) : `https://i.ytimg.com/vi/${esc(v.youtube)}/hqdefault.jpg`;
-    frame = `<div class="vframe"><img src="${thumb}" alt="" loading="lazy" decoding="async" width="480" height="360"><a class="vplay" href="https://www.youtube.com/watch?v=${esc(v.youtube)}" target="_blank" rel="noopener" data-yt="${esc(v.youtube)}" aria-label="Guarda: ${esc(v.title)}"><span>${ICON.play.replace('class="i-play" ', "")}</span></a></div>`;
+  if (v.file) {
+    // video caricato sul sito (mp4): si carica solo quando si preme play
+    frame = `<div class="vframe"><video controls playsinline preload="none"${v.poster ? ` poster="${esc(img(c, v.poster, 1200))}"` : ""} aria-label="${label}"><source src="${esc(c.asset(v.file))}" type="video/mp4"></video></div>`;
+  } else if (v.youtube) {
+    const thumb = v.thumb ? img(c, v.thumb, 960) : `https://i.ytimg.com/vi/${esc(v.youtube)}/hqdefault.jpg`;
+    frame = `<div class="vframe"><img src="${thumb}" alt="" loading="lazy" decoding="async" width="480" height="360"><a class="vplay" href="https://www.youtube.com/watch?v=${esc(v.youtube)}" target="_blank" rel="noopener" data-yt="${esc(v.youtube)}" aria-label="Guarda: ${label}"><span>${ICON.play.replace('class="i-play" ', "")}</span></a></div>`;
+  } else if (v.url) {
+    // video su un'altra piattaforma (Instagram, Facebook, Vimeo…): anteprima e link esterno
+    const bg = v.poster || v.thumb;
+    frame = `<div class="vframe">${bg ? `<img src="${esc(img(c, bg, 960))}" alt="" loading="lazy" decoding="async">` : `<div class="vframe-bg"></div>`}<a class="vplay" href="${esc(v.url)}" target="_blank" rel="noopener" aria-label="Guarda: ${label}"><span>${ICON.play.replace('class="i-play" ', "")}</span></a></div>`;
   } else frame = `<div class="vframe">${phBlock(`Video · ${v.category} · da inserire`)}</div>`;
   return `<article class="vcard" data-cat="${esc(v.category)}">${frame}<div class="vmeta mono"><span>${esc(v.category)}</span><span>${v.date ? dDot(v.date) : ""}</span></div><h3>${title}</h3>${v.description ? `<p>${esc(v.description)}</p>` : ""}</article>`;
 }
@@ -209,7 +224,7 @@ function docCard(d, c) {
 
 function photoItem(p, c) {
   const inner = p.src
-    ? `<button class="pf" type="button" data-lb="${esc(c.asset(p.src))}" data-cap="${esc(p.caption)}${p.credit ? " — foto " + esc(p.credit) : ""}" aria-label="Apri foto: ${esc(p.alt || p.caption)}"><img src="${esc(c.asset(p.thumb || p.src))}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></button>`
+    ? `<button class="pf" type="button" data-lb="${esc(img(c, p.src, 2000))}" data-cap="${esc(p.caption)}${p.credit ? " — foto " + esc(p.credit) : ""}" aria-label="Apri foto: ${esc(p.alt || p.caption)}"><img src="${esc(p.thumb ? c.asset(p.thumb) : img(c, p.src, 900))}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></button>`
     : `<div class="pf">${phBlock(`Foto · ${p.category}`)}</div>`;
   return `<figure class="ph-item ${esc(p.shape || "square")}" data-cat="${esc(p.category)}">${inner}<figcaption class="mono"><span>${p.caption ? esc(p.caption) : esc(p.category)}</span><span>${p.credit ? "© " + esc(p.credit) : ""}</span></figcaption></figure>`;
 }
@@ -490,31 +505,60 @@ ${pageHead({ c, label: "Archivio", title: "Archivio", lede: "Documenti per chi l
 </section>`,
 });
 
-const typeOrder = ["Intervista", "Video", "Radio", "Podcast", "Articolo"];
+const typeOrder = ["Intervista", "Video", "Radio", "Podcast", "Articolo", "Social", "Segnalazione"];
+// anteprima video: YouTube (link o ID), Dailymotion, oppure immagine "thumb"
+const ytId = (s = "") => { const m = String(s).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/); return m ? m[1] : /^[\w-]{11}$/.test(s) ? s : ""; };
+const dmId = (s = "") => { const m = String(s).match(/dailymotion\.com\/video\/([a-z0-9]+)|dai\.ly\/([a-z0-9]+)/i); return m ? m[1] || m[2] : ""; };
+const mediaPreview = (it) => {
+  const yt = ytId(it.youtube) || ytId(it.url);
+  if (yt) return { yt, thumb: `https://i.ytimg.com/vi/${yt}/hqdefault.jpg` };
+  const dm = dmId(it.url);
+  if (dm) return { thumb: `https://www.dailymotion.com/thumbnail/video/${dm}` };
+  if (it.thumb) return { thumb: it.thumb, local: true };
+  return null;
+};
+const mediaVideos = media.items.filter((it) => mediaPreview(it));
+const mediaList = media.items.filter((it) => !mediaPreview(it));
 const mediaGroups = [];
-[...media.items].sort((a, b) => (b.date || "").localeCompare(a.date || "")).forEach((it) => {
+[...mediaList].sort((a, b) => (b.date || "").localeCompare(a.date || "")).forEach((it) => {
   const key = it.topic || "Altre uscite";
   let g = mediaGroups.find((x) => x.key === key);
   if (!g) mediaGroups.push((g = { key, items: [] }));
   g.items.push(it);
 });
-mediaGroups.forEach((g) => g.items.sort((a, b) => typeOrder.indexOf(a.type) - typeOrder.indexOf(b.type) || (b.date || "").localeCompare(a.date || "")));
+mediaGroups.forEach((g) => g.items.sort((a, b) => (typeOrder.indexOf(a.type) + 1 || 99) - (typeOrder.indexOf(b.type) + 1 || 99) || (b.date || "").localeCompare(a.date || "")));
 const mDate = (d) => (d ? d.split("-").reverse().join(".") : "");
+function mediaVideoCard(it, c) {
+  const pv = mediaPreview(it);
+  const thumb = pv.local ? img(c, pv.thumb, 960) : pv.thumb;
+  const play = `<span>${ICON.play.replace('class="i-play" ', "")}</span>`;
+  const link = pv.yt
+    ? `<a class="vplay" href="https://www.youtube.com/watch?v=${esc(pv.yt)}" target="_blank" rel="noopener" data-yt="${esc(pv.yt)}" aria-label="Guarda: ${esc(it.title)}">${play}</a>`
+    : `<a class="vplay" href="${esc(it.url)}" target="_blank" rel="noopener" aria-label="Guarda: ${esc(it.title)}">${play}</a>`;
+  return `<article class="vcard"><div class="vframe"><img src="${esc(thumb)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">${link}</div><div class="vmeta mono"><span>${esc(it.outlet)} · ${esc(it.type)}</span><span>${mDate(it.date)}</span></div><h3>${esc(it.title)}</h3>${it.topic ? `<p>${esc(it.topic)}</p>` : ""}</article>`;
+}
+const hasInterviews = media.items.some((it) => ["Intervista", "Radio", "Podcast"].includes(it.type));
 pages.media = layout("media", {
   theme: "t-paper",
   title: "Media",
-  description: "Jediz sulla stampa: articoli, interviste, radio.",
+  description: "Jediz sulla stampa: interviste, articoli, video, segnalazioni.",
   body: (c) => `
 ${pageHead({ c, label: "Media", title: "Media", lede: esc(media.intro) })}
-${mediaGroups.map((g, gi) => `<section class="band t-paper"${gi === 0 ? ' style="padding-top:0"' : ' style="padding-top:0"'} aria-label="${esc(g.key)}">
+${mediaVideos.length ? `<section class="band t-night" aria-labelledby="h-mvideo">
+  <div class="wrap">
+    ${secHead({ label: "Video", meta: [`${mediaVideos.length} ${mediaVideos.length === 1 ? "video" : "video"}`], title: `<span id="h-mvideo">Video e interviste</span>` })}
+    <div class="vgrid">${mediaVideos.map((it) => mediaVideoCard(it, c)).join("")}</div>
+  </div>
+</section>` : ""}
+${mediaGroups.map((g, gi) => `<section class="band t-paper"${gi === 0 && !mediaVideos.length ? ' style="padding-top:0"' : gi > 0 ? ' style="padding-top:0"' : ""} aria-label="${esc(g.key)}">
   <div class="wrap rail">
     <div class="rail-meta"><span class="mono">${esc(g.key)}</span><span class="mono mute">${g.items.length} ${g.items.length === 1 ? "uscita" : "uscite"}</span></div>
     <ul class="press">${g.items.map((p) => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener"><span class="o">${esc(p.outlet)}<br><span class="mute">${esc(p.type)}</span></span><span class="t">${esc(p.title)}</span><span class="dt">${mDate(p.date)}</span></a></li>`).join("")}</ul>
   </div>
 </section>`).join("")}
-<section class="band t-paper" style="padding-top:0" aria-label="Da aggiungere">
+${hasInterviews ? "" : `<section class="band t-paper" style="padding-top:0" aria-label="Da aggiungere">
   <div class="wrap rail"><div class="rail-meta"><span class="mono">Interviste</span></div><p>${ph("interviste, radio e podcast da inserire")}</p></div>
-</section>
+</section>`}
 <section class="band t-night" aria-labelledby="h-forpress">
   <div class="wrap rail"><div class="rail-meta"><span class="mono">Per la stampa</span></div>
   <div class="stack" style="--s:20px"><h2 class="serif" style="font-size:var(--step-3);line-height:1.05" id="h-forpress">Materiali e contatti</h2><p class="measure mute">Bio, foto stampa e presentazione del progetto sono nell'archivio.</p><div class="links-row"><a class="link-arrow" href="${c.to("archivio")}">Archivio</a><a class="link-arrow" href="${c.to("contatti", "#press")}">Press / Media</a></div></div></div>
