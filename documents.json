@@ -1,0 +1,77 @@
+{
+  "_help": "Archivio dei materiali. Mettere i PDF in /assets/docs/ e indicare il percorso in \"file\". \"thumb\" = immagine di anteprima opzionale (/assets/img/docs/...). \"status\": \"ready\" oppure \"draft\" (in preparazione, senza link).",
+  "documents": [
+    {
+      "pages": "",
+      "code": "JDZ/01",
+      "date": "",
+      "status": "ready",
+      "kind": "Presentazione",
+      "thumb": "",
+      "version": "",
+      "title": "Jediz",
+      "file": "assets/docs/dr-jediz-mr-i-comunicatostampa.pdf",
+      "description": "Il progetto in poche pagine: musica, live, immagini, contatti."
+    },
+    {
+      "pages": "",
+      "code": "JDZ/02",
+      "date": "",
+      "status": "ready",
+      "kind": "Dossier",
+      "thumb": "",
+      "version": "",
+      "title": "Jediz per il cinema",
+      "file": "assets/docs/jediz_per_audiovisivo.pdf",
+      "description": "Il rapporto tra i brani e l'immagine. Tempo al tempo e Straordinaria, repertorio, contatti per sincronizzazioni."
+    },
+    {
+      "pages": "",
+      "code": "JDZ/03",
+      "date": "",
+      "status": "ready",
+      "kind": "Scrittura",
+      "thumb": "",
+      "version": "",
+      "title": "I testi di Jediz",
+      "file": "assets/docs/jediz_libretto_testi_web.pdf",
+      "description": "Una selezione di testi, impaginati per la lettura."
+    },
+    {
+      "pages": "",
+      "code": "JDZ/04",
+      "date": "",
+      "status": "ready",
+      "kind": "Biografia",
+      "thumb": "",
+      "version": "",
+      "title": "Bio",
+      "file": "",
+      "description": "Versione breve e versione estesa."
+    },
+    {
+      "pages": "",
+      "code": "JDZ/05",
+      "date": "",
+      "status": "draft",
+      "kind": "Live",
+      "thumb": "",
+      "version": "",
+      "title": "Scheda tecnica live",
+      "file": "",
+      "description": "Formazione, stage plot, input list, esigenze tecniche."
+    },
+    {
+      "pages": "",
+      "code": "JDZ/06",
+      "date": "",
+      "status": "draft",
+      "kind": "Immagini",
+      "thumb": "",
+      "version": "",
+      "title": "Foto stampa",
+      "file": "",
+      "description": "Ritratti e foto live in alta risoluzione, con crediti."
+    }
+  ]
+}
