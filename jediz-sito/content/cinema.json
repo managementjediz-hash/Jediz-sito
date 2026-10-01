@@ -4,9 +4,10 @@
   "works": [
     {
       "slug": "straordinaria",
-      "title": "Straordinaria",
+      "_note": "La stampa (RomaToday) riporta la presentazione del film alla Biennale di Venezia: se confermato, aggiungerlo come credit 'Presentato a'.",
       "kind": "Cortometraggio",
-      "year": "2026",
+      "listen_url": "https://open.spotify.com/album/5QTFNUmXBvwkpPzAUVXWvd",
+      "title": "Straordinaria",
       "credits": [
         {
           "role": "Regia",
@@ -25,11 +26,10 @@
           "value": "Colonna sonora"
         }
       ],
+      "image": "/assets/uploads/straordinaria.png",
       "description": "Tempo al tempo è stata scelta come colonna sonora del cortometraggio.",
-      "_note": "La stampa (RomaToday) riporta la presentazione del film alla Biennale di Venezia: se confermato, aggiungerlo come credit 'Presentato a'.",
-      "listen_url": "https://open.spotify.com/album/5QTFNUmXBvwkpPzAUVXWvd",
-      "video_id": "",
-      "image": ""
+      "year": "2026",
+      "video_id": ""
     }
   ],
   "future_note": "Altri lavori e sincronizzazioni: da inserire."
