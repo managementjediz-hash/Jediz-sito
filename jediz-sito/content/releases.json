@@ -2,50 +2,6 @@
   "_help": "Discografia. La prima uscita con \"featured\": true è quella nel player della home. Per ogni brano: \"audio\" = file completo in /assets/audio/ (consigliato, mp3 128–192 kbps); se manca, il player usa \"preview\" (anteprima di 30 secondi). Il primo link (Spotify) è quello principale. \"on_album\" = singolo già contenuto in un album/EP: appare in discografia ma non viene ripetuto nel player.",
   "releases": [
     {
-      "slug": "dr-jediz-mr-i",
-      "featured": true,
-      "type": "Album",
-      "title": "Dr. Jediz & Mr. I",
-      "date": "2026-05-01",
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/39/4e/eb394ea5-2e9c-4c5d-ad6e-81f8d4174387/artwork.jpg/600x600bb.jpg",
-      "_cover_note": "Consigliato: salvare la copertina in /assets/img/covers/dr-jediz-mr-i.jpg (600x600 e 1200x1200) e aggiornare questo campo.",
-      "intro": "Il primo album. Undici brani, autoprodotti.",
-      "credits": [
-        {
-          "role": "Produzione",
-          "value": "Jediz"
-        },
-        {
-          "role": "Featuring",
-          "value": "Lamia (Il Vaso di Pandora)"
-        },
-        {
-          "role": "Mix e master",
-          "value": ""
-        },
-        {
-          "role": "Copertina",
-          "value": ""
-        },
-        {
-          "role": "Fonogramma",
-          "value": "℗ 2026 Jediz"
-        }
-      ],
-      "links": [
-        {
-          "label": "Spotify",
-          "url": "https://open.spotify.com/album/13YQMwnCH24gtleAcNxY6e"
-        },
-        {
-          "label": "Apple Music",
-          "url": "https://music.apple.com/it/album/dr-jediz-mr-i/1894434261"
-        },
-        {
-          "label": "Bandcamp",
-          "url": ""
-        }
-      ],
       "tracks": [
         {
           "title": "Il Vaso di Pandora",
@@ -114,7 +70,51 @@
           "audio": "",
           "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0d/1b/a6/0d1ba67a-65cc-3872-3f47-f64f86305e99/mzaf_5301554674109180465.plus.aac.p.m4a"
         }
-      ]
+      ],
+      "slug": "dr-jediz-mr-i",
+      "intro": "Il primo album. Undici brani, autoprodotti.",
+      "featured": true,
+      "date": "2026-05-01",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/39/4e/eb394ea5-2e9c-4c5d-ad6e-81f8d4174387/artwork.jpg/600x600bb.jpg",
+      "title": "Dr. Jediz & Mr. I",
+      "_cover_note": "Consigliato: salvare la copertina in /assets/img/covers/dr-jediz-mr-i.jpg (600x600 e 1200x1200) e aggiornare questo campo.",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/13YQMwnCH24gtleAcNxY6e"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/dr-jediz-mr-i/1894434261"
+        },
+        {
+          "label": "Bandcamp",
+          "url": ""
+        }
+      ],
+      "credits": [
+        {
+          "role": "Produzione",
+          "value": "Jediz"
+        },
+        {
+          "role": "Featuring",
+          "value": "Lamia (Il Vaso di Pandora); Eva Herklots (Cronaca di vita annunciata); Marianna Vernuccio (Finalement); Gioconda Alves (Qualcuno con cui correre); Aida Deribe (a metà)"
+        },
+        {
+          "role": "Mix e master",
+          "value": ""
+        },
+        {
+          "role": "Copertina",
+          "value": ""
+        },
+        {
+          "role": "Fonogramma",
+          "value": "℗ 2026 Jediz"
+        }
+      ],
+      "type": "Album"
     },
     {
       "slug": "dr-jediz-mr-i-single",
@@ -461,13 +461,13 @@
       ]
     },
     {
+      "tracks": [],
       "slug": "piazzale-belvedere",
-      "type": "Singolo",
-      "title": "Piazzale Belvedere (Cala Piccola)",
       "date": "2020-10-30",
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/4d/cf/54/4dcf54ca-2bf8-237a-4655-52009976d177/195448584004.jpg/600x600bb.jpg",
-      "note": "Con Caligola.",
       "on_album": "Il Folle Volo",
+      "note": "Con Caligola.",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/4d/cf/54/4dcf54ca-2bf8-237a-4655-52009976d177/195448584004.jpg/600x600bb.jpg",
+      "title": "Piazzale Belvedere (Cala Piccola)",
       "links": [
         {
           "label": "Spotify",
@@ -478,7 +478,7 @@
           "url": "https://music.apple.com/it/album/piazzale-belvedere-cala-piccola-feat-caligola-single/1536636513"
         }
       ],
-      "tracks": []
+      "type": "Singolo"
     }
   ]
 }
