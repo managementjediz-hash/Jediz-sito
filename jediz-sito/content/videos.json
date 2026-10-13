@@ -10,56 +10,30 @@
   ],
   "videos": [
     {
-      "title": "",
-      "category": "Live",
-      "date": "",
-      "description": "",
       "youtube": "",
-      "thumb": "",
-      "file": "",
       "poster": "",
+      "date": "",
       "url": "",
-      "project": "",
-      "vertical": false
+      "thumb": "",
+      "vertical": true,
+      "title": "Jediz - Jump (live)",
+      "project": "Dr. Jediz & Mr. I",
+      "file": "https://www.instagram.com/p/Dc5lzhvOPvX/",
+      "description": "",
+      "category": "Live"
     },
     {
-      "title": "",
-      "category": "Videoclip",
-      "date": "",
-      "description": "",
       "youtube": "",
-      "thumb": "",
-      "file": "",
       "poster": "",
-      "url": "",
-      "project": "",
-      "vertical": false
-    },
-    {
-      "title": "",
-      "category": "Session",
       "date": "",
-      "description": "",
-      "youtube": "",
-      "thumb": "",
-      "file": "",
-      "poster": "",
       "url": "",
-      "project": "",
-      "vertical": false
-    },
-    {
-      "title": "",
-      "category": "Cinema",
-      "date": "",
-      "description": "",
-      "youtube": "",
       "thumb": "",
-      "file": "",
-      "poster": "",
-      "url": "",
-      "project": "",
-      "vertical": false
+      "vertical": false,
+      "title": "Jediz - Stanza 101",
+      "project": "Il Folle Volo",
+      "file": "https://www.youtube.com/watch?v=47J7svj8-Po",
+      "description": "",
+      "category": "Videoclip"
     }
   ]
 }
