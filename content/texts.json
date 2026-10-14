@@ -1,0 +1,20 @@
+{
+  "_help": "Testi. \"excerpt\" = poche righe mostrate in evidenza (vai a capo con \\n). \"full\" = testo completo (facoltativo): se presente appare 'Leggi il testo'. \"featured\": true = in evidenza in cima alla pagina.",
+  "intro": "Una selezione di testi: estratti, alcuni testi completi e il PDF con la raccolta.",
+  "pdf_code": "JDZ/03",
+  "texts": [
+    { "title": "Il Vaso di Pandora", "release": "Dr. Jediz & Mr. I", "year": "2026", "featured": true, "excerpt": "", "full": "" },
+    { "title": "Cronaca di vita annunciata", "release": "Dr. Jediz & Mr. I", "year": "2026", "featured": true, "excerpt": "", "full": "" },
+    { "title": "A metà", "release": "Dr. Jediz & Mr. I", "year": "2026", "featured": true, "excerpt": "", "full": "" },
+    { "title": "Harvey Specter", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
+    { "title": "The Worm", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
+    { "title": "Jump", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
+    { "title": "Dr. Jediz & Mr. I", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
+    { "title": "Questione di scelte (Musica)", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
+    { "title": "Qualcuno con cui correre", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
+    { "title": "Aspidistra", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
+    { "title": "Finalement", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
+    { "title": "Tempo al tempo", "release": "Singolo", "year": "2025", "excerpt": "", "full": "" },
+    { "title": "Rapper / Avvocato", "release": "Singolo", "year": "2025", "excerpt": "", "full": "" }
+  ]
+}

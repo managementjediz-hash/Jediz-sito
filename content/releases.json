@@ -1,0 +1,484 @@
+{
+  "_help": "Discografia. La prima uscita con \"featured\": true è quella nel player della home. Per ogni brano: \"audio\" = file completo in /assets/audio/ (consigliato, mp3 128–192 kbps); se manca, il player usa \"preview\" (anteprima di 30 secondi). Il primo link (Spotify) è quello principale. \"on_album\" = singolo già contenuto in un album/EP: appare in discografia ma non viene ripetuto nel player.",
+  "releases": [
+    {
+      "slug": "dr-jediz-mr-i",
+      "featured": true,
+      "type": "Album",
+      "title": "Dr. Jediz & Mr. I",
+      "date": "2026-05-01",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/39/4e/eb394ea5-2e9c-4c5d-ad6e-81f8d4174387/artwork.jpg/600x600bb.jpg",
+      "_cover_note": "Consigliato: salvare la copertina in /assets/img/covers/dr-jediz-mr-i.jpg (600x600 e 1200x1200) e aggiornare questo campo.",
+      "intro": "Il primo album. Undici brani, autoprodotti.",
+      "credits": [
+        {
+          "role": "Produzione",
+          "value": "Jediz"
+        },
+        {
+          "role": "Featuring",
+          "value": "Lamia (Il Vaso di Pandora)"
+        },
+        {
+          "role": "Mix e master",
+          "value": ""
+        },
+        {
+          "role": "Copertina",
+          "value": ""
+        },
+        {
+          "role": "Fonogramma",
+          "value": "℗ 2026 Jediz"
+        }
+      ],
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/13YQMwnCH24gtleAcNxY6e"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/dr-jediz-mr-i/1894434261"
+        },
+        {
+          "label": "Bandcamp",
+          "url": ""
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Il Vaso di Pandora",
+          "feat": "Lamia",
+          "duration": "2:39",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5b/72/81/5b7281bc-24b4-d7ff-6abb-fa3c87244d68/mzaf_8847864126275301011.plus.aac.p.m4a"
+        },
+        {
+          "title": "Cronaca di vita annunciata",
+          "duration": "3:06",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/47/26/29/472629ae-8ca9-8ebd-d48c-3423810cab71/mzaf_10151964040631097972.plus.aac.p.m4a"
+        },
+        {
+          "title": "Harvey Specter",
+          "duration": "2:29",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d1/ad/8e/d1ad8ee6-e146-24b0-58a6-2179ea592fee/mzaf_12384501410888402386.plus.aac.p.m4a"
+        },
+        {
+          "title": "The Worm",
+          "duration": "2:50",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ed/6d/02/ed6d02ff-e0d0-a722-f564-50c059a3ae80/mzaf_8281657351399406836.plus.aac.p.m4a"
+        },
+        {
+          "title": "Jump",
+          "duration": "3:15",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/8c/d0/97/8cd09790-1133-cabb-ded2-54e45a9947d5/mzaf_17290621053838226981.plus.aac.p.m4a"
+        },
+        {
+          "title": "A metà",
+          "duration": "3:38",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e4/c3/9b/e4c39b45-9237-9ac5-e2db-e005da746d1c/mzaf_396730586126246765.plus.aac.p.m4a"
+        },
+        {
+          "title": "Dr. Jediz & Mr. I",
+          "duration": "2:33",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6b/b5/74/6bb5745e-0c52-f7fd-f814-2ecf3ece662a/mzaf_70171184898077347.plus.aac.p.m4a"
+        },
+        {
+          "title": "Questione di scelte (Musica)",
+          "duration": "2:47",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/58/a0/34/58a034b4-6e04-3a80-1f10-4f83a2532327/mzaf_18150342907814759614.plus.aac.p.m4a"
+        },
+        {
+          "title": "Qualcuno con cui correre",
+          "duration": "3:47",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d2/ce/9b/d2ce9ba5-7ddb-c04d-6727-634912de4b17/mzaf_14677238802887231909.plus.aac.p.m4a"
+        },
+        {
+          "title": "Aspidistra",
+          "duration": "3:05",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/fc/99/89/fc998939-5f5e-5bf6-dfa2-dee0172d1f35/mzaf_6156150568619816895.plus.aac.p.m4a"
+        },
+        {
+          "title": "Finalement",
+          "duration": "2:45",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0d/1b/a6/0d1ba67a-65cc-3872-3f47-f64f86305e99/mzaf_5301554674109180465.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
+      "slug": "dr-jediz-mr-i-single",
+      "type": "Singolo",
+      "title": "Dr. Jediz & Mr. I",
+      "date": "2026-04-17",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2a/a7/4a/2aa74aed-72a1-90ee-5e23-2c6b665b3a4a/artwork.jpg/600x600bb.jpg",
+      "on_album": "Dr. Jediz & Mr. I",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/2le06ANkVRKaesRWUDWZm9"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/dr-jediz-mr-i-single/1888953185"
+        }
+      ],
+      "tracks": []
+    },
+    {
+      "slug": "the-worm",
+      "type": "Singolo",
+      "title": "The Worm",
+      "date": "2026-03-13",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c4/e6/2e/c4e62ea6-ffb9-b990-b851-cbffff7389aa/artwork.jpg/600x600bb.jpg",
+      "on_album": "Dr. Jediz & Mr. I",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/1k7IL3zgmqYWvS6gUXvDrD"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/the-worm-single/1881496336"
+        }
+      ],
+      "tracks": []
+    },
+    {
+      "slug": "a-meta",
+      "type": "Singolo",
+      "title": "A metà",
+      "date": "2026-02-13",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/32/10/16321076-b0dc-ad16-bf6c-6ac721f2e220/artwork.jpg/600x600bb.jpg",
+      "on_album": "Dr. Jediz & Mr. I",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/12UmQufC0h8GrHh3Xcan2t"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/a-met%C3%A0-single/1875746826"
+        }
+      ],
+      "tracks": []
+    },
+    {
+      "slug": "questione-di-scelte",
+      "type": "Singolo",
+      "title": "Questione di scelte (Musica)",
+      "date": "2026-01-23",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fd/25/a8/fd25a811-53a2-d153-11e2-7534e2388ab6/artwork.jpg/600x600bb.jpg",
+      "on_album": "Dr. Jediz & Mr. I",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/7vsehh2CvJ4j1fj7ORHAtD"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/questione-di-scelte-musica-single/1866003443"
+        }
+      ],
+      "tracks": []
+    },
+    {
+      "slug": "tempo-al-tempo",
+      "type": "Singolo",
+      "title": "Tempo al tempo",
+      "date": "2025-12-19",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/58/3c/ef/583cef78-032a-92b0-21df-4a7335514399/artwork.jpg/600x600bb.jpg",
+      "note": "Colonna sonora del cortometraggio Straordinaria.",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/5QTFNUmXBvwkpPzAUVXWvd"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/tempo-al-tempo-single/1860105940"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Tempo al tempo",
+          "duration": "2:28",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/11/1a/43/111a43df-6ae2-8873-e05e-3aec5373f856/mzaf_13765310499034772242.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
+      "slug": "rapper-avvocato",
+      "type": "Singolo",
+      "title": "Rapper / Avvocato",
+      "date": "2025-11-14",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/96/d3/e2/96d3e2b3-ec2f-8e4c-6e62-d58a24eb282f/artwork.jpg/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/2eVX5Blfzk9GevwS6Vybl3"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/rapper-avvocato-single/1852479145"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Rapper / Avvocato",
+          "duration": "3:49",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/eb/51/c6/eb51c625-8023-f345-26ea-edf72c59c73f/mzaf_9453963611791248466.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
+      "slug": "cala-piccola-2025",
+      "type": "Singolo",
+      "title": "Cala Piccola (2025)",
+      "date": "2025-10-10",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4f/89/f0/4f89f023-930a-7137-9a7a-f2d17b144ec9/artwork.jpg/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/67JHnCVY932U0TgYGHlWS9"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/cala-piccola-2025-single/1843868551"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Cala Piccola (2025)",
+          "duration": "2:47",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/65/48/37/65483732-3237-27f6-f711-949fa44a5856/mzaf_17481093117559579858.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
+      "slug": "oramai",
+      "type": "Singolo",
+      "title": "OraMai",
+      "date": "2022-12-21",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/fa/c9/69/fac96966-6a75-8cb4-e23b-c9dc81c6e185/cover.jpg/600x600bb.jpg",
+      "note": "Con Caligola.",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/0ngvJD89YqJLqOIx02jaEc"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/oramai-single/1659286400"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Ora",
+          "feat": "Caligola",
+          "duration": "3:41",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/22/0b/fd/220bfd50-b957-e288-f2a7-8e935f046adb/mzaf_6542896692181055711.plus.aac.p.m4a"
+        },
+        {
+          "title": "Mai",
+          "feat": "Caligola",
+          "duration": "3:24",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/94/34/f2/9434f2b1-dec2-ccb7-aed0-93f068b28175/mzaf_2560193065525228831.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
+      "slug": "burnout-in-barna",
+      "type": "EP",
+      "title": "BurnOut in Barna",
+      "date": "2022-06-10",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/51/e6/cc/51e6cc02-6744-5ea9-670d-270bf4e6d89f/artwork.jpg/600x600bb.jpg",
+      "note": "Con Eva Herklots, FLAKKA, Tommaso Fabozzi.",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/7G9xV3eTy8AztZhujJfUau"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/burnout-in-barna-ep/1628617330"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Routine",
+          "feat": "Eva Herklots",
+          "duration": "3:24",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/79/75/bf/7975bfbe-733e-a7b4-e219-b20e40dba604/mzaf_13426501729305482131.plus.aac.p.m4a"
+        },
+        {
+          "title": "Euphoria (Shimmy Rmx)",
+          "duration": "2:06",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/82/54/0a/82540a78-3f25-1645-1a45-b40cb86ceaa0/mzaf_13464781100152790884.plus.aac.p.m4a"
+        },
+        {
+          "title": "Burnout in Barna",
+          "duration": "2:17",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/6e/4f/06/6e4f06f4-ddc3-09db-f51e-d145feedb00b/mzaf_15879765584692655363.plus.aac.p.m4a"
+        },
+        {
+          "title": "Zero Blunt",
+          "feat": "FLAKKA",
+          "duration": "3:04",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/9a/ee/99/9aee9952-f8d6-8448-6e0a-392fd51b26d3/mzaf_12913659242360240163.plus.aac.p.m4a"
+        },
+        {
+          "title": "Family Portrait",
+          "feat": "Eva Herklots",
+          "duration": "3:39",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/d3/df/c2/d3dfc250-7d17-653a-591a-dafbcc551f38/mzaf_13406336433019495539.plus.aac.p.m4a"
+        },
+        {
+          "title": "Empty Pocket",
+          "feat": "Tommaso Fabozzi",
+          "duration": "2:51",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/f3/da/05/f3da051e-f946-fede-881f-dec3e45dc878/mzaf_13375550046363946876.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
+      "slug": "il-folle-volo",
+      "type": "EP",
+      "title": "Il Folle Volo",
+      "date": "2021-10-01",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/6a/c3/0f/6ac30fa7-4671-ed55-2cb5-da71e18156c1/artwork.jpg/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/artist/1cJflLivZHAwIctBkyQRy9"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/il-folle-volo-ep/1584169767"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Il Folle Volo",
+          "duration": "1:47",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/cc/b4/e7/ccb4e768-48ed-f438-473e-66856017c8a0/mzaf_1433962778729099165.plus.aac.p.m4a"
+        },
+        {
+          "title": "Stanza 101",
+          "feat": "Adrian Vitali",
+          "duration": "2:11",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/60/de/5b/60de5b97-3f6b-a252-d271-8b606c133606/mzaf_2657132529248315878.plus.aac.p.m4a"
+        },
+        {
+          "title": "Marine Terrace / Nova Terra",
+          "duration": "2:23",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/26/4f/8c/264f8c73-3e11-1413-b081-c64f407935be/mzaf_1893918490993882899.plus.aac.p.m4a"
+        },
+        {
+          "title": "Piazzale Belvedere (Cala Piccola)",
+          "feat": "Caligola",
+          "duration": "2:56",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/96/36/81/963681f5-217c-ab3c-e7bb-272beaf0e3cb/mzaf_15783581353736303433.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
+      "slug": "hikikomori",
+      "type": "EP",
+      "title": "Hikikomori (La mia quarantena)",
+      "date": "2020-12-04",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fe/03/d4/fe03d4c2-b822-7d92-be7e-08ae6afe5212/195448886689.jpg/600x600bb.jpg",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/3W19zXBNcd3zjMg8UhRgP1"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/hikikomori-la-mia-quarantena-ep/1543808609"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Circostanza consueta",
+          "feat": "DJ Fastcut",
+          "duration": "2:20",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview124/v4/11/7b/e4/117be47f-2023-c102-1674-5849f0777f48/mzaf_15667030679904210422.plus.aac.p.m4a"
+        },
+        {
+          "title": "Glory 2 the Beatmaker",
+          "feat": "Samo & Regazzino",
+          "duration": "3:48",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/7f/27/3f/7f273fe3-604a-99bc-5972-0815ce1c98d8/mzaf_5929612067961878592.plus.aac.p.m4a"
+        },
+        {
+          "title": "Hikikomori",
+          "feat": "None & Lolli",
+          "duration": "2:58",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview124/v4/92/01/d3/9201d3ce-3761-e8f8-6ec6-5393e0a44f2a/mzaf_17214279694858769383.plus.aac.p.m4a"
+        },
+        {
+          "title": "Kobe / Legio II",
+          "feat": "Regazzino, Samo, None, Fraja & Eric Draven",
+          "duration": "3:12",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/15/9e/a6/159ea69c-03ca-c07a-b0ee-f79338274cd7/mzaf_2202380366937143089.plus.aac.p.m4a"
+        },
+        {
+          "title": "Chiudi la porta",
+          "duration": "1:45",
+          "audio": "",
+          "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/2d/56/5a/2d565a16-a3a4-1dad-b710-7b795470e3da/mzaf_8261853576489613242.plus.aac.p.m4a"
+        }
+      ]
+    },
+    {
+      "slug": "piazzale-belvedere",
+      "type": "Singolo",
+      "title": "Piazzale Belvedere (Cala Piccola)",
+      "date": "2020-10-30",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/4d/cf/54/4dcf54ca-2bf8-237a-4655-52009976d177/195448584004.jpg/600x600bb.jpg",
+      "note": "Con Caligola.",
+      "on_album": "Il Folle Volo",
+      "links": [
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/album/2R39LsVkh0AUAWZ2anX7CE"
+        },
+        {
+          "label": "Apple Music",
+          "url": "https://music.apple.com/it/album/piazzale-belvedere-cala-piccola-feat-caligola-single/1536636513"
+        }
+      ],
+      "tracks": []
+    }
+  ]
+}

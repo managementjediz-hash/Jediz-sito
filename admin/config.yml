@@ -1,0 +1,272 @@
+# Pannello contenuti JEDIZ (Decap CMS)
+# Modifica i file in /content. A ogni salvataggio l'hosting ricostruisce il sito (node build.mjs).
+# Accesso con account GitHub (OAuth fornito da Netlify).
+# Il sito sta nella cartella jediz-sito/ del repository: tutti i percorsi partono da lì.
+backend:
+  name: github
+  repo: managementjediz-hash/Jediz-sito
+  branch: main
+
+locale: it
+media_folder: "jediz-sito/assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "live"
+    label: "Live"
+    files:
+      - name: "live"
+        label: "Date e formazione"
+        file: "jediz-sito/content/live.json"
+        fields:
+          - { name: intro, label: "Introduzione", widget: text }
+          - name: dates
+            label: "Date"
+            label_singular: "Data"
+            widget: list
+            summary: "{{fields.date}} — {{fields.venue}}, {{fields.city}}"
+            fields:
+              - { name: date, label: "Data (AAAA-MM-GG)", widget: string, pattern: ['^\d{4}-\d{2}-\d{2}$', "Formato AAAA-MM-GG"] }
+              - { name: time, label: "Ora (HH:MM)", widget: string, required: false }
+              - { name: title, label: "Titolo", widget: string }
+              - { name: venue, label: "Luogo", widget: string }
+              - { name: city, label: "Città", widget: string }
+              - { name: context, label: "Rassegna / contesto", widget: string, required: false }
+              - { name: address, label: "Indirizzo", widget: string, required: false }
+              - { name: description, label: "Descrizione", widget: text, required: false }
+              - { name: ticket_url, label: "Link biglietti", widget: string, required: false }
+              - { name: ticket_label, label: "Testo link biglietti", widget: string, required: false, default: "Biglietti" }
+              - { name: info_url, label: "Link informazioni", widget: string, required: false }
+              - { name: info_label, label: "Testo link informazioni", widget: string, required: false, default: "Informazioni" }
+              - { name: lineup, label: "Musicisti (se diversi dalla formazione attuale)", widget: string, required: false }
+              - { name: price, label: "Prezzo (es. 15 €)", widget: string, required: false }
+              - { name: poster, label: "Locandina", widget: image, required: false }
+              - { name: featured, label: "Data importante (in home)", widget: boolean, required: false, default: true }
+          - name: band
+            label: "Formazione"
+            widget: list
+            summary: "{{fields.name}} — {{fields.role}}"
+            fields:
+              - { name: name, label: "Nome", widget: string }
+              - { name: role, label: "Strumento / ruolo", widget: string }
+          - { name: formation_note, label: "Nota sulla formazione", widget: text, required: false }
+          - { name: tour_note, label: "Nota tour", widget: string, required: false }
+
+  - name: "videos"
+    label: "Video"
+    files:
+      - name: "videos"
+        label: "Video"
+        file: "jediz-sito/content/videos.json"
+        fields:
+          - { name: categories, label: "Categorie", widget: list }
+          - name: videos
+            label: "Video"
+            label_singular: "Video"
+            widget: list
+            summary: "{{fields.category}} {{fields.project}} — {{fields.title}}"
+            fields:
+              - { name: title, label: "Titolo", widget: string }
+              - { name: category, label: "Categoria", widget: select, options: ["Live", "Session", "Videoclip", "Making of", "Backstage", "Cinema"] }
+              - { name: project, label: "Disco (solo per Making of)", widget: select, required: false, options: ["Dr. Jediz & Mr. I", "Hikikomori (La mia quarantena)", "BurnOut in Barna", "Il Folle Volo", "Altro"] }
+              - { name: vertical, label: "Formato verticale (9:16)", widget: boolean, required: false, default: false, hint: "Attivalo per le clip girate col telefono in verticale." }
+              - { name: date, label: "Data (AAAA-MM-GG)", widget: string, required: false }
+              - { name: description, label: "Descrizione breve", widget: text, required: false }
+              - { name: file, label: "File video (mp4, max 20 MB)", widget: file, required: false, media_folder: "/jediz-sito/assets/video", public_folder: "assets/video", hint: "Per video caricati sul sito. Esporta in mp4 H.264, 720p o 1080p, clip brevi." }
+              - { name: poster, label: "Immagine di copertina", widget: image, required: false, hint: "Il fotogramma mostrato prima di premere play." }
+              - { name: youtube, label: "Link YouTube (anche Shorts)", widget: string, required: false, hint: "Incolla il link completo: il sito prende da solo l'anteprima." }
+              - { name: url, label: "Link a un'altra piattaforma (Instagram, Facebook, Vimeo…)", widget: string, required: false }
+              - { name: thumb, label: "Miniatura personalizzata", widget: image, required: false }
+
+  - name: "documents"
+    label: "Archivio"
+    files:
+      - name: "documents"
+        label: "Documenti e rassegna stampa"
+        file: "jediz-sito/content/documents.json"
+        fields:
+          - name: documents
+            label: "Documenti"
+            label_singular: "Documento"
+            widget: list
+            summary: "{{fields.code}} — {{fields.title}}"
+            fields:
+              - { name: code, label: "Codice (es. JDZ/07)", widget: string }
+              - { name: title, label: "Titolo", widget: string }
+              - { name: kind, label: "Tipo", widget: string }
+              - { name: description, label: "Descrizione", widget: text }
+              - { name: version, label: "Versione", widget: string, required: false }
+              - { name: date, label: "Data (AAAA-MM-GG)", widget: string, required: false }
+              - { name: pages, label: "Pagine", widget: string, required: false }
+              - { name: file, label: "PDF", widget: file, required: false, media_folder: "/jediz-sito/assets/docs", public_folder: "assets/docs" }
+              - { name: thumb, label: "Anteprima (immagine)", widget: image, required: false }
+              - { name: status, label: "Stato", widget: select, options: [{ label: "Pubblicato", value: "ready" }, { label: "In preparazione", value: "draft" }] }
+
+  - name: "music"
+    label: "Musica"
+    files:
+      - name: "releases"
+        label: "Discografia"
+        file: "jediz-sito/content/releases.json"
+        fields:
+          - name: releases
+            label: "Uscite"
+            label_singular: "Uscita"
+            widget: list
+            summary: "{{fields.type}} — {{fields.title}} ({{fields.date}})"
+            fields:
+              - { name: slug, label: "Slug", widget: string }
+              - { name: featured, label: "Nel player della home", widget: boolean, required: false }
+              - { name: type, label: "Tipo", widget: select, options: ["Album", "EP", "Singolo"] }
+              - { name: title, label: "Titolo", widget: string }
+              - { name: date, label: "Data (AAAA-MM-GG o AAAA)", widget: string }
+              - { name: cover, label: "Copertina", widget: image, required: false }
+              - { name: intro, label: "Introduzione", widget: text, required: false }
+              - { name: note, label: "Nota", widget: string, required: false }
+              - { name: on_album, label: "Singolo già contenuto in (album/EP)", widget: string, required: false }
+              - name: credits
+                label: "Crediti"
+                widget: list
+                required: false
+                fields: [{ name: role, label: "Ruolo", widget: string }, { name: value, label: "Nome", widget: string, required: false }]
+              - name: links
+                label: "Link piattaforme"
+                widget: list
+                required: false
+                fields: [{ name: label, label: "Piattaforma", widget: string }, { name: url, label: "Link", widget: string, required: false }]
+              - name: tracks
+                label: "Brani"
+                widget: list
+                required: false
+                summary: "{{fields.title}} {{fields.duration}}"
+                fields:
+                  - { name: title, label: "Titolo", widget: string }
+                  - { name: feat, label: "Featuring", widget: string, required: false }
+                  - { name: duration, label: "Durata (m:ss)", widget: string }
+                  - { name: audio, label: "File audio completo (mp3)", widget: file, required: false, media_folder: "/jediz-sito/assets/audio", public_folder: "assets/audio" }
+                  - { name: preview, label: "Anteprima (link)", widget: string, required: false }
+
+  - name: "media"
+    label: "Media"
+    files:
+      - name: "media"
+        label: "Articoli, interviste, radio"
+        file: "jediz-sito/content/media.json"
+        fields:
+          - { name: intro, label: "Introduzione", widget: text }
+          - name: items
+            label: "Uscite"
+            label_singular: "Uscita"
+            widget: list
+            summary: "{{fields.date}} — {{fields.outlet}}: {{fields.title}}"
+            fields:
+              - { name: outlet, label: "Testata / programma", widget: string }
+              - { name: title, label: "Titolo", widget: string }
+              - { name: type, label: "Tipo", widget: select, options: ["Intervista", "Video", "Radio", "Podcast", "Articolo", "Social", "Segnalazione"] }
+              - { name: date, label: "Data (AAAA-MM-GG o AAAA-MM)", widget: string }
+              - { name: topic, label: "Evento / progetto (raggruppa)", widget: string, required: false }
+              - { name: url, label: "Link", widget: string, hint: "Per un video YouTube o Dailymotion basta incollare qui il link: l'anteprima compare da sola in cima alla pagina Media." }
+              - { name: youtube, label: "ID YouTube (facoltativo)", widget: string, required: false, hint: "Solo se il video YouTube è diverso dal link (es. un'intervista scritta con un video dentro)." }
+              - { name: thumb, label: "Immagine di anteprima (facoltativa)", widget: image, required: false, hint: "Per video di altre piattaforme (Facebook, Instagram): con un'immagine il video compare tra le anteprime." }
+
+  - name: "cinema"
+    label: "Cinema"
+    files:
+      - name: "cinema"
+        label: "Lavori per il cinema"
+        file: "jediz-sito/content/cinema.json"
+        fields:
+          - { name: intro, label: "Introduzione", widget: text }
+          - name: works
+            label: "Lavori"
+            widget: list
+            summary: "{{fields.year}} — {{fields.title}}"
+            fields:
+              - { name: slug, label: "Slug", widget: string }
+              - { name: title, label: "Titolo", widget: string }
+              - { name: kind, label: "Tipo", widget: string }
+              - { name: year, label: "Anno", widget: string }
+              - { name: description, label: "Descrizione", widget: text }
+              - name: credits
+                label: "Crediti"
+                widget: list
+                fields: [{ name: role, label: "Ruolo", widget: string }, { name: value, label: "Nome", widget: string }]
+              - { name: listen_url, label: "Link ascolto", widget: string, required: false }
+              - { name: video_id, label: "ID YouTube", widget: string, required: false }
+              - { name: image, label: "Fotogramma", widget: image, required: false }
+          - { name: future_note, label: "Nota", widget: string, required: false }
+
+  - name: "texts"
+    label: "Testi"
+    files:
+      - name: "texts"
+        label: "Testi"
+        file: "jediz-sito/content/texts.json"
+        fields:
+          - { name: intro, label: "Introduzione", widget: text }
+          - { name: pdf_code, label: "Codice PDF in archivio", widget: string }
+          - name: texts
+            label: "Testi"
+            label_singular: "Testo"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "Titolo", widget: string }
+              - { name: release, label: "Uscita", widget: string }
+              - { name: year, label: "Anno", widget: string }
+              - { name: featured, label: "In evidenza", widget: boolean, required: false }
+              - { name: excerpt, label: "Estratto", widget: text, required: false }
+              - { name: full, label: "Testo completo", widget: text, required: false }
+
+  - name: "photos"
+    label: "Foto"
+    files:
+      - name: "photos"
+        label: "Foto"
+        file: "jediz-sito/content/photos.json"
+        fields:
+          - { name: categories, label: "Categorie", widget: list }
+          - name: photos
+            label: "Foto"
+            widget: list
+            summary: "{{fields.category}} — {{fields.caption}}"
+            fields:
+              - { name: src, label: "Immagine", widget: image, media_folder: "/jediz-sito/assets/img/foto", public_folder: "assets/img/foto", hint: "Qualsiasi dimensione: il sito la ridimensiona da solo." }
+              - { name: alt, label: "Descrizione per accessibilità", widget: string }
+              - { name: category, label: "Categoria", widget: string }
+              - { name: caption, label: "Didascalia", widget: string, required: false }
+              - { name: credit, label: "Fotografo", widget: string, required: false }
+              - { name: shape, label: "Formato", widget: select, options: ["tall", "wide", "square"] }
+
+  - name: "about"
+    label: "Bio e impostazioni"
+    files:
+      - name: "bio"
+        label: "Bio"
+        file: "jediz-sito/content/bio.json"
+        fields:
+          - { name: short, label: "Bio breve", widget: text }
+          - { name: long, label: "Bio estesa (paragrafi)", widget: list, field: { name: p, label: "Paragrafo", widget: text } }
+          - { name: pdf_code, label: "Codice PDF in archivio", widget: string }
+      - name: "site"
+        label: "Impostazioni, social e contatti"
+        file: "jediz-sito/content/site.json"
+        fields:
+          - { name: url, label: "Indirizzo del sito", widget: string }
+          - { name: name, label: "Nome", widget: string }
+          - { name: person, label: "Nome anagrafico", widget: string }
+          - { name: city, label: "Città", widget: string }
+          - { name: logo, label: "Logo (versione chiara, per sfondi scuri)", widget: image, required: false }
+          - { name: logo_on_light, label: "Logo (versione scura, per sfondi chiari)", widget: image, required: false }
+          - { name: lang, label: "Lingua", widget: hidden, default: "it" }
+          - { name: claim, label: "Frase in home", widget: string }
+          - { name: subclaim, label: "Riga sotto il nome", widget: string }
+          - { name: description, label: "Descrizione (motori di ricerca)", widget: text }
+          - name: social
+            label: "Canali"
+            widget: list
+            fields: [{ name: label, label: "Canale", widget: string }, { name: handle, label: "Nome utente", widget: string, required: false }, { name: url, label: "Link", widget: string, required: false }]
+          - name: contacts
+            label: "Contatti"
+            widget: list
+            fields: [{ name: id, label: "ID", widget: string }, { name: label, label: "Etichetta", widget: string }, { name: note, label: "Nota", widget: string }, { name: name, label: "Referente", widget: string, required: false }, { name: email, label: "Email", widget: string, required: false }]

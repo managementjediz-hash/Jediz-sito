@@ -1,0 +1,36 @@
+{
+  "_help": "Lavori per cinema, cortometraggi, sincronizzazioni. Il primo elemento è mostrato in evidenza.",
+  "intro": "Brani di Jediz usati per il cinema: colonne sonore, cortometraggi, sincronizzazioni.",
+  "works": [
+    {
+      "slug": "straordinaria",
+      "title": "Straordinaria",
+      "kind": "Cortometraggio",
+      "year": "2026",
+      "credits": [
+        {
+          "role": "Regia",
+          "value": "Antonio Maria Castaldo"
+        },
+        {
+          "role": "Produzione",
+          "value": "Yagi Media"
+        },
+        {
+          "role": "Brano",
+          "value": "Tempo al tempo — Jediz"
+        },
+        {
+          "role": "Utilizzo",
+          "value": "Colonna sonora"
+        }
+      ],
+      "description": "Tempo al tempo è stata scelta come colonna sonora del cortometraggio.",
+      "_note": "La stampa (RomaToday) riporta la presentazione del film alla Biennale di Venezia: se confermato, aggiungerlo come credit 'Presentato a'.",
+      "listen_url": "https://open.spotify.com/album/5QTFNUmXBvwkpPzAUVXWvd",
+      "video_id": "",
+      "image": ""
+    }
+  ],
+  "future_note": "Altri lavori e sincronizzazioni: da inserire."
+}

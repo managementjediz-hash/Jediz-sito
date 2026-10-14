@@ -1,0 +1,144 @@
+{
+  "_help": "Date live. Il sito divide da solo le date in 'prossime' e 'passate'. Formato data: AAAA-MM-GG, ora: HH:MM. \"featured\": true = compare in home tra le date importanti. \"poster\" = locandina (jpg, lato lungo max 1600px).",
+  "intro": "Dal vivo i brani cambiano forma: arrangiamenti nuovi, suonati da una band.",
+  "band": [
+    {
+      "name": "Jediz",
+      "role": "voce"
+    },
+    {
+      "name": "Tommaso Marino",
+      "role": "chitarra"
+    },
+    {
+      "name": "Tommaso Bonifazi Razzanti",
+      "role": "basso"
+    },
+    {
+      "name": "Gregorio De Rosa",
+      "role": "piano"
+    },
+    {
+      "name": "Luca Lo Presti",
+      "role": "batteria"
+    }
+  ],
+  "formation_note": "",
+  "dates": [
+    {
+      "date": "2026-09-27",
+      "time": "18:30",
+      "title": "Jediz with the Band",
+      "venue": "Giardini dell'Acqua Paola — Fontanone del Gianicolo",
+      "address": "",
+      "city": "Roma",
+      "context": "Eventi a Fontana 2026",
+      "description": "Primo concerto a Roma con la band. I brani riarrangiati per il live e un anticipo del nuovo album.",
+      "lineup": "Gregorio De Rosa, Luca Lo Presti, Tommaso Marino, Tommaso Bonifazi Razzanti",
+      "price": "15 €",
+      "ticket_url": "https://wa.me/393286692116",
+      "ticket_label": "Prenota su WhatsApp",
+      "info_url": "https://www.romatoday.it/eventi/jediz-concerto-band-gianicolo-acqua-paola.html",
+      "info_label": "Informazioni",
+      "poster": "assets/img/live/2026-09-27-roma-gianicolo.jpg",
+      "poster_thumb": "assets/img/live/2026-09-27-roma-gianicolo-480.jpg",
+      "featured": true
+    },
+    {
+      "date": "2026-09-02",
+      "time": "",
+      "title": "Open act per Ernia",
+      "venue": "Porto turistico",
+      "address": "",
+      "city": "Pescara",
+      "context": "VIII Festival Dannunziano",
+      "description": "",
+      "lineup": "",
+      "price": "",
+      "ticket_url": "",
+      "ticket_label": "",
+      "info_url": "",
+      "info_label": "",
+      "poster": "assets/img/live/2026-09-02-pescara.jpg",
+      "poster_thumb": "assets/img/live/2026-09-02-pescara-480.jpg",
+      "featured": true
+    },
+    {
+      "date": "2026-04-30",
+      "time": "20:00",
+      "title": "Dr. Jediz & Mr. I — release party",
+      "venue": "Studio 26",
+      "address": "Vicolo del Fico 3",
+      "city": "Roma",
+      "context": "",
+      "description": "Open mic alle 20:00, jam session alle 22:30, a mezzanotte esce il disco: listening party.",
+      "lineup": "",
+      "price": "",
+      "ticket_url": "",
+      "ticket_label": "",
+      "info_url": "",
+      "info_label": "",
+      "poster": "assets/img/live/2026-04-30-roma-studio26.jpg",
+      "poster_thumb": "assets/img/live/2026-04-30-roma-studio26-480.jpg",
+      "featured": true
+    },
+    {
+      "date": "2026-02-14",
+      "time": "",
+      "title": "Día de los enamorados Party",
+      "venue": "Galeria Marzia",
+      "address": "Carrer de la Flor del Lliri, 4 — Ciutat Vella",
+      "city": "Barcellona",
+      "context": "",
+      "description": "Release party del singolo A metà, con live performance.",
+      "lineup": "",
+      "price": "",
+      "ticket_url": "",
+      "ticket_label": "",
+      "info_url": "",
+      "info_label": "",
+      "poster": "assets/img/live/2026-02-14-barcellona.jpg",
+      "poster_thumb": "assets/img/live/2026-02-14-barcellona-480.jpg",
+      "featured": true
+    },
+    {
+      "date": "2025-12-28",
+      "time": "21:30",
+      "title": "Tom & Jediz",
+      "venue": "Brancaleone",
+      "address": "Via Levanna 11",
+      "city": "Roma",
+      "context": "",
+      "description": "Con Adrian Vitali.",
+      "lineup": "",
+      "price": "",
+      "ticket_url": "",
+      "ticket_label": "",
+      "info_url": "",
+      "info_label": "",
+      "poster": "assets/img/live/2025-12-28-roma-brancaleone.jpg",
+      "poster_thumb": "assets/img/live/2025-12-28-roma-brancaleone-480.jpg",
+      "featured": true
+    },
+    {
+      "date": "2025-05-25",
+      "time": "22:00",
+      "title": "Il ritorno dello Jediz",
+      "venue": "Parco delle Stelle",
+      "address": "Scalo San Lorenzo",
+      "city": "Roma",
+      "context": "",
+      "description": "La discografia di Jediz riarrangiata per una live band.",
+      "lineup": "Tommaso Marino (chitarra), Fortunato Fabiano (batteria), Tommaso Bonifazi (basso), Elia Nasuti (piano), Margherita De Cristofaro (voce)",
+      "price": "",
+      "ticket_url": "",
+      "ticket_label": "",
+      "info_url": "",
+      "info_label": "",
+      "poster": "assets/img/live/2025-05-25-roma-parco-delle-stelle.jpg",
+      "poster_thumb": "assets/img/live/2025-05-25-roma-parco-delle-stelle-480.jpg",
+      "featured": true
+    }
+  ],
+  "tour_note": ""
+}

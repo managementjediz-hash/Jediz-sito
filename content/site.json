@@ -1,0 +1,72 @@
+{
+  "_help": "Impostazioni generali. I campi vuoti (\"\") vengono mostrati sul sito come segnaposto 'da inserire'.",
+  "url": "https://www.jediz.it",
+  "_url_note": "Dominio definitivo da confermare: serve per sitemap, canonical e Open Graph.",
+  "name": "JEDIZ",
+  "person": "Elia Pergola",
+  "city": "Roma",
+  "lang": "it",
+  "claim": "Due nomi, la stessa penna.",
+  "subclaim": "Rap, scrittura, band dal vivo. Roma.",
+  "description": "Jediz: rap scritto a Roma e suonato dal vivo con una band. Musica, live, video, cinema, testi e materiali per addetti ai lavori.",
+  "social": [
+    {
+      "label": "Spotify",
+      "handle": "Jediz",
+      "url": "https://open.spotify.com/artist/1cJflLivZHAwIctBkyQRy9"
+    },
+    {
+      "label": "Instagram",
+      "handle": "@eliajediz",
+      "url": "https://www.instagram.com/eliajediz/"
+    },
+    {
+      "label": "YouTube",
+      "handle": "",
+      "url": ""
+    },
+    {
+      "label": "TikTok",
+      "handle": "",
+      "url": ""
+    },
+    {
+      "label": "Apple Music",
+      "handle": "Jediz",
+      "url": "https://music.apple.com/it/artist/jediz/1265907453"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "booking",
+      "label": "Booking / Live",
+      "note": "Date, festival, rassegne, formazione con band.",
+      "name": "",
+      "email": ""
+    },
+    {
+      "id": "press",
+      "label": "Press / Media",
+      "note": "Interviste, materiali stampa, accrediti.",
+      "name": "",
+      "email": ""
+    },
+    {
+      "id": "collab",
+      "label": "Collaborazioni",
+      "note": "Cinema, sincronizzazioni, featuring, progetti.",
+      "name": "",
+      "email": ""
+    },
+    {
+      "id": "info",
+      "label": "Contatti generali",
+      "note": "Tutto il resto.",
+      "name": "",
+      "email": ""
+    }
+  ],
+  "logo": "assets/img/logo-light.svg",
+  "logo_on_light": "assets/img/logo-dark.svg",
+  "_logo_help": "Logo: file SVG (consigliato) o PNG trasparente in assets/img/. \"logo\" = versione chiara per sfondi scuri; \"logo_on_light\" = versione scura per sfondi chiari (se manca, il sito inverte i colori della prima). Se entrambi vuoti, viene usata la scritta JEDIZ."
+}
