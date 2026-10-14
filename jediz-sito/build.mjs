@@ -232,7 +232,8 @@ function videoCard(v, c) {
   } else if (v.url) {
     // video su un'altra piattaforma (Instagram, Facebook, Vimeo…): anteprima e link esterno
     const bg = v.poster || v.thumb;
-    frame = `<div class="vframe">${bg ? `<img src="${esc(img(c, bg, 960))}" alt="" loading="lazy" decoding="async">` : `<div class="vframe-bg"></div>`}<a class="vplay" href="${esc(v.url)}" target="_blank" rel="noopener" aria-label="Guarda: ${label}"><span>${ICON.play.replace('class="i-play" ', "")}</span></a></div>`;
+    const plat = (v.url.match(/instagram|facebook|vimeo|tiktok|dailymotion/i) || [""])[0];
+    frame = `<div class="vframe">${bg ? `<img src="${esc(img(c, bg, 960))}" alt="" loading="lazy" decoding="async">` : `<div class="vframe-bg"><span class="vplat mono">${esc(plat ? plat[0].toUpperCase() + plat.slice(1).toLowerCase() : "Video")}</span></div>`}<a class="vplay" href="${esc(v.url)}" target="_blank" rel="noopener" aria-label="Guarda: ${label}"><span>${ICON.play.replace('class="i-play" ', "")}</span></a></div>`;
   } else frame = `<div class="vframe">${phBlock(`Video · ${v.category} · da inserire`)}</div>`;
   if (v.vertical) frame = frame.replace('<div class="vframe">', '<div class="vframe vertical">');
   return `<article class="vcard${v.vertical ? " is-vertical" : ""}" data-cat="${esc(v.category)}">${frame}<div class="vmeta mono"><span>${esc(v.category)}</span><span>${v.date ? dDot(v.date) : ""}</span></div><h3>${title}</h3>${v.description ? `<p>${esc(clip(v.description))}</p>` : ""}</article>`;
@@ -375,6 +376,21 @@ const ldAlbum = { "@context": "https://schema.org", "@type": "MusicAlbum", name:
 // ---------- pagine ----------
 const pages = {};
 
+// Novità in home: le uscite di Media segnate "highlight", dalla più recente (max 4)
+const newsItems = media.items.filter((it) => it.highlight).sort((a, b) => (b.date || "").localeCompare(a.date || "")).slice(0, 4);
+const nDate = (d) => (d ? d.split("-").reverse().join(".") : "");
+function newsBlock(c) {
+  if (!newsItems.length) return "";
+  return `<section class="band t-paper news-band" aria-labelledby="h-news">
+  <div class="wrap rail">
+    <div class="rail-meta"><span class="mono" id="h-news">Novità</span><span class="mono mute">Stampa e interviste</span></div>
+    <div class="stack" style="--s:20px">
+      <ul class="news">${newsItems.map((it) => `<li><a href="${esc(it.url)}" target="_blank" rel="noopener"><span class="n-src mono">${esc(it.outlet)} · ${esc(it.type)}</span><span class="n-t">${esc(it.title)}</span><span class="n-d mono">${nDate(it.date)}</span></a></li>`).join("")}</ul>
+      <div class="links-row"><a class="link-arrow" href="${c.to("media")}">Tutta la rassegna</a></div>
+    </div>
+  </div>
+</section>`;
+}
 pages.home = layout("home", {
   theme: "t-night",
   description: site.description,
@@ -395,6 +411,7 @@ pages.home = layout("home", {
   </div>
 </section>
 
+${newsBlock(c)}
 <section class="band t-paper ident" aria-labelledby="h-ident">
   <div class="wrap rail">
     <div class="rail-meta"><span class="mono" id="h-ident">Chi è</span><span class="mono mute">Jediz</span></div>

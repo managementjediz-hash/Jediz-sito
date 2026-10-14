@@ -450,3 +450,14 @@ button.link-arrow { font: inherit; background: none; border: 0; padding: 0; curs
 @media (prefers-reduced-motion: reduce) { .book-cover, .doc:hover .sheet { transition: none; transform: none; } }
 @media (min-width: 900px) { .vgrid.feature > .vcard.is-vertical:first-child { grid-template-columns: minmax(0, 320px) 1fr; } }
 .vgrid { align-items: start; }
+
+/* ---------- Novità in home ---------- */
+.news { border-top: 1px solid var(--rule); }
+.news li a { display: grid; gap: 6px 28px; padding-block: 18px; border-bottom: 1px solid var(--rule); text-decoration: none; color: inherit; }
+@media (min-width: 900px) { .news li a { grid-template-columns: 3fr 8fr auto; align-items: baseline; } }
+.news .n-src { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--mute); }
+.news .n-t { font-family: var(--f-display); font-size: var(--step-2); line-height: 1.15; font-variation-settings: "opsz" 48; }
+.news .n-d { font-size: .74rem; color: var(--mute); }
+.news a:hover .n-t { color: var(--accent); }
+.news-band + .ident { padding-top: 0; }
+.vframe-bg .vplat { position: absolute; left: 14px; top: 12px; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); }

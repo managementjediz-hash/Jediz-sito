@@ -47,20 +47,20 @@ Esempi:
 
 **Segnaposto.** Ogni campo vuoto compare sul sito come un'etichetta blu tratteggiata "da inserire". Prima della messa online non ne deve restare nessuno visibile.
 
-## Cose da completare prima della pubblicazione
+## Cose da completare
 
-- [ ] Dominio definitivo in `site.json` → `url`
-- [ ] Email per Booking, Press, Collaborazioni, Generale (`site.json`)
-- [ ] Link YouTube e TikTok (`site.json`)
-- [ ] Link biglietti per il 27.09 (`live.json`)
-- [ ] I tre PDF: Jediz, Jediz per il cinema, I testi di Jediz; più Bio (`assets/docs/` + `documents.json`)
-- [ ] Copertina dell'album in locale (`assets/img/covers/`) al posto del link Apple
-- [ ] Audio completo o scelta di restare sulle anteprime
+- [ ] Dominio: comprarlo e collegarlo a Cloudflare Pages (Custom domains); poi aggiornare `url` in `site.json`
+- [ ] Scheda tecnica live per la formazione (PDF in `assets/docs/`, voce JDZ/05 in `documents.json`)
+- [ ] Foto stampa (JDZ/06) e selezione foto per la pagina Foto
+- [ ] PDF della bio (JDZ/04)
+- [ ] Making of: caricare le clip per ciascun disco (Video → categoria "Making of")
+- [ ] Video Instagram/Facebook: aggiungere una "Miniatura" (Instagram non dà l'anteprima da solo)
+- [ ] Email per Booking, Press, Collaborazioni, Generale (`site.json`), link YouTube e TikTok
+- [ ] Cinema: titolo del documentario in Messico (chiedere a Iker)
 - [ ] Crediti album mancanti (mix e master, copertina)
-- [ ] Estratti dei testi, foto, video
-- [ ] Rileggere la bio (`bio.json`): è una bozza scritta solo con fatti verificati
-- [ ] Straordinaria: confermare se aggiungere "presentato alla Biennale di Venezia" (riportato da RomaToday)
 - [ ] Date del tour estivo 2026 (`live.json`)
+
+**Novità in home:** in Media, spuntare "In home, tra le Novità" sulle uscite da mettere in evidenza (compaiono le 4 più recenti).
 
 ## Sviluppo
 

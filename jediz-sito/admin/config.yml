@@ -168,6 +168,7 @@ collections:
               - { name: outlet, label: "Testata / programma", widget: string }
               - { name: title, label: "Titolo", widget: string }
               - { name: type, label: "Tipo", widget: select, options: ["Intervista", "Video", "Radio", "Podcast", "Articolo", "Social", "Segnalazione"] }
+              - { name: highlight, label: "In home, tra le Novità", widget: boolean, required: false, default: false, hint: "Le uscite segnate compaiono in cima alla home (le 4 più recenti)." }
               - { name: date, label: "Data (AAAA-MM-GG o AAAA-MM)", widget: string }
               - { name: topic, label: "Evento / progetto (raggruppa)", widget: string, required: false }
               - { name: url, label: "Link", widget: string, hint: "Per un video YouTube o Dailymotion basta incollare qui il link: l'anteprima compare da sola in cima alla pagina Media." }
