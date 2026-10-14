@@ -117,11 +117,21 @@ function logo(c, onLight = false) {
   return `<img class="logo-img${invert}" src="${esc(c.asset(src))}" alt="JEDIZ" width="1000" height="851">`;
 }
 
-// immagini caricate dal pannello: Netlify le ridimensiona al volo (niente foto da 8 MB in pagina)
+// Immagini: si usano le versioni leggere in assets/_r/ (create da "node tools/resize.mjs" o a mano),
+// scegliendo la più piccola larga almeno quanto serve. Se non ci sono, si usa il file originale.
+const RW = [480, 960, 1600];
+const USED_IMAGES = new Set();
 function img(c, path, w) {
   if (!path) return "";
   if (PREVIEW || isExt(path) || /\.svg$/i.test(path)) return c.asset(path);
-  return `/.netlify/images?url=/${encodeURI(path.replace(/^\//, ""))}&w=${w}&q=78`;
+  const p = path.replace(/^\//, "");
+  USED_IMAGES.add(p);
+  const base = p.replace(/\.[^./]+$/, "");
+  for (const rw of [...RW.filter((x) => x >= w), RW[RW.length - 1]]) {
+    const f = `assets/_r/${base}-${rw}.webp`;
+    if (existsSync(join(ROOT, f))) return c.asset(f);
+  }
+  return c.asset(p);
 }
 
 function cover(rel, c, size = "") {
@@ -760,6 +770,17 @@ if (!PREVIEW) {
   if (existsSync(join(ROOT, "admin"))) cpSync(join(ROOT, "admin"), join(OUT, "admin"), { recursive: true });
   writeFileSync(join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: ${abs("sitemap.xml")}\n`);
   writeFileSync(join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${PAGES.map((p) => `  <url><loc>${abs(p.path ? p.path + "/" : "")}</loc><lastmod>${todayRome}</lastmod></url>`).join("\n")}\n</urlset>\n`);
-  writeFileSync(join(OUT, "_headers"), `/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/css/*\n  Cache-Control: public, max-age=3600\n/assets/js/*\n  Cache-Control: public, max-age=3600\n/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n`);
+  // cache: font e immagini ridimensionate non cambiano mai; PDF e caricamenti possono essere sostituiti con lo stesso nome
+  writeFileSync(join(OUT, "_headers"), [
+    "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin",
+    "/assets/fonts/*\n  Cache-Control: public, max-age=31536000, immutable",
+    "/assets/_r/*\n  Cache-Control: public, max-age=31536000, immutable",
+    "/assets/img/*\n  Cache-Control: public, max-age=604800",
+    "/assets/uploads/*\n  Cache-Control: public, max-age=86400",
+    "/assets/docs/*\n  Cache-Control: public, max-age=3600",
+    "/assets/css/*\n  Cache-Control: public, max-age=3600",
+    "/assets/js/*\n  Cache-Control: public, max-age=3600",
+  ].join("\n") + "\n");
+  writeFileSync(join(ROOT, ".used-images.txt"), [...USED_IMAGES].sort().join("\n") + "\n");
 }
 console.log(`✓ ${PAGES.length} pagine in ${OUT.replace(ROOT + "/", "")}/  (oggi: ${todayRome}, prossima data: ${next ? next.date : "nessuna"})`);

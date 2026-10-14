@@ -27,7 +27,8 @@ Il generatore produce anche `sitemap.xml`, `robots.txt`, meta Open Graph, dati s
 ## Dove sta il sito
 
 - Repository: `github.com/managementjediz-hash/Jediz-sito` (i file sono nella cartella `jediz-sito/`).
-- Hosting: Netlify, progetto `venerable-bunny-587ab2` — base directory `jediz-sito`, build `node build.mjs`, publish `jediz-sito/dist`. Ogni modifica su `main` pubblica il sito da sola.
+- Hosting: Cloudflare Pages — root directory `jediz-sito`, build `node build.mjs`, output `dist`. Ogni modifica su `main` pubblica il sito da sola. Netlify (progetto `sitodijediz`) resta solo per il login del pannello, con i build fermati.
+- Immagini: dopo averne aggiunte di nuove, `node build.mjs && sh tools/resize.sh` crea le versioni leggere in `assets/_r/` (serve ImageMagick). Senza, il sito usa l'originale: caricare foto già leggere (sotto 500 KB).
 - Pannello: `/admin`, accesso con GitHub (OAuth App "Jediz sito" installata in Netlify → Access & security → OAuth).
 
 ## Aggiornare i contenuti

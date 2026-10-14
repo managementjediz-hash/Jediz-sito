@@ -1,11 +1,16 @@
 # Pannello contenuti JEDIZ (Decap CMS)
 # Modifica i file in /content. A ogni salvataggio l'hosting ricostruisce il sito (node build.mjs).
-# Accesso con account GitHub (OAuth fornito da Netlify).
+# Accesso con account GitHub (OAuth fornito da Netlify anche se il sito è su Cloudflare).
 # Il sito sta nella cartella jediz-sito/ del repository: tutti i percorsi partono da lì.
 backend:
   name: github
   repo: managementjediz-hash/Jediz-sito
   branch: main
+  # Il sito è ospitato su Cloudflare Pages; il login GitHub passa ancora dal servizio OAuth di Netlify
+  # (progetto "sitodijediz"), che non consuma crediti di pubblicazione.
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  site_domain: sitodijediz.netlify.app
 
 locale: it
 media_folder: "jediz-sito/assets/uploads"
