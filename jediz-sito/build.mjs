@@ -4,6 +4,7 @@
 //       node build.mjs --preview  → preview/ con pagine piatte (musica.html), CSS/JS in linea
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
@@ -290,6 +291,8 @@ function pageHead({ label, title, lede, c }) {
 // ---------- layout ----------
 const css = readFileSync(join(ROOT, "src", "site.css"), "utf8");
 const js = readFileSync(join(ROOT, "src", "site.js"), "utf8");
+// versione dei file: cambia a ogni modifica, così il browser non usa la copia vecchia
+const ver = (t) => createHash("sha1").update(t).digest("hex").slice(0, 8);
 
 function layout(pageId, { title, description, theme = "t-paper", body, jsonld, ogPath = "" }) {
   const c = ctx(pageId);
@@ -300,8 +303,8 @@ function layout(pageId, { title, description, theme = "t-paper", body, jsonld, o
   const socials = site.social.map((s) => `<li>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>` : `<span>${esc(s.label)} ${ph("link")}</span>`}</li>`).join("");
   const styles = PREVIEW
     ? `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>${css.replace(/@font-face\s*{[^}]*}\s*/g, "")}</style>`
-    : `<link rel="preload" href="${c.asset("assets/fonts/bodoni-moda.woff2")}" as="font" type="font/woff2" crossorigin><link rel="preload" href="${c.asset("assets/fonts/archivo.woff2")}" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="${c.asset("assets/css/site.css")}">`;
-  const script = PREVIEW ? `<script>${js}</script>` : `<script src="${c.asset("assets/js/site.js")}" defer></script>`;
+    : `<link rel="preload" href="${c.asset("assets/fonts/bodoni-moda.woff2")}" as="font" type="font/woff2" crossorigin><link rel="preload" href="${c.asset("assets/fonts/archivo.woff2")}" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="${c.asset("assets/css/site.css")}?v=${ver(css)}">`;
+  const script = PREVIEW ? `<script>${js}</script>` : `<script src="${c.asset("assets/js/site.js")}?v=${ver(js)}" defer></script>`;
   return `<!doctype html>
 <html lang="${site.lang}">
 <head>
