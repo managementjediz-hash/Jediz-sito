@@ -384,11 +384,12 @@ const newsItems = media.items.filter((it) => it.highlight).sort((a, b) => (b.dat
 const nDate = (d) => (d ? d.split("-").reverse().join(".") : "");
 function newsCard(it, c) {
   const yt = ytId(it.youtube) || ytId(it.url);
-  const pic = yt ? `https://i.ytimg.com/vi/${yt}/hqdefault.jpg` : it.image ? img(c, it.image, 960) : it.thumb ? img(c, it.thumb, 960) : "";
+  const dm = dmId(it.url);
+  const pic = yt ? `https://i.ytimg.com/vi/${yt}/hqdefault.jpg` : dm ? `https://www.dailymotion.com/thumbnail/video/${dm}` : it.image ? img(c, it.image, 960) : it.thumb ? img(c, it.thumb, 960) : "";
   const play = `<span>${ICON.play.replace('class="i-play" ', "")}</span>`;
   const media = yt
     ? `<div class="vframe"><img src="${esc(pic)}" alt="" loading="lazy" decoding="async" width="480" height="360"><a class="vplay" href="https://www.youtube.com/watch?v=${esc(yt)}" target="_blank" rel="noopener" data-yt="${esc(yt)}" aria-label="Guarda: ${esc(it.title)}">${play}</a></div>`
-    : `<a class="vframe n-pic" href="${esc(it.url)}" target="_blank" rel="noopener" aria-label="Leggi: ${esc(it.title)}">${pic ? `<img src="${esc(pic)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<span class="n-outlet">${esc(it.outlet)}</span></a>`;
+    : `<a class="vframe n-pic" href="${esc(it.url)}" target="_blank" rel="noopener" aria-label="Leggi: ${esc(it.title)}">${pic ? `<img src="${esc(pic)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}${dm ? `<span class="vplay" aria-hidden="true">${play}</span>` : `<span class="n-outlet">${esc(it.outlet)}</span>`}</a>`;
   return `<article class="n-card">${media}<p class="n-src mono">${esc(it.outlet)} · ${esc(it.type)} · ${nDate(it.date)}</p><h3 class="n-t"><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h3></article>`;
 }
 function newsCarousel(c) {
