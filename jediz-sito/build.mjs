@@ -348,7 +348,7 @@ ${body(c)}
       <div class="stack" style="--s:14px"><p class="mono mute">Canali</p><ul class="foot-list">${socials}</ul></div>
       <div class="stack" style="--s:14px"><p class="mono mute">Sito</p><ul class="foot-list">${NAV.map((p) => `<li><a href="${c.to(p.id)}">${p.label}</a></li>`).join("")}</ul></div>
     </div>
-    <div class="foot-base mono"><span>© ${todayRome.slice(0, 4)} Jediz</span><a href="${c.to("contatti")}">Contatti</a></div>
+    <div class="foot-base mono"><span>© ${todayRome.slice(0, 4)} Jediz</span></div>
   </div>
 </footer>
 <div class="lightbox" hidden data-lightbox role="dialog" aria-modal="true" aria-label="Immagine">

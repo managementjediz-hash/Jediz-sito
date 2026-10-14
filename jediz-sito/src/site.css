@@ -481,3 +481,11 @@ button.link-arrow { font: inherit; background: none; border: 0; padding: 0; curs
 .n-card .n-t a { text-decoration: none; color: inherit; }
 .n-card .n-t a:hover { color: var(--accent); }
 .hero-news > .link-arrow { justify-self: start; }
+
+/* header sempre in alto anche sui browser mobili dove "sticky" non tiene */
+.site-header { position: fixed; top: 0; left: 0; right: 0; padding-top: env(safe-area-inset-top, 0px); }
+body { padding-top: calc(var(--header-h) + 1px + env(safe-area-inset-top, 0px)); }
+@media (max-width: 899px) {
+  /* il menu si apre sotto la barra, a tutta altezza (la barra fa da riferimento per la posizione) */
+  .nav { inset: auto; top: 100%; left: 0; right: 0; height: calc(100vh - var(--header-h) - env(safe-area-inset-top, 0px)); height: calc(100dvh - var(--header-h) - env(safe-area-inset-top, 0px)); }
+}
