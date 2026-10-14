@@ -451,7 +451,7 @@ pages.home = layout("home", {
 
 <section class="band t-night" aria-labelledby="h-video">
   <div class="wrap">
-    ${secHead({ label: "Video", meta: videosData.categories.slice(0, 3).map(esc), title: `<span id="h-video">Video</span>`, lede: "Live, session, videoclip, backstage." })}
+    ${secHead({ label: "Video", meta: videosData.categories.slice(0, 3).map(esc), title: `<span id="h-video">Video</span>`, lede: "Live, session, videoclip." })}
     <div class="vgrid">${videosData.videos.slice(0, 3).map((v) => videoCard(v, c)).join("")}</div>
     <div class="sec-foot"><a class="link-arrow" href="${c.to("video")}">Tutti i video</a></div>
   </div>
@@ -558,9 +558,9 @@ ${next ? `<section class="band t-night" aria-labelledby="h-next" data-expires="$
 pages.video = layout("video", {
   theme: "t-night",
   title: "Video",
-  description: "Video di Jediz: live, session, videoclip, making of, backstage, cinema.",
+  description: "Video di Jediz: live, session, videoclip, making of.",
   body: (c) => `
-${pageHead({ c, label: "Video", title: "Video", lede: "Live, session, videoclip, making of, backstage e lavori per il cinema." })}
+${pageHead({ c, label: "Video", title: "Video", lede: "Live, session, videoclip e making of." })}
 <section class="band t-night" style="padding-top:0" aria-label="Elenco video">
   <div class="wrap">
     ${filters(videosData.categories.filter((k) => k !== MAKING), "video")}

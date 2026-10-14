@@ -4,9 +4,7 @@
     "Live",
     "Session",
     "Videoclip",
-    "Making of",
-    "Backstage",
-    "Cinema"
+    "Making of"
   ],
   "videos": [
     {
@@ -23,24 +21,115 @@
       "category": "Live"
     },
     {
-      "youtube": "",
-      "poster": "",
-      "date": "",
-      "url": "",
-      "thumb": "",
-      "vertical": false,
-      "title": "Jediz - Stanza 101",
-      "project": "Il Folle Volo",
-      "file": "https://www.youtube.com/watch?v=47J7svj8-Po",
-      "description": "",
-      "category": "Videoclip"
-    },
-    {
       "vertical": false,
       "title": "Jediz - live @ Festival Dannunziano - Pescara",
       "category": "Live",
       "file": "https://www.youtube.com/watch?v=-pROlD49daI",
       "description": "Ernia conquista il Porto Turistico di Pescara: urban, poesia e l'energia di Jediz\n\nIl rapper milanese incanta il pubblico del Festival Dannunziano. Ad aprire la serata, l'autenticità e le rime taglienti del romano Jediz.\n\nIeri sera il Porto Turistico di Pescara si è trasformato nell'arena perfetta per uno degli appuntamenti più attesi del Festival Dannunziano. Il protagonista indiscusso è stato Ernia, ma il palco ha vibrato fin dalle 21:30 grazie a Jediz. Il rapper romano ha avuto il non facile compito di scaldare la platea, condensando in mezz'ora ben sette brani carichi di flow crudo e attitudine capitolina (Articolo completo sul sito)."
+    },
+    {
+      "title": "Jediz, Caligola - Mai",
+      "category": "Videoclip",
+      "youtube": "https://www.youtube.com/watch?v=BBUKP_6cR5c",
+      "project": "",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "",
+      "url": "",
+      "poster": "",
+      "thumb": ""
+    },
+    {
+      "title": "Jediz - Piazzale Belvedere (Cala Piccola) feat. Caligola",
+      "category": "Videoclip",
+      "youtube": "https://www.youtube.com/watch?v=oeX-0hsspSQ",
+      "project": "",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "",
+      "url": "",
+      "poster": "",
+      "thumb": ""
+    },
+    {
+      "title": "Jediz - Stanza 101 feat. Adrian Vitali",
+      "category": "Videoclip",
+      "youtube": "https://www.youtube.com/watch?v=47J7svj8-Po",
+      "project": "",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "",
+      "url": "",
+      "poster": "",
+      "thumb": ""
+    },
+    {
+      "title": "Jediz, Eric Draven - Chiudi la porta (Rmx)",
+      "category": "Videoclip",
+      "youtube": "https://www.youtube.com/watch?v=EvTeqdNSkB4",
+      "project": "",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "",
+      "url": "",
+      "poster": "",
+      "thumb": ""
+    },
+    {
+      "title": "Jediz, Samo, Regazzino, None, Eric Draven, Fraja - Legio II",
+      "category": "Videoclip",
+      "youtube": "https://www.youtube.com/watch?v=y5B0lFK7A2c",
+      "project": "",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "",
+      "url": "",
+      "poster": "",
+      "thumb": ""
+    },
+    {
+      "title": "Jediz, Lolli, None - Hikikomori",
+      "category": "Videoclip",
+      "youtube": "https://www.youtube.com/watch?v=wJqQYwezhAQ",
+      "project": "",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "",
+      "url": "",
+      "poster": "",
+      "thumb": ""
+    },
+    {
+      "title": "Jediz, Samo, Regazzino - Glory 2 the Beatmaker",
+      "category": "Videoclip",
+      "youtube": "https://www.youtube.com/watch?v=a9yBnvtVE1U",
+      "project": "",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "",
+      "url": "",
+      "poster": "",
+      "thumb": ""
+    },
+    {
+      "title": "Jediz - Circostanza consueta",
+      "category": "Videoclip",
+      "youtube": "https://www.youtube.com/watch?v=fDSVbR0H7OQ",
+      "project": "",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "",
+      "url": "",
+      "poster": "",
+      "thumb": ""
     }
   ]
 }
