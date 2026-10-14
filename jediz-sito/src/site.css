@@ -461,3 +461,12 @@ button.link-arrow { font: inherit; background: none; border: 0; padding: 0; curs
 .news a:hover .n-t { color: var(--accent); }
 .news-band + .ident { padding-top: 0; }
 .vframe-bg .vplat { position: absolute; left: 14px; top: 12px; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); }
+
+/* ---------- Novità nell'apertura ---------- */
+.hero-news { display: grid; gap: 12px; }
+.hero-news ul { border-top: 1px solid rgba(255,255,255,.14); }
+.hero-news li a { display: grid; gap: 4px; padding-block: 12px; border-bottom: 1px solid rgba(255,255,255,.14); text-decoration: none; color: inherit; }
+.hero-news .n-src { font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--night-mute, var(--mute)); }
+.hero-news .n-t { font-family: var(--f-display); font-size: clamp(1.15rem, 1.6vw, 1.45rem); line-height: 1.2; font-variation-settings: "opsz" 36; }
+.hero-news a:hover .n-t { color: var(--accent); }
+.hero-news > .link-arrow { justify-self: start; margin-top: 4px; }

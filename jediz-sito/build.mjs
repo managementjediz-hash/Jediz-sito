@@ -402,8 +402,7 @@ pages.home = layout("home", {
     <div class="hero-main">
       <h1 class="wordmark" id="h-jediz">${logo(c)}${site.logo ? '<span class="sr-only">JEDIZ</span>' : ""}</h1>
       <div class="hero-claim">
-        <p class="claim">${esc(site.claim)}</p>
-        <p class="mono mute">${esc(site.subclaim)}</p>
+        ${newsItems.length ? `<div class="hero-news"><p class="mono mute" id="h-news">Novità</p><ul>${newsItems.slice(0, 3).map((it) => `<li><a href="${esc(it.url)}" target="_blank" rel="noopener"><span class="n-src mono">${esc(it.outlet)} · ${esc(it.type)} · ${nDate(it.date)}</span><span class="n-t">${esc(it.title)}</span></a></li>`).join("")}</ul><a class="link-arrow" href="${c.to("media")}">Tutta la rassegna</a></div>` : `<p class="claim">${esc(site.claim)}</p><p class="mono mute">${esc(site.subclaim)}</p>`}
         <div class="hero-actions"><a class="link-arrow" href="#ascolta">Ascolta</a><a class="link-arrow" href="${c.to("live")}">Live</a><a class="link-arrow" href="${c.to("video")}">Video</a><a class="link-arrow" href="${c.to("archivio")}">Archivio</a></div>
       </div>
     </div>
@@ -411,7 +410,6 @@ pages.home = layout("home", {
   </div>
 </section>
 
-${newsBlock(c)}
 <section class="band t-paper ident" aria-labelledby="h-ident">
   <div class="wrap rail">
     <div class="rail-meta"><span class="mono" id="h-ident">Chi è</span><span class="mono mute">Jediz</span></div>
