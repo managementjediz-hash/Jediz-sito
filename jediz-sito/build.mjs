@@ -379,6 +379,18 @@ const pages = {};
 // Novità in home: le uscite di Media segnate "highlight", dalla più recente (max 4)
 const newsItems = media.items.filter((it) => it.highlight).sort((a, b) => (b.date || "").localeCompare(a.date || "")).slice(0, 4);
 const nDate = (d) => (d ? d.split("-").reverse().join(".") : "");
+function newsCard(it, c) {
+  const yt = ytId(it.youtube) || ytId(it.url);
+  const pic = yt ? `https://i.ytimg.com/vi/${yt}/hqdefault.jpg` : it.image ? img(c, it.image, 960) : it.thumb ? img(c, it.thumb, 960) : "";
+  const play = `<span>${ICON.play.replace('class="i-play" ', "")}</span>`;
+  const media = yt
+    ? `<div class="vframe"><img src="${esc(pic)}" alt="" loading="lazy" decoding="async" width="480" height="360"><a class="vplay" href="https://www.youtube.com/watch?v=${esc(yt)}" target="_blank" rel="noopener" data-yt="${esc(yt)}" aria-label="Guarda: ${esc(it.title)}">${play}</a></div>`
+    : `<a class="vframe n-pic" href="${esc(it.url)}" target="_blank" rel="noopener" aria-label="Leggi: ${esc(it.title)}">${pic ? `<img src="${esc(pic)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<span class="n-outlet">${esc(it.outlet)}</span></a>`;
+  return `<article class="n-card">${media}<p class="n-src mono">${esc(it.outlet)} · ${esc(it.type)} · ${nDate(it.date)}</p><h3 class="n-t"><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h3></article>`;
+}
+function newsCarousel(c) {
+  return `<div class="hero-news" aria-labelledby="h-news"><div class="n-head"><p class="mono mute" id="h-news">Novità</p><div class="n-nav"><button type="button" class="n-btn" data-news="-1" aria-label="Precedente">←</button><button type="button" class="n-btn" data-news="1" aria-label="Successiva">→</button></div></div><div class="n-track" data-news-track tabindex="0">${newsItems.map((it) => newsCard(it, c)).join("")}</div><a class="link-arrow" href="${c.to("media")}">Tutta la rassegna</a></div>`;
+}
 function newsBlock(c) {
   if (!newsItems.length) return "";
   return `<section class="band t-paper news-band" aria-labelledby="h-news">
@@ -402,7 +414,7 @@ pages.home = layout("home", {
     <div class="hero-main">
       <h1 class="wordmark" id="h-jediz">${logo(c)}${site.logo ? '<span class="sr-only">JEDIZ</span>' : ""}</h1>
       <div class="hero-claim">
-        ${newsItems.length ? `<div class="hero-news"><p class="mono mute" id="h-news">Novità</p><ul>${newsItems.slice(0, 3).map((it) => `<li><a href="${esc(it.url)}" target="_blank" rel="noopener"><span class="n-src mono">${esc(it.outlet)} · ${esc(it.type)} · ${nDate(it.date)}</span><span class="n-t">${esc(it.title)}</span></a></li>`).join("")}</ul><a class="link-arrow" href="${c.to("media")}">Tutta la rassegna</a></div>` : `<p class="claim">${esc(site.claim)}</p><p class="mono mute">${esc(site.subclaim)}</p>`}
+        ${newsItems.length ? newsCarousel(c) : `<p class="claim">${esc(site.claim)}</p><p class="mono mute">${esc(site.subclaim)}</p>`}
         <div class="hero-actions"><a class="link-arrow" href="#ascolta">Ascolta</a><a class="link-arrow" href="${c.to("live")}">Live</a><a class="link-arrow" href="${c.to("video")}">Video</a><a class="link-arrow" href="${c.to("archivio")}">Archivio</a></div>
       </div>
     </div>

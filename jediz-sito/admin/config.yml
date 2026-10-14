@@ -173,6 +173,7 @@ collections:
               - { name: topic, label: "Evento / progetto (raggruppa)", widget: string, required: false }
               - { name: url, label: "Link", widget: string, hint: "Per un video YouTube o Dailymotion basta incollare qui il link: l'anteprima compare da sola in cima alla pagina Media." }
               - { name: youtube, label: "ID YouTube (facoltativo)", widget: string, required: false, hint: "Solo se il video YouTube è diverso dal link (es. un'intervista scritta con un video dentro)." }
+              - { name: image, label: "Immagine per le Novità in home (facoltativa)", widget: image, required: false, hint: "Per articoli senza video: compare nella card in home. Accetta anche un link a un'immagine." }
               - { name: thumb, label: "Immagine di anteprima (facoltativa)", widget: image, required: false, hint: "Per video di altre piattaforme (Facebook, Instagram): con un'immagine il video compare tra le anteprime." }
 
   - name: "cinema"

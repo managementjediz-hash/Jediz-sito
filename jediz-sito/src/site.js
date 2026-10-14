@@ -186,3 +186,13 @@
   rd.querySelector("[data-reader-close]").addEventListener("click", close);
   document.addEventListener("keydown", (e) => { if (!rd.hidden && e.key === "Escape") close(); });
 })();
+
+/* ---------- Novità: frecce del carosello ---------- */
+(() => {
+  const tr = document.querySelector("[data-news-track]");
+  if (!tr) return;
+  const btns = [...document.querySelectorAll("[data-news]")];
+  const upd = () => { btns[0].disabled = tr.scrollLeft < 8; btns[1].disabled = tr.scrollLeft + tr.clientWidth >= tr.scrollWidth - 8; };
+  btns.forEach((b) => b.addEventListener("click", () => { const card = tr.firstElementChild; tr.scrollBy({ left: +b.dataset.news * ((card ? card.offsetWidth : 300) + 16), behavior: "smooth" }); }));
+  tr.addEventListener("scroll", upd, { passive: true }); addEventListener("resize", upd); upd();
+})();
