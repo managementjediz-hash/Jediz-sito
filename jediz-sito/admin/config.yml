@@ -72,11 +72,11 @@ collections:
               - { name: vertical, label: "Formato verticale (9:16)", widget: boolean, required: false, default: false, hint: "Attivalo per le clip girate col telefono in verticale." }
               - { name: date, label: "Data (AAAA-MM-GG)", widget: string, required: false }
               - { name: description, label: "Descrizione breve", widget: text, required: false }
-              - { name: file, label: "File video (mp4, max 20 MB)", widget: file, required: false, media_folder: "/jediz-sito/assets/video", public_folder: "assets/video", hint: "Per video caricati sul sito. Esporta in mp4 H.264, 720p o 1080p, clip brevi." }
-              - { name: poster, label: "Immagine di copertina", widget: image, required: false, hint: "Il fotogramma mostrato prima di premere play." }
-              - { name: youtube, label: "Link YouTube (anche Shorts)", widget: string, required: false, hint: "Incolla il link completo: il sito prende da solo l'anteprima." }
-              - { name: url, label: "Link a un'altra piattaforma (Instagram, Facebook, Vimeo…)", widget: string, required: false }
-              - { name: thumb, label: "Miniatura personalizzata", widget: image, required: false }
+              - { name: youtube, label: "Link del video (YouTube, Instagram, Facebook…)", widget: string, required: false, hint: "Incolla qui il link. Con YouTube il sito prende da solo l'anteprima; per Instagram aggiungi una miniatura qui sotto." }
+              - { name: thumb, label: "Miniatura (consigliata per Instagram/Facebook)", widget: image, required: false }
+              - { name: file, label: "Oppure: carica un file mp4 (max 20 MB)", widget: file, required: false, media_folder: "/jediz-sito/assets/video", public_folder: "assets/video", hint: "Solo per video caricati sul sito. Un link incollato qui funziona comunque." }
+              - { name: poster, label: "Copertina del file mp4", widget: image, required: false }
+              - { name: url, label: "Altro link (facoltativo)", widget: string, required: false, hint: "Non serve se hai già messo il link sopra." }
 
   - name: "documents"
     label: "Archivio"
@@ -213,8 +213,10 @@ collections:
             fields:
               - { name: title, label: "Titolo", widget: string }
               - { name: release, label: "Uscita", widget: string }
+              - { name: kind, label: "Tipo (Album, EP, Singolo)", widget: string, required: false }
               - { name: year, label: "Anno", widget: string }
-              - { name: featured, label: "In evidenza", widget: boolean, required: false }
+              - { name: page, label: "Pagina nel libretto PDF", widget: number, required: false, hint: "Il testo si apre a questa pagina." }
+              - { name: featured, label: "In evidenza (serve l'estratto)", widget: boolean, required: false }
               - { name: excerpt, label: "Estratto", widget: text, required: false }
               - { name: full, label: "Testo completo", widget: text, required: false }
 

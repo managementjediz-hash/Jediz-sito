@@ -2,7 +2,7 @@
 // JEDIZ — generatore statico senza dipendenze.
 // Uso:  node build.mjs            → dist/ con URL puliti (/musica/)
 //       node build.mjs --preview  → preview/ con pagine piatte (musica.html), CSS/JS in linea
-import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -57,6 +57,8 @@ const MAKING = "Making of";
 const makingProjects = ["Dr. Jediz & Mr. I", "Hikikomori (La mia quarantena)", "BurnOut in Barna"];
 const makingVideos = videosData.videos.filter((v) => v.category === MAKING);
 const mainVideos = videosData.videos.filter((v) => v.category !== MAKING);
+// in apertura va il primo video orizzontale (il formato verticale sta meglio nella griglia)
+{ const k = mainVideos.findIndex((v) => !v.vertical); if (k > 0) mainVideos.unshift(...mainVideos.splice(k, 1)); }
 const projectsWithClips = [...new Set(makingVideos.map((v) => v.project).filter(Boolean))];
 const makingList = [...makingProjects.filter((p) => !projectsWithClips.length || projectsWithClips.includes(p)), ...projectsWithClips.filter((p) => !makingProjects.includes(p))];
 const relByTitle = (t) => releases.find((r) => r.title === t && r.tracks && r.tracks.length) || releases.find((r) => r.title === t);
@@ -196,9 +198,18 @@ function lineup() {
   return `<ul class="lineup">${live.band.map((b) => `<li><span class="who">${esc(b.name)}</span><span class="ins mono">${esc(b.role)}</span></li>`).join("")}</ul>`;
 }
 
+// Un link può finire in qualunque campo (file, youtube, url): qui si rimette in ordine.
+const isUrl = (s = "") => /^https?:\/\//i.test(String(s).trim());
+function normVideo(v) {
+  const raw = [v.youtube, v.url, v.file].map((x) => String(x || "").trim());
+  const yt = raw.map((x) => ytId(x)).find(Boolean) || "";
+  const file = raw[2] && !isUrl(raw[2]) && !ytId(raw[2]) ? raw[2] : "";
+  const url = yt ? "" : raw.find((x) => isUrl(x)) || "";
+  return { ...v, youtube: yt, url, file };
+}
+const clip = (s = "", n = 220) => { s = String(s).replace(/\s+/g, " ").trim(); return s.length > n ? s.slice(0, s.lastIndexOf(" ", n)) + "…" : s; };
 function videoCard(v, c) {
-  v = { ...v, youtube: ytId(v.youtube) || ytId(v.url) };
-  if (v.youtube && ytId(v.url)) v.url = "";
+  v = normVideo(v);
   const title = v.title ? esc(v.title) : ph("titolo");
   const label = esc(v.title || "Video");
   let frame;
@@ -214,23 +225,39 @@ function videoCard(v, c) {
     frame = `<div class="vframe">${bg ? `<img src="${esc(img(c, bg, 960))}" alt="" loading="lazy" decoding="async">` : `<div class="vframe-bg"></div>`}<a class="vplay" href="${esc(v.url)}" target="_blank" rel="noopener" aria-label="Guarda: ${label}"><span>${ICON.play.replace('class="i-play" ', "")}</span></a></div>`;
   } else frame = `<div class="vframe">${phBlock(`Video · ${v.category} · da inserire`)}</div>`;
   if (v.vertical) frame = frame.replace('<div class="vframe">', '<div class="vframe vertical">');
-  return `<article class="vcard${v.vertical ? " is-vertical" : ""}" data-cat="${esc(v.category)}">${frame}<div class="vmeta mono"><span>${esc(v.category)}</span><span>${v.date ? dDot(v.date) : ""}</span></div><h3>${title}</h3>${v.description ? `<p>${esc(v.description)}</p>` : ""}</article>`;
+  return `<article class="vcard${v.vertical ? " is-vertical" : ""}" data-cat="${esc(v.category)}">${frame}<div class="vmeta mono"><span>${esc(v.category)}</span><span>${v.date ? dDot(v.date) : ""}</span></div><h3>${title}</h3>${v.description ? `<p>${esc(clip(v.description))}</p>` : ""}</article>`;
 }
 
 function filters(cats, group) {
   return `<div class="filters" role="group" aria-label="Filtra per categoria" data-filter="${group}"><button class="chip" type="button" aria-pressed="true" data-f="*">Tutti</button>${cats.map((k) => `<button class="chip" type="button" aria-pressed="false" data-f="${esc(k)}">${esc(k)}</button>`).join("")}</div>`;
 }
 
+// Anteprima dei PDF: immagini delle pagine in assets/docs/preview/<nome-del-pdf>/ (p-01.jpg, p-02.jpg…).
+// Se la cartella non c'è, il sito usa la copertina tipografica e il PDF si apre normalmente.
+function docPages(file) {
+  if (!file || isExt(file)) return [];
+  const base = file.split("/").pop().replace(/\.pdf$/i, "");
+  const dir = join(ROOT, "assets/docs/preview", base);
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir).filter((f) => /\.(jpe?g|png|webp)$/i.test(f)).sort((a, b) => (parseInt(a.match(/\d+/)) || 0) - (parseInt(b.match(/\d+/)) || 0)).map((f) => `assets/docs/preview/${base}/${f}`);
+}
+const readerAttrs = (d, c, start = 0) => {
+  const pg = docPages(d.file);
+  return pg.length ? ` data-reader-open data-title="${esc(d.title)}" data-pdf="${esc(c.asset(d.file))}" data-start="${start}" data-pages="${esc(JSON.stringify(pg.map((x) => img(c, x, 1100))))}"` : "";
+};
 function docCard(d, c) {
   const ready = d.status !== "draft";
-  const sheet = d.thumb
-    ? `<div class="sheet has-thumb"><img src="${esc(c.asset(d.thumb))}" alt="" loading="lazy"></div>`
+  const pg = docPages(d.file);
+  const thumb = d.thumb ? c.asset(d.thumb) : pg.length ? img(c, pg[0], 640) : "";
+  const sheet = thumb
+    ? (pg.length && ready ? `<button class="sheet has-thumb" type="button"${readerAttrs(d, c)} aria-label="Sfoglia: ${esc(d.title)}"><img src="${esc(thumb)}" alt="" loading="lazy" decoding="async"></button>` : `<div class="sheet has-thumb"><img src="${esc(thumb)}" alt="" loading="lazy"></div>`)
     : `<div class="sheet" aria-hidden="true"><div class="s-top"><span>${esc(d.code)}</span><span>Jediz</span></div><div class="s-title">${esc(d.title)}<span>${esc(d.kind)}</span></div><div class="s-lines"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>`;
-  const meta = [d.version && `v. ${d.version}`, d.date && dDot(d.date), d.pages && `${d.pages} pp.`].filter(Boolean).join(" · ");
+  const npg = d.pages || (pg.length > 1 ? pg.length : "");
+  const meta = [d.version && `v. ${d.version}`, d.date && dDot(d.date), npg && `${npg} pp.`].filter(Boolean).join(" · ");
   let actions;
   if (!ready) actions = `<span class="status">In preparazione</span>`;
   else if (!d.file) actions = ph("PDF da caricare");
-  else actions = `<a class="link-arrow ext" href="${esc(c.asset(d.file))}" target="_blank" rel="noopener">Apri</a><a class="link-arrow" href="${esc(c.asset(d.file))}" download>Scarica PDF</a>`;
+  else actions = `${pg.length ? `<button class="link-arrow" type="button"${readerAttrs(d, c)}>Sfoglia</button>` : ""}<a class="link-arrow ext" href="${esc(c.asset(d.file))}" target="_blank" rel="noopener">${pg.length ? "PDF" : "Apri"}</a><a class="link-arrow" href="${esc(c.asset(d.file))}" download>Scarica</a>`;
   return `<article class="doc" id="${slug(d.code)}">${sheet}<div class="d-head mono"><span>${esc(d.code)}</span><span>${meta || esc(d.kind)}</span></div><h3>${esc(d.title)}</h3><p>${esc(d.description)}</p><div class="actions">${actions}</div></article>`;
 }
 
@@ -314,6 +341,10 @@ ${body(c)}
   <div class="lb-top mono"><span data-lb-count></span><button type="button" class="copy" data-lb-close>Chiudi ✕</button></div>
   <div class="lb-stage"><img alt="" data-lb-img></div>
   <p class="lb-cap mono" data-lb-cap></p>
+</div>
+<div class="reader" hidden data-reader role="dialog" aria-modal="true" aria-label="Documento">
+  <div class="rd-top mono"><span data-reader-title></span><span class="rd-act"><span class="mute" data-reader-count></span><a class="copy" data-reader-pdf target="_blank" rel="noopener">PDF</a><button type="button" class="copy" data-reader-close>Chiudi ✕</button></span></div>
+  <div class="rd-pages" data-reader-pages tabindex="0"></div>
 </div>
 <div class="mini t-night" data-mini aria-hidden="true">
   <button class="ctl play" type="button" data-mini-play aria-label="Riproduci o metti in pausa">${ICON.play}${ICON.pause}</button>
@@ -467,7 +498,7 @@ ${next ? `<section class="band t-night" aria-labelledby="h-next" data-expires="$
 <section class="band t-night" aria-labelledby="h-lmedia">
   <div class="wrap">
     ${secHead({ label: "Dal palco", meta: ["Foto e video"], title: `<span id="h-lmedia">Immagini dal live</span>` })}
-    <div class="vgrid">${videosData.videos.filter((v) => v.category === "Live").map((v) => videoCard(v, c)).join("")}${photosData.photos.filter((p) => p.category === "Live").slice(0, 2).map((p) => photoItem({ ...p, shape: "wide" }, c)).join("")}</div>
+    <div class="vgrid">${videosData.videos.filter((v) => v.category === "Live").map((v) => videoCard(v, c)).join("")}${photosData.photos.filter((p) => p.category === "Live" && p.src).slice(0, 2).map((p) => photoItem({ ...p, shape: "wide" }, c)).join("")}</div>
   </div>
 </section>
 <section class="band t-paper" aria-labelledby="h-past">
@@ -605,8 +636,8 @@ ${pageHead({ c, label: "Cinema", title: "Cinema", lede: esc(cinema.intro) })}
     </div>
   </div>
 </section>
-${cinema.works.length > 1 ? `<section class="band t-night" style="padding-top:0"><div class="wrap"><ol class="dates">${cinema.works.slice(1).map((w) => `<li class="date-row"><span class="when">${esc(w.year)}</span><span class="what"><b>${esc(w.title)}</b><span class="mute">${esc(w.description)}</span></span><span class="where">${esc(w.kind)}</span></li>`).join("")}</ol></div></section>` : ""}
-<section class="band t-night" style="padding-top:0"><div class="wrap rail"><div class="rail-meta"><span class="mono">In arrivo</span></div><p>${ph(cinema.future_note)}</p></div></section>
+${cinema.works.length > 1 ? `<section class="band t-night" style="padding-top:0"><div class="wrap"><ol class="dates">${cinema.works.slice(1).map((w) => `<li class="date-row"><span class="when">${esc(w.year)}</span><span class="what"><b>${w.title ? esc(w.title) : ph("titolo da confermare")}</b><span class="mute">${esc(w.description)}</span></span><span class="where">${esc(w.kind)}</span></li>`).join("")}</ol></div></section>` : ""}
+${cinema.future_note ? `<section class="band t-night" style="padding-top:0"><div class="wrap rail"><div class="rail-meta"><span class="mono">In arrivo</span></div><p>${esc(cinema.future_note)}</p></div></section>` : ""}
 <section class="band t-paper" aria-labelledby="h-cd">
   <div class="wrap grid-2">
     <div class="docs" style="grid-template-columns:minmax(0,320px)">${cinemaDoc ? docCard(cinemaDoc, c) : ""}</div>
@@ -615,25 +646,41 @@ ${cinema.works.length > 1 ? `<section class="band t-night" style="padding-top:0"
 </section>`,
 });
 
-const featured = textsData.texts.filter((t) => t.featured);
+const featured = textsData.texts.filter((t) => t.featured && t.excerpt);
 const textsDoc = docByCode(textsData.pdf_code);
+const textsPages = textsDoc && textsDoc.status !== "draft" ? docPages(textsDoc.file) : [];
+const textGroups = [];
+textsData.texts.forEach((t) => { let g = textGroups.find((x) => x.release === t.release); if (!g) textGroups.push((g = { release: t.release, kind: t.kind, year: t.year, items: [] })); g.items.push(t); });
+const pageLink = (t, c) => (textsPages.length && t.page ? `<button class="tr mono rd-link" type="button"${readerAttrs(textsDoc, c, t.page - 1)}>Leggi · p. ${esc(t.page)}</button>` : "");
 pages.testi = layout("testi", {
   theme: "t-paper",
   title: "Testi",
-  description: "I testi di Jediz: estratti, testi completi e la raccolta in PDF.",
+  description: "I testi di Jediz dal 2020 a oggi: la raccolta completa da sfogliare o scaricare in PDF.",
   body: (c) => `
 ${pageHead({ c, label: "Testi", title: `<span class="it">Testi</span>`, lede: esc(textsData.intro) })}
-<section class="band t-paper" style="padding-top:0" aria-label="Estratti">
+${textsDoc ? `<section class="band t-paper" style="padding-top:0" aria-labelledby="h-book">
+  <div class="wrap book">
+    ${textsPages.length ? `<button class="book-cover" type="button"${readerAttrs(textsDoc, c)} aria-label="Sfoglia ${esc(textsDoc.title)}"><img src="${esc(img(c, textsPages[0], 900))}" alt="Copertina: ${esc(textsDoc.title)}" loading="lazy" decoding="async"></button>` : ""}
+    <div class="stack" style="--s:18px">
+      <p class="mono mute">${esc(textsDoc.code)} · ${esc(textsDoc.kind)}${textsPages.length ? ` · ${textsPages.length} pagine` : ""}</p>
+      <h2 class="serif" id="h-book" style="font-size:var(--step-3);line-height:1.02">${esc(textsDoc.title)}</h2>
+      <p class="measure">${esc(textsDoc.description)}</p>
+      <div class="links-row">${textsPages.length ? `<button class="link-arrow" type="button"${readerAttrs(textsDoc, c)}>Sfoglia</button>` : ""}${textsDoc.file && textsDoc.status !== "draft" ? `<a class="link-arrow ext" href="${esc(c.asset(textsDoc.file))}" target="_blank" rel="noopener">PDF</a>` : ph("PDF da caricare")}</div>
+      ${textsPages.length > 2 ? `<div class="book-strip" aria-label="Pagine">${textsPages.slice(1, 7).map((pg, i) => `<button type="button"${readerAttrs(textsDoc, c, i + 1)} aria-label="Pagina ${i + 2}"><img src="${esc(img(c, pg, 320))}" alt="" loading="lazy" decoding="async"></button>`).join("")}</div>` : ""}
+    </div>
+  </div>
+</section>` : ""}
+${featured.length ? `<section class="band t-paper" style="padding-top:0" aria-label="Estratti">
   <div class="wrap">
-    ${featured.map((t) => `<article class="verse" id="${slug(t.title)}"><div class="rail-meta stack" style="--s:6px"><p class="mono">${esc(t.title)}</p><p class="mono mute">${esc(t.release)} · ${esc(t.year)}</p></div><blockquote>${t.excerpt ? esc(t.excerpt) : phBlock(`Estratto da inserire\n${t.title}`)}</blockquote></article>`).join("")}
+    ${featured.map((t) => `<article class="verse" id="${slug(t.title)}"><div class="rail-meta stack" style="--s:6px"><p class="mono">${esc(t.title)}</p><p class="mono mute">${esc(t.release)} · ${esc(t.year)}</p></div><blockquote>${esc(t.excerpt)}</blockquote></article>`).join("")}
   </div>
-</section>
-<section class="band t-paper" style="padding-top:0" aria-labelledby="h-tidx">
+</section>` : ""}
+${textGroups.map((g, gi) => `<section class="band t-paper"${gi ? ' style="padding-top:0"' : ""} aria-label="${esc(g.release)}">
   <div class="wrap rail">
-    <div class="rail-meta"><span class="mono" id="h-tidx">Indice</span><span class="mono mute">${textsData.texts.length} testi</span>${textsDoc ? `<a class="link-arrow" style="margin-top:12px;align-self:start" href="${c.to("archivio", "#" + slug(textsDoc.code))}">Raccolta PDF</a>` : ""}</div>
-    <ol class="tindex">${textsData.texts.map((t) => `<li id="t-${slug(t.title)}">${t.full ? `<details><summary><span class="tt">${esc(t.title)}</span><span class="tr mono">Leggi il testo</span></summary><div class="lyric">${esc(t.full)}</div></details>` : `<div class="row"><span class="tt">${esc(t.title)}</span><span class="tr mono">${esc(t.release)} · ${esc(t.year)} ${t.excerpt ? "" : ph("testo")}</span></div>`}</li>`).join("")}</ol>
+    <div class="rail-meta"><span class="mono">${esc(g.release)}</span><span class="mono mute">${[g.kind, g.year].filter(Boolean).map(esc).join(" · ")}</span></div>
+    <ol class="tindex">${g.items.map((t) => `<li id="t-${slug(t.title)}">${t.full ? `<details><summary><span class="tt">${esc(t.title)}</span><span class="tr mono">Leggi il testo</span></summary><div class="lyric">${esc(t.full)}</div></details>` : `<div class="row"><span class="tt">${esc(t.title)}</span>${pageLink(t, c) || `<span class="tr mono">${esc(t.year)}</span>`}</div>`}</li>`).join("")}</ol>
   </div>
-</section>`,
+</section>`).join("")}`,
 });
 
 pages.foto = layout("foto", {

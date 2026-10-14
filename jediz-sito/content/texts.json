@@ -1,20 +1,317 @@
 {
-  "_help": "Testi. \"excerpt\" = poche righe mostrate in evidenza (vai a capo con \\n). \"full\" = testo completo (facoltativo): se presente appare 'Leggi il testo'. \"featured\": true = in evidenza in cima alla pagina.",
-  "intro": "Una selezione di testi: estratti, alcuni testi completi e il PDF con la raccolta.",
+  "_help": "Testi. \"page\" = pagina del libretto PDF (si apre lì). \"excerpt\" = poche righe in evidenza (vai a capo con \\n); \"featured\": true lo mostra in cima, solo se l'estratto è compilato. \"full\" = testo completo (facoltativo).",
+  "intro": "Tutti i testi, dal 2020 a oggi. Si sfogliano qui, pagina per pagina, oppure in PDF.",
   "pdf_code": "JDZ/03",
   "texts": [
-    { "title": "Il Vaso di Pandora", "release": "Dr. Jediz & Mr. I", "year": "2026", "featured": true, "excerpt": "", "full": "" },
-    { "title": "Cronaca di vita annunciata", "release": "Dr. Jediz & Mr. I", "year": "2026", "featured": true, "excerpt": "", "full": "" },
-    { "title": "A metà", "release": "Dr. Jediz & Mr. I", "year": "2026", "featured": true, "excerpt": "", "full": "" },
-    { "title": "Harvey Specter", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
-    { "title": "The Worm", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
-    { "title": "Jump", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
-    { "title": "Dr. Jediz & Mr. I", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
-    { "title": "Questione di scelte (Musica)", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
-    { "title": "Qualcuno con cui correre", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
-    { "title": "Aspidistra", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
-    { "title": "Finalement", "release": "Dr. Jediz & Mr. I", "year": "2026", "excerpt": "", "full": "" },
-    { "title": "Tempo al tempo", "release": "Singolo", "year": "2025", "excerpt": "", "full": "" },
-    { "title": "Rapper / Avvocato", "release": "Singolo", "year": "2025", "excerpt": "", "full": "" }
+    {
+      "title": "Il Vaso di Pandora",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 32,
+      "featured": true,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Cronaca di una vita annunciata",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 33,
+      "featured": true,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Harvey Specter",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 34,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "The Worm",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 35,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Jump",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 36,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "A metà",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 37,
+      "featured": true,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Dr. Jediz & Mr. I",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 38,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Questione di scelte",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 39,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Qualcuno con cui correre",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 40,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Aspidistra",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 41,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Finalement",
+      "release": "Dr. Jediz & Mr. I",
+      "kind": "Album",
+      "year": "2026",
+      "page": 42,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Tempo al tempo",
+      "release": "Tempo al tempo",
+      "kind": "Singolo",
+      "year": "2025",
+      "page": 30,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Rapper / Avvocato",
+      "release": "Rapper / Avvocato",
+      "kind": "Singolo",
+      "year": "2025",
+      "page": 28,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Cala Piccola (2025)",
+      "release": "Cala Piccola",
+      "kind": "Singolo",
+      "year": "2025",
+      "page": 26,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Ora",
+      "release": "Oramai",
+      "kind": "EP",
+      "year": "2022",
+      "page": 23,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Mai",
+      "release": "Oramai",
+      "kind": "EP",
+      "year": "2022",
+      "page": 24,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Routine",
+      "release": "Burnout in Barna",
+      "kind": "EP",
+      "year": "2022",
+      "page": 16,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Euphoria",
+      "release": "Burnout in Barna",
+      "kind": "EP",
+      "year": "2022",
+      "page": 17,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Burnout in Barna",
+      "release": "Burnout in Barna",
+      "kind": "EP",
+      "year": "2022",
+      "page": 18,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Zero Blunt",
+      "release": "Burnout in Barna",
+      "kind": "EP",
+      "year": "2022",
+      "page": 19,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Family Portrait",
+      "release": "Burnout in Barna",
+      "kind": "EP",
+      "year": "2022",
+      "page": 20,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Empty Pocket",
+      "release": "Burnout in Barna",
+      "kind": "EP",
+      "year": "2022",
+      "page": 21,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Il folle volo",
+      "release": "Il folle volo",
+      "kind": "EP",
+      "year": "2021",
+      "page": 11,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Stanza 101",
+      "release": "Il folle volo",
+      "kind": "EP",
+      "year": "2021",
+      "page": 12,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Marine Terrace / Nova Terra",
+      "release": "Il folle volo",
+      "kind": "EP",
+      "year": "2021",
+      "page": 13,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Piazzale Belvedere (Cala Piccola)",
+      "release": "Il folle volo",
+      "kind": "EP",
+      "year": "2021",
+      "page": 14,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Circostanza Consueta",
+      "release": "Hikikomori — La mia quarantena",
+      "kind": "EP",
+      "year": "2020",
+      "page": 5,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Glory 2 the Beatmaker",
+      "release": "Hikikomori — La mia quarantena",
+      "kind": "EP",
+      "year": "2020",
+      "page": 6,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Hikikomori",
+      "release": "Hikikomori — La mia quarantena",
+      "kind": "EP",
+      "year": "2020",
+      "page": 7,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Kobe / Legio II",
+      "release": "Hikikomori — La mia quarantena",
+      "kind": "EP",
+      "year": "2020",
+      "page": 8,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    },
+    {
+      "title": "Chiudi la porta",
+      "release": "Hikikomori — La mia quarantena",
+      "kind": "EP",
+      "year": "2020",
+      "page": 9,
+      "featured": false,
+      "excerpt": "",
+      "full": ""
+    }
   ]
 }

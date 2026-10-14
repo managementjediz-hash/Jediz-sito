@@ -160,3 +160,29 @@
     if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.copy).then(done, () => {});
   }));
 })();
+
+/* ---------- lettore PDF (pagine come immagini, caricate solo quando servono) ---------- */
+(() => {
+  const rd = document.querySelector("[data-reader]");
+  if (!rd) return;
+  const box = rd.querySelector("[data-reader-pages]"), count = rd.querySelector("[data-reader-count]");
+  let last, imgs = [];
+  const close = () => { rd.hidden = true; document.body.style.overflow = ""; box.innerHTML = ""; last && last.focus(); };
+  const upd = () => { const top = box.scrollTop + box.clientHeight / 3; let k = 0; imgs.forEach((im, i) => { if (im.offsetTop <= top) k = i; }); count.textContent = `${k + 1} / ${imgs.length}`; };
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-reader-open]");
+    if (!b) return;
+    e.preventDefault(); last = b;
+    let pages = []; try { pages = JSON.parse(b.dataset.pages); } catch (_) { return; }
+    const start = Math.min(+b.dataset.start || 0, pages.length - 1);
+    rd.querySelector("[data-reader-title]").textContent = b.dataset.title || "";
+    rd.querySelector("[data-reader-pdf]").href = b.dataset.pdf;
+    box.innerHTML = pages.map((src, i) => `<img src="${src}" alt="Pagina ${i + 1}" loading="${Math.abs(i - start) < 2 ? "eager" : "lazy"}" decoding="async" width="1100" height="1556">`).join("");
+    imgs = [...box.querySelectorAll("img")];
+    rd.hidden = false; document.body.style.overflow = "hidden";
+    requestAnimationFrame(() => { box.scrollTop = imgs[start].offsetTop - 20; upd(); rd.querySelector("[data-reader-close]").focus(); });
+  });
+  box.addEventListener("scroll", upd, { passive: true });
+  rd.querySelector("[data-reader-close]").addEventListener("click", close);
+  document.addEventListener("keydown", (e) => { if (!rd.hidden && e.key === "Escape") close(); });
+})();
