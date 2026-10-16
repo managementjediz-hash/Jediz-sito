@@ -677,7 +677,7 @@ ${pageHead({ c, label: "Cinema", title: "Cinema", lede: esc(cinema.intro) })}
     </div>
   </div>
 </section>
-${cinema.works.length > 1 ? `<section class="band t-night" style="padding-top:0"><div class="wrap"><ol class="dates">${cinema.works.slice(1).map((w) => `<li class="date-row"><span class="when">${esc(w.year)}</span><span class="what"><b>${w.title ? esc(w.title) : ph("titolo da confermare")}</b><span class="mute">${esc(w.description)}</span></span><span class="where">${esc(w.kind)}</span></li>`).join("")}</ol></div></section>` : ""}
+${cinema.works.length > 1 ? `<section class="band t-night" style="padding-top:0"><div class="wrap"><ol class="dates">${cinema.works.slice(1).map((w) => `<li class="date-row work-row"><span class="when">${esc(w.year)}${w.status ? `<small class="mono mute">${esc(w.status)}</small>` : ""}</span><span class="what"><b>${w.title ? esc(w.title) : ph("titolo da confermare")}</b><span class="mute">${esc(w.description)}</span>${w.credits?.length ? `<span class="wcred mono mute">${w.credits.filter((x) => x.role !== "Uscita").map((x) => `${esc(x.role)} ${esc(x.value)}`).join(" · ")}</span>` : ""}${w.url ? extLink(w.url, w.url_label || "Scheda") : ""}</span><span class="where">${esc(w.kind)}</span></li>`).join("")}</ol></div></section>` : ""}
 ${cinema.future_note ? `<section class="band t-night" style="padding-top:0"><div class="wrap rail"><div class="rail-meta"><span class="mono">In arrivo</span></div><p>${esc(cinema.future_note)}</p></div></section>` : ""}
 <section class="band t-paper" aria-labelledby="h-cd">
   <div class="wrap grid-2">

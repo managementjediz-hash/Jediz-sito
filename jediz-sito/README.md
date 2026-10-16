@@ -57,7 +57,7 @@ Esempi:
 - [ ] Making of: caricare le clip per ciascun disco (Video → categoria "Making of")
 - [ ] Video Instagram/Facebook: aggiungere una "Miniatura" (Instagram non dà l'anteprima da solo)
 - [ ] Email per Booking, Press, Collaborazioni, Generale (`site.json`), link YouTube e TikTok
-- [ ] Cinema: titolo del documentario in Messico (chiedere a Iker)
+- [x] Cinema: documentario in Messico → Conquer the Jungle (Iker Cimadevilla, Mendigo Films, 2027)
 - [ ] Crediti album mancanti (mix e master, copertina)
 - [ ] Date del tour estivo 2026 (`live.json`)
 

@@ -491,3 +491,6 @@ body { padding-top: calc(var(--header-h) + 1px + env(safe-area-inset-top, 0px));
   /* il menu si apre sotto la barra, a tutta altezza (la barra fa da riferimento per la posizione) */
   .nav { inset: auto; top: 100%; left: 0; right: 0; height: calc(100vh - var(--header-h) - env(safe-area-inset-top, 0px)); height: calc(100dvh - var(--header-h) - env(safe-area-inset-top, 0px)); }
 }
+.work-row .when small { display: block; margin-top: 4px; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; }
+.work-row .what { gap: 6px; }
+.work-row .what .link-arrow { justify-self: start; margin-top: 6px; }
