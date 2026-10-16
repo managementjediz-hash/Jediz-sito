@@ -237,6 +237,7 @@ function videoCard(v, c) {
     frame = `<div class="vframe">${bg ? `<img src="${esc(img(c, bg, 960))}" alt="" loading="lazy" decoding="async">` : `<div class="vframe-bg"><span class="vplat mono">${esc(plat ? plat[0].toUpperCase() + plat.slice(1).toLowerCase() : "Video")}</span></div>`}<a class="vplay" href="${esc(v.url)}" target="_blank" rel="noopener" aria-label="Guarda: ${label}"><span>${ICON.play.replace('class="i-play" ', "")}</span></a></div>`;
   } else frame = `<div class="vframe">${phBlock(`Video · ${v.category} · da inserire`)}</div>`;
   if (v.vertical) frame = frame.replace('<div class="vframe">', '<div class="vframe vertical">');
+  else if (v.square) frame = frame.replace('<div class="vframe">', '<div class="vframe square">');
   return `<article class="vcard${v.vertical ? " is-vertical" : ""}" data-cat="${esc(v.category)}">${frame}<div class="vmeta mono"><span>${esc(v.category)}</span><span>${v.date ? dDot(v.date) : ""}</span></div><h3>${title}</h3>${v.description ? `<p>${esc(clip(v.description))}</p>` : ""}</article>`;
 }
 
@@ -570,7 +571,7 @@ ${pageHead({ c, label: "Video", title: "Video", lede: "Live, session, videoclip 
 </section>
 <section class="band t-paper" id="making-of" aria-labelledby="h-making">
   <div class="wrap">
-    ${secHead({ label: "Making of", meta: [makingVideos.length ? `${makingVideos.length} clip` : "", `${makingList.length} progetti`].filter(Boolean), title: `<span id="h-making">Come sono nati</span>`, lede: "Studio, provini, set, prove. Il dietro le quinte dei dischi." })}
+    ${secHead({ label: "Making of", meta: [makingVideos.length ? `${makingVideos.length} clip` : "", `${makingList.length} ${makingList.length === 1 ? "progetto" : "progetti"}`].filter(Boolean), title: `<span id="h-making">Come sono nati</span>`, lede: "Studio, provini, set, prove. Il dietro le quinte dei dischi." })}
     ${makingList.map((p) => {
       const clips = makingVideos.filter((v) => v.project === p);
       const r = relByTitle(p);

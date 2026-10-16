@@ -1,5 +1,5 @@
 {
-  "_help": "Video. Tre modi: \"file\" = mp4 caricato sul sito (clip brevi, max 20 MB, con \"poster\" come copertina); \"youtube\" = link o ID YouTube (anche Shorts); \"url\" = link a Instagram/Facebook/Vimeo. Categoria \"Making of\" + \"project\" (titolo del disco) = compare nella sezione Making of. \"vertical\": true per clip in formato verticale 9:16.",
+  "_help": "Video. Tre modi: \"file\" = mp4 caricato sul sito (clip brevi, max 20 MB, con \"poster\" come copertina); \"youtube\" = link o ID YouTube (anche Shorts); \"url\" = link a Instagram/Facebook/Vimeo. Categoria \"Making of\" + \"project\" (titolo del disco) = compare nella sezione Making of. \"vertical\": true per clip in formato verticale 9:16, \"square\": true per clip quadrate 1:1.",
   "categories": [
     "Live",
     "Session",
@@ -117,6 +117,48 @@
       "url": "",
       "poster": "",
       "thumb": ""
+    },
+    {
+      "title": "Hikikomori — making of 1",
+      "category": "Making of",
+      "project": "Hikikomori (La mia quarantena)",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "assets/video/hikikomori-making-of-1.mp4",
+      "poster": "assets/video/hikikomori-making-of-1.jpg",
+      "youtube": "",
+      "url": "",
+      "thumb": "",
+      "square": true
+    },
+    {
+      "title": "Hikikomori — making of 2",
+      "category": "Making of",
+      "project": "Hikikomori (La mia quarantena)",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "assets/video/hikikomori-making-of-2.mp4",
+      "poster": "assets/video/hikikomori-making-of-2.jpg",
+      "youtube": "",
+      "url": "",
+      "thumb": "",
+      "square": true
+    },
+    {
+      "title": "Hikikomori — making of 3",
+      "category": "Making of",
+      "project": "Hikikomori (La mia quarantena)",
+      "vertical": false,
+      "date": "",
+      "description": "",
+      "file": "assets/video/hikikomori-making-of-3.mp4",
+      "poster": "assets/video/hikikomori-making-of-3.jpg",
+      "youtube": "",
+      "url": "",
+      "thumb": "",
+      "square": true
     }
   ]
 }

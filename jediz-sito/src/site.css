@@ -420,6 +420,7 @@ button.gig-poster:hover img { transform: scale(1.03); }
 
 /* making of: clip verticali, una striscia per progetto */
 .vframe.vertical { aspect-ratio: 9 / 16; }
+.vframe.square { aspect-ratio: 1; }
 .making { padding-block: 28px; border-top: 1px solid var(--rule); }
 .making-meta .cover { width: 120px; margin-bottom: 8px; }
 .making-strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(150px, 200px); gap: 16px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
