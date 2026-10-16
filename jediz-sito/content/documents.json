@@ -2,16 +2,16 @@
   "_help": "Archivio dei materiali. Mettere i PDF in /assets/docs/ e indicare il percorso in \"file\". \"thumb\" = immagine di anteprima opzionale (/assets/img/docs/...). \"status\": \"ready\" oppure \"draft\" (in preparazione, senza link).",
   "documents": [
     {
-      "pages": "",
+      "pages": "13",
       "code": "JDZ/01",
-      "date": "",
+      "date": "2026-10-16",
       "status": "ready",
-      "kind": "Presentazione",
+      "kind": "Press kit",
       "thumb": "",
-      "version": "",
+      "version": "2026",
       "title": "Jediz",
-      "file": "assets/docs/dr-jediz-mr-i-comunicatostampa.pdf",
-      "description": "Il progetto in poche pagine: musica, live, immagini, contatti."
+      "file": "assets/docs/jediz-press-kit-2026.pdf",
+      "description": "Il progetto in tredici pagine: manifesto, bio, album, band, date, cinema, rassegna stampa, contatti."
     },
     {
       "pages": "",
