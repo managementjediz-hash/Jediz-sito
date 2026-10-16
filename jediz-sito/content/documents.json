@@ -50,16 +50,16 @@
       "description": "Versione breve e versione estesa."
     },
     {
-      "pages": "",
+      "pages": "7",
       "code": "JDZ/05",
-      "date": "",
-      "status": "draft",
+      "date": "2026-10-16",
+      "status": "ready",
       "kind": "Live",
       "thumb": "",
-      "version": "",
+      "version": "2026",
       "title": "Scheda tecnica live",
-      "file": "",
-      "description": "Formazione, stage plot, input list, esigenze tecniche."
+      "file": "assets/docs/jediz-scheda-tecnica-live.pdf",
+      "description": "Tre setup, da 16 a 32 canali: input list, ascolti in-ear e spie, stage plot, backline."
     },
     {
       "pages": "",
