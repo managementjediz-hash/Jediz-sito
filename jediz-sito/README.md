@@ -35,7 +35,7 @@ Il generatore produce anche `sitemap.xml`, `robots.txt`, meta Open Graph, dati s
 
 Due modi, a scelta.
 
-**1. Pannello `/admin` (senza toccare file).** Entrare da `www.dominio.it/admin` con l'account GitHub `managementjediz-hash`. Ogni salvataggio aggiorna il sito in circa un minuto. Il login usa una OAuth App di GitHub collegata a Netlify (Site configuration → Access & security → OAuth).
+**1. Pannello `/admin` (senza toccare file).** Entrare da `jedizmusic.com/admin` con l'account GitHub `managementjediz-hash`. Ogni salvataggio aggiorna il sito in circa un minuto. Il login usa una OAuth App di GitHub collegata a Netlify (Site configuration → Access & security → OAuth).
 
 **2. Modificando i JSON.** Aprire il file in `content/`, cambiare il testo, salvare, pubblicare (commit su GitHub se il sito è collegato, oppure `node build.mjs` e caricare `dist/`).
 
@@ -49,7 +49,7 @@ Esempi:
 
 ## Cose da completare
 
-- [ ] Dominio: comprarlo e collegarlo a Cloudflare Pages (Custom domains); poi aggiornare `url` in `site.json`
+- [ ] Dominio `jedizmusic.com` (già impostato in `site.json`): comprarlo su Cloudflare Registrar e collegarlo a Cloudflare Pages → Custom domains, sia `jedizmusic.com` sia `www.jedizmusic.com`
 - [ ] Scheda tecnica live per la formazione (PDF in `assets/docs/`, voce JDZ/05 in `documents.json`)
 - [ ] Foto stampa (JDZ/06) e selezione foto per la pagina Foto
 - [ ] PDF della bio (JDZ/04)

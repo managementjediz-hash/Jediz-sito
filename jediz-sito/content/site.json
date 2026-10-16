@@ -1,6 +1,5 @@
 {
   "_help": "Impostazioni generali. I campi vuoti (\"\") vengono mostrati sul sito come segnaposto 'da inserire'.",
-  "_url_note": "Dominio definitivo da confermare: serve per sitemap, canonical e Open Graph.",
   "logo_on_light": "assets/img/logo-dark.svg",
   "city": "Roma",
   "logo": "assets/img/logo-light.svg",
@@ -33,7 +32,7 @@
     }
   ],
   "lang": "it",
-  "url": "https://www.jediz.it",
+  "url": "https://jedizmusic.com",
   "contacts": [
     {
       "id": "booking",
