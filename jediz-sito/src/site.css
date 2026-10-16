@@ -494,3 +494,16 @@ body { padding-top: calc(var(--header-h) + 1px + env(safe-area-inset-top, 0px));
 .work-row .when small { display: block; margin-top: 4px; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; }
 .work-row .what { gap: 6px; }
 .work-row .what .link-arrow { justify-self: start; margin-top: 6px; }
+/* contatti: indirizzo unico */
+.cmail { display: grid; gap: 18px; padding-block: clamp(28px, 4vw, 48px) clamp(40px, 6vw, 72px); border-top: 1px solid var(--rule); }
+.cmail-addr { font-family: var(--f-display); font-size: clamp(1.75rem, 1rem + 4.2vw, 4.75rem); line-height: 1; font-variation-settings: "opsz" 72; letter-spacing: -0.01em; text-decoration: none; overflow-wrap: anywhere; justify-self: start; border-bottom: 1px solid var(--rule); padding-bottom: .12em; transition: border-color .2s, color .2s; }
+.cmail-addr:hover { border-color: var(--accent); }
+.csubj-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.csubj-list a { display: grid; grid-template-columns: 2.5em 1fr auto; gap: 4px 16px; align-items: baseline; padding-block: 18px; border-bottom: 1px solid var(--rule); text-decoration: none; transition: color .2s; }
+.csubj-list .t { font-family: var(--f-display); font-size: var(--step-2); line-height: 1.1; font-variation-settings: "opsz" 40; }
+.csubj-list .d { grid-column: 2; font-size: .95rem; }
+.csubj-list .go { grid-column: 3; grid-row: 1; font-size: var(--step--1); letter-spacing: .06em; text-transform: uppercase; opacity: 0; transition: opacity .2s; }
+.csubj-list a:hover .go, .csubj-list a:focus-visible .go { opacity: 1; }
+.csubj-list a:hover .t { color: var(--accent); }
+.csubj-list li:target a { background: linear-gradient(var(--rule), var(--rule)) left bottom / 100% 1px no-repeat; }
+@media (hover: none) { .csubj-list .go { opacity: .6; } }

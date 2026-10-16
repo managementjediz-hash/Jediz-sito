@@ -761,14 +761,30 @@ ${pageHead({ c, label: "Bio", title: "Bio" })}
 </section>`,
 });
 
+// Contatti: se tutte le voci hanno la stessa email, un solo indirizzo grande e le voci diventano "oggetti" della mail
+const mails = [...new Set(site.contacts.map((k) => k.email).filter(Boolean))];
+const oneMail = mails.length === 1 && site.contacts.every((k) => k.email === mails[0]);
+function contactSingle() {
+  const m = mails[0];
+  const who = site.contacts[0].name;
+  const subj = (k) => encodeURIComponent(`${k.label.split(" /")[0]} — Jediz`);
+  return `<div class="cmail">
+    <p class="mono mute">Un solo indirizzo${who ? ` · ${esc(who)}` : ""}</p>
+    <a class="cmail-addr" href="mailto:${esc(m)}">${esc(m.replace("@", "\u200b@"))}</a>
+    <div class="links-row"><a class="link-arrow" href="mailto:${esc(m)}">Scrivi</a><button class="copy" type="button" data-copy="${esc(m)}">Copia indirizzo</button></div>
+  </div>
+  <div class="rail csubj"><div class="rail-meta"><span class="mono">Nell'oggetto</span><span class="mono mute">Così arriva prima a chi deve</span></div>
+    <ol class="csubj-list">${site.contacts.map((k, i) => `<li id="${esc(k.id)}"><a href="mailto:${esc(m)}?subject=${subj(k)}"><span class="n mono mute">${String(i + 1).padStart(2, "0")}</span><span class="t">${esc(k.label)}</span><span class="d mute">${esc(k.note)}</span><span class="go mono">Scrivi →</span></a></li>`).join("")}</ol>
+  </div>`;
+}
 pages.contatti = layout("contatti", {
   theme: "t-paper",
   title: "Contatti",
   description: "Contatti di Jediz: booking e live, press, collaborazioni, informazioni generali.",
   body: (c) => `
-${pageHead({ c, label: "Contatti", title: "Contatti", lede: "Scrivete direttamente all'indirizzo giusto." })}
+${pageHead({ c, label: "Contatti", title: "Contatti", lede: oneMail ? "Un indirizzo per tutto. Indicate nell'oggetto di cosa si tratta." : "Scrivete direttamente all'indirizzo giusto." })}
 <section class="band t-paper" style="padding-top:0" aria-label="Indirizzi">
-  <div class="wrap"><div class="contacts">${site.contacts.map((k) => `<article class="contact" id="${esc(k.id)}"><p class="mono mute">${esc(k.label)}</p><h3>${k.name ? esc(k.name) : esc(k.label.split(" /")[0])}</h3><p class="mute">${esc(k.note)}</p><div class="addr">${k.email ? `<a href="mailto:${esc(k.email)}">${esc(k.email)}</a><button class="copy" type="button" data-copy="${esc(k.email)}">Copia</button>` : ph("email da inserire")}</div></article>`).join("")}</div></div>
+  <div class="wrap">${oneMail ? contactSingle() : `<div class="contacts">${site.contacts.map((k) => `<article class="contact" id="${esc(k.id)}"><p class="mono mute">${esc(k.label)}</p><h3>${k.name ? esc(k.name) : esc(k.label.split(" /")[0])}</h3><p class="mute">${esc(k.note)}</p><div class="addr">${k.email ? `<a href="mailto:${esc(k.email)}">${esc(k.email)}</a><button class="copy" type="button" data-copy="${esc(k.email)}">Copia</button>` : ph("email da inserire")}</div></article>`).join("")}</div>`}</div>
 </section>
 <section class="band t-night" aria-labelledby="h-soc">
   <div class="wrap rail"><div class="rail-meta"><span class="mono" id="h-soc">Canali</span></div>
