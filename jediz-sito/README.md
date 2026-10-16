@@ -50,7 +50,7 @@ Esempi:
 ## Cose da completare
 
 - [x] Dominio `jedizmusic.com` su Cloudflare Registrar, collegato a Cloudflare Pages (anche `www`)
-- [ ] Regola di reindirizzamento da `www.jedizmusic.com` a `jedizmusic.com` (Cloudflare → Rules → Redirect Rules)
+- [x] `www.jedizmusic.com` rimanda a `jedizmusic.com` (Cloudflare → Rules → Redirect Rules, 301)
 - [ ] Scheda tecnica live per la formazione (PDF in `assets/docs/`, voce JDZ/05 in `documents.json`)
 - [ ] Foto stampa (JDZ/06) e selezione foto per la pagina Foto
 - [ ] PDF della bio (JDZ/04)
