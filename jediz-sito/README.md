@@ -15,6 +15,7 @@ content/        ← i contenuti (è l'unica cartella da toccare di solito)
   texts.json      testi, estratti
   photos.json     foto
   bio.json        bio breve ed estesa
+  i18n/           traduzioni: en.json, es.json, fr.json, pt-br.json
 assets/         font, immagini, PDF (assets/docs), audio (assets/audio)
 src/            CSS e JS del sito
 admin/          pannello di gestione (facoltativo)
@@ -62,6 +63,15 @@ Esempi:
 - [ ] Date del tour estivo 2026 (`live.json`)
 
 **Novità in home:** in Media, spuntare "In home, tra le Novità" sulle uscite da mettere in evidenza (compaiono le 4 più recenti).
+
+## Lingue
+
+Il sito è in italiano (alla radice) e in inglese, spagnolo, francese e portoghese brasiliano: `/en/`, `/es/`, `/fr/`, `/pt-br/`. Il selettore di lingua è in alto a destra e in fondo a ogni pagina; ogni pagina indica a Google le sue versioni tradotte (`hreflang`, anche nella sitemap).
+
+- Si scrive sempre in italiano, nei file di `content/` o dal pannello. `node build.mjs` genera da solo tutte e cinque le lingue.
+- Le traduzioni stanno in `content/i18n/<lingua>.json`. La chiave è il **testo italiano esatto**, il valore è la traduzione. `ui` = testi fissi del sito (menu, pulsanti, titoli di sezione); `content` = testi dei file in `content/` (bio, descrizioni, note, intro).
+- Se un testo italiano cambia o se ne aggiunge uno nuovo, finché non c'è la traduzione quella frase compare in italiano anche nelle altre lingue. Il build lo segnala ("N testi senza traduzione") e scrive l'elenco in `.i18n-mancanti-<lingua>.txt`: basta aggiungere quelle frasi al dizionario.
+- Restano in italiano, di proposito: i testi dei brani, i titoli dei brani e degli articoli, i PDF dell'archivio (le pagine lo dicono).
 
 ## Sviluppo
 

@@ -507,3 +507,21 @@ body { padding-top: calc(var(--header-h) + 1px + env(safe-area-inset-top, 0px));
 .csubj-list a:hover .t { color: var(--accent); }
 .csubj-list li:target a { background: linear-gradient(var(--rule), var(--rule)) left bottom / 100% 1px no-repeat; }
 @media (hover: none) { .csubj-list .go { opacity: .6; } }
+
+/* ---------- lingue ---------- */
+.head-r { display: flex; align-items: center; gap: clamp(14px, 1.6vw, 26px); }
+.lang-sw { position: relative; }
+.lang-sw summary { list-style: none; cursor: pointer; font-size: 0.78rem; letter-spacing: 0.07em; padding: 6px 0 6px 12px; border-left: 1px solid var(--rule); user-select: none; }
+.lang-sw summary::-webkit-details-marker { display: none; }
+.lang-sw summary::after { content: " ▾"; color: var(--mute); }
+.lang-sw[open] summary::after { content: " ▴"; }
+.lang-sw ul { position: absolute; right: 0; top: calc(100% + 10px); min-width: 210px; background: var(--bg); border: 1px solid var(--rule); padding: 6px 0; z-index: 60; }
+.lang-sw a { display: flex; gap: 14px; align-items: baseline; padding: 9px 16px; text-decoration: none; font-size: .95rem; }
+.lang-sw a .mono { font-size: .72rem; letter-spacing: .07em; color: var(--mute); width: 2.2em; }
+.lang-sw a:hover { color: var(--accent); }
+.lang-sw a[aria-current] { font-style: italic; }
+.foot-langs { display: flex; gap: 14px; }
+.foot-langs a { text-decoration: none; color: var(--mute); }
+.foot-langs a:hover { color: var(--fg); }
+.foot-langs b { font-weight: 400; border-bottom: 1px solid currentColor; }
+.doc-lang { font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; }

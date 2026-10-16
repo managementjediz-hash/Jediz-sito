@@ -1,4 +1,6 @@
 /* JEDIZ — interazioni. Nessuna dipendenza. */
+/* testi tradotti: la pagina li passa in window.JDZ_T (solo nelle lingue diverse dall'italiano) */
+const tx = (k, it) => (window.JDZ_T && window.JDZ_T[k]) || it;
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -10,7 +12,7 @@
   /* menu mobile */
   const btn = $(".menu-btn"), nav = $("#nav");
   if (btn && nav) {
-    const set = (open) => { nav.classList.toggle("open", open); btn.setAttribute("aria-expanded", open); btn.textContent = open ? "Chiudi" : "Menu"; document.body.classList.toggle("menu-open", open); };
+    const set = (open) => { nav.classList.toggle("open", open); btn.setAttribute("aria-expanded", open); btn.textContent = open ? tx("close", "Chiudi") : tx("menu", "Menu"); document.body.classList.toggle("menu-open", open); };
     btn.addEventListener("click", () => set(!nav.classList.contains("open")));
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && nav.classList.contains("open")) { set(false); btn.focus(); } });
     $$("a", nav).forEach((a) => a.addEventListener("click", () => set(false)));
@@ -45,7 +47,7 @@
       const on = playing();
       root.classList.toggle("is-playing", on);
       mini && mini.classList.toggle("is-playing", on);
-      $("[data-play]", root).setAttribute("aria-label", on ? "Pausa" : "Riproduci");
+      $("[data-play]", root).setAttribute("aria-label", on ? tx("pause", "Pausa") : tx("play", "Riproduci"));
       showMini();
     };
     const load = (n, autoplay) => {
@@ -53,7 +55,7 @@
       const t = tracks[i];
       el.title.textContent = t.title;
       if (t.r !== curRel) setRel(t.r);
-      el.kind.textContent = t.preview ? "Anteprima 30″" : "";
+      el.kind.textContent = t.preview ? tx("preview", "Anteprima 30″") : "";
       el.rows.forEach((r, k) => r.setAttribute("aria-current", k === i));
       const sc = $(".tracks-scroll", root), row = el.rows[i];
       if (sc && row && sc.scrollHeight > sc.clientHeight + 4) { const top = row.offsetTop - sc.offsetTop; if (top < sc.scrollTop || top > sc.scrollTop + sc.clientHeight - 48) sc.scrollTo({ top: top - 60, behavior: "smooth" }); }
@@ -61,7 +63,7 @@
       el.cur.textContent = "0:00"; el.seek.value = 0; el.seek.style.setProperty("--p", "0%");
       el.msg.textContent = "";
       if (el.mTitle) el.mTitle.textContent = t.title + (t.feat ? ` — feat. ${t.feat}` : "");
-      if (!t.src) { el.msg.textContent = "Audio non ancora caricato per questo brano."; audio.removeAttribute("src"); paint(); return; }
+      if (!t.src) { el.msg.textContent = tx("noAudio", "Audio non ancora caricato per questo brano."); audio.removeAttribute("src"); paint(); return; }
       audio.src = t.src;
       store.set("jdz-player", { i, t: 0 });
       if (autoplay) audio.play().catch(onError);
@@ -75,7 +77,7 @@
       const box = $("[data-rlinks]", root);
       box.replaceChildren(...R.links.map((l) => { const a = document.createElement("a"); a.className = "link-arrow ext"; a.href = l.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = l.label; return a; }));
     };
-    const onError = () => { el.msg.textContent = "Riproduzione non disponibile qui. Ascolta il brano sulle piattaforme qui sotto."; paint(); };
+    const onError = () => { el.msg.textContent = tx("playErr", "Riproduzione non disponibile qui. Ascolta il brano sulle piattaforme qui sotto."); paint(); };
     const toggle = () => {
       if (!audio.src) { load(i, true); return; }
       if (playing()) audio.pause(); else audio.play().catch(onError);
@@ -156,7 +158,8 @@
 
   /* ---------- copia email ---------- */
   $$("[data-copy]").forEach((b) => b.addEventListener("click", () => {
-    const done = () => { b.textContent = "Copiato"; setTimeout(() => (b.textContent = "Copia"), 1600); };
+    const label = b.textContent;
+    const done = () => { b.textContent = tx("copied", "Copiato"); setTimeout(() => (b.textContent = label), 1600); };
     if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.copy).then(done, () => {});
   }));
 })();
@@ -177,7 +180,7 @@
     const start = Math.min(+b.dataset.start || 0, pages.length - 1);
     rd.querySelector("[data-reader-title]").textContent = b.dataset.title || "";
     rd.querySelector("[data-reader-pdf]").href = b.dataset.pdf;
-    box.innerHTML = pages.map((src, i) => `<img src="${src}" alt="Pagina ${i + 1}" loading="${Math.abs(i - start) < 2 ? "eager" : "lazy"}" decoding="async" width="1100" height="1556">`).join("");
+    box.innerHTML = pages.map((src, i) => `<img src="${src}" alt="${tx("page", "Pagina")} ${i + 1}" loading="${Math.abs(i - start) < 2 ? "eager" : "lazy"}" decoding="async" width="1100" height="1556">`).join("");
     imgs = [...box.querySelectorAll("img")];
     rd.hidden = false; document.body.style.overflow = "hidden";
     requestAnimationFrame(() => { box.scrollTop = imgs[start].offsetTop - 20; upd(); rd.querySelector("[data-reader-close]").focus(); });
@@ -195,4 +198,12 @@
   const upd = () => { btns[0].disabled = tr.scrollLeft < 8; btns[1].disabled = tr.scrollLeft + tr.clientWidth >= tr.scrollWidth - 8; };
   btns.forEach((b) => b.addEventListener("click", () => { const card = tr.firstElementChild; tr.scrollBy({ left: +b.dataset.news * ((card ? card.offsetWidth : 300) + 16), behavior: "smooth" }); }));
   tr.addEventListener("scroll", upd, { passive: true }); addEventListener("resize", upd); upd();
+})();
+
+/* selettore lingua: si chiude cliccando fuori o con Esc */
+(() => {
+  const sw = document.querySelector(".lang-sw");
+  if (!sw) return;
+  document.addEventListener("click", (e) => { if (sw.open && !sw.contains(e.target)) sw.open = false; });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && sw.open) { sw.open = false; sw.querySelector("summary").focus(); } });
 })();
