@@ -429,7 +429,7 @@ pages.home = layout("home", {
 <section class="band t-paper ident" aria-labelledby="h-ident">
   <div class="wrap rail">
     <div class="rail-meta"><span class="mono" id="h-ident">Chi è</span><span class="mono mute">Jediz</span></div>
-    <div class="stack" style="--s:28px"><p class="big">${esc(bio.short)}</p><div class="links-row"><a class="link-arrow" href="${c.to("bio")}">Bio</a><a class="link-arrow" href="${c.to("contatti")}">Contatti</a></div></div>
+    <div class="ident-body"><p>${esc(bio.short)}</p><div class="links-row"><a class="link-arrow" href="${c.to("bio")}">Bio</a><a class="link-arrow" href="${c.to("contatti")}">Contatti</a></div></div>
   </div>
 </section>
 
