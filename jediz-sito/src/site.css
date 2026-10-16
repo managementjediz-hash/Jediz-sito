@@ -119,7 +119,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 /* ---------- hero ---------- */
-.hero { padding-top: clamp(40px, 7vw, 96px); padding-bottom: 0; overflow: hidden; }
+.hero { padding-top: clamp(20px, 3vw, 36px); padding-bottom: 0; overflow: hidden; }
 .wordmark { font-family: var(--f-display); font-weight: 500; font-variation-settings: "opsz" 96; font-size: clamp(5.5rem, 24.5vw, 21rem); line-height: 0.8; letter-spacing: -0.015em; margin-top: clamp(24px, 5vw, 64px); margin-left: -0.04em; }
 .hero-claim { display: grid; gap: 12px 32px; margin-top: clamp(24px, 3.5vw, 44px); padding-bottom: clamp(36px, 5vw, 64px); }
 @media (min-width: 900px) { .hero-claim { grid-template-columns: 3fr 9fr; align-items: end; } }
@@ -387,8 +387,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .t-paper .logo-img.auto-invert { filter: invert(1); }
 
 /* hero con logo */
-.hero-main { display: grid; gap: 28px 48px; margin-top: clamp(20px, 4vw, 48px); padding-bottom: clamp(36px, 5vw, 64px); }
-@media (min-width: 900px) { .hero-main { grid-template-columns: 6fr 6fr; align-items: end; } }
+.hero-main { display: grid; gap: 24px 48px; margin-top: 0; padding-bottom: clamp(36px, 5vw, 64px); }
+@media (min-width: 900px) { .hero-main { grid-template-columns: 6fr 6fr; align-items: center; } }
 .hero-main .wordmark { margin: 0; line-height: 0; }
 .hero-main .wordmark .logo-img { width: min(60vw, 420px); height: auto; }
 @media (min-width: 900px) { .hero-main .wordmark .logo-img { width: clamp(240px, 32vw, 420px); margin-left: -1.5%; } }

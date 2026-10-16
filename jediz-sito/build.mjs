@@ -335,6 +335,7 @@ const css = readFileSync(join(ROOT, "src", "site.css"), "utf8");
 const js = readFileSync(join(ROOT, "src", "site.js"), "utf8");
 // versione dei file: cambia a ogni modifica, così il browser non usa la copia vecchia
 const ver = (t) => createHash("sha1").update(t).digest("hex").slice(0, 8);
+const OG_VER = ver(readFileSync(join(ROOT, "assets/img/og.png")));
 
 function layout(pageId, { title, description, theme = "t-paper", body, jsonld, ogPath = "" }) {
   const c = ctx(pageId);
@@ -366,7 +367,9 @@ ${alternates}
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta property="og:description" content="${esc(description || site.description)}">
 <meta property="og:url" content="${canonical}">
-<meta property="og:image" content="${abs("assets/img/og.png")}">
+<meta property="og:image" content="${abs("assets/img/og.png")}?v=${OG_VER}">
+<meta property="og:image:alt" content="JEDIZ">
+<meta name="twitter:image" content="${abs("assets/img/og.png")}?v=${OG_VER}">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:locale" content="${L.og}">${LANGS.filter((l) => l !== L).map((l) => `<meta property="og:locale:alternate" content="${l.og}">`).join("")}
 <meta name="twitter:card" content="summary_large_image">
