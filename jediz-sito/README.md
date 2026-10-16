@@ -49,7 +49,8 @@ Esempi:
 
 ## Cose da completare
 
-- [ ] Dominio `jedizmusic.com` (già impostato in `site.json`): comprarlo su Cloudflare Registrar e collegarlo a Cloudflare Pages → Custom domains, sia `jedizmusic.com` sia `www.jedizmusic.com`
+- [x] Dominio `jedizmusic.com` su Cloudflare Registrar, collegato a Cloudflare Pages (anche `www`)
+- [ ] Regola di reindirizzamento da `www.jedizmusic.com` a `jedizmusic.com` (Cloudflare → Rules → Redirect Rules)
 - [ ] Scheda tecnica live per la formazione (PDF in `assets/docs/`, voce JDZ/05 in `documents.json`)
 - [ ] Foto stampa (JDZ/06) e selezione foto per la pagina Foto
 - [ ] PDF della bio (JDZ/04)
