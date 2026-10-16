@@ -414,7 +414,6 @@ pages.home = layout("home", {
   body: (c) => `
 <section class="hero t-night" aria-labelledby="h-jediz">
   <div class="wrap">
-    <div class="hero-top mono"><a href="#ascolta" style="text-decoration:none">ASCOLTA ${esc(album.title.toUpperCase())}</a></div>
     <div class="hero-main">
       <h1 class="wordmark" id="h-jediz">${logo(c)}${site.logo ? '<span class="sr-only">JEDIZ</span>' : ""}</h1>
       <div class="hero-claim">

@@ -120,7 +120,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- hero ---------- */
 .hero { padding-top: clamp(40px, 7vw, 96px); padding-bottom: 0; overflow: hidden; }
-.hero-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; color: var(--mute); }
 .wordmark { font-family: var(--f-display); font-weight: 500; font-variation-settings: "opsz" 96; font-size: clamp(5.5rem, 24.5vw, 21rem); line-height: 0.8; letter-spacing: -0.015em; margin-top: clamp(24px, 5vw, 64px); margin-left: -0.04em; }
 .hero-claim { display: grid; gap: 12px 32px; margin-top: clamp(24px, 3.5vw, 44px); padding-bottom: clamp(36px, 5vw, 64px); }
 @media (min-width: 900px) { .hero-claim { grid-template-columns: 3fr 9fr; align-items: end; } }
