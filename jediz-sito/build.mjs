@@ -35,7 +35,7 @@ const T = (s, vars) => {
   return out;
 };
 // campi che il sito usa anche come "chiavi" (filtri, categorie): restano in italiano nei dati e si traducono solo quando si mostrano
-const KEEP = new Set(["category", "categories", "type", "role", "project", "release", "title", "url", "file", "slug", "id", "email", "youtube", "date", "audio", "src", "image", "poster", "thumb", "cover", "full", "excerpt", "preview", "outlet", "name", "code", "handle", "venue", "context", "address", "shape", "person", "pdf_code", "feat", "_help", "_note", "_logo_help", "_cover_note"]);
+const KEEP = new Set(["category", "categories", "type", "role", "project", "release", "title", "url", "file", "slug", "id", "email", "youtube", "date", "audio", "src", "image", "poster", "thumb", "cover", "full", "excerpt", "preview", "outlet", "name", "code", "handle", "venue", "context", "address", "shape", "person", "credit", "pdf_code", "feat", "_help", "_note", "_logo_help", "_cover_note"]);
 const TRANSLATE_TITLES = new Set(["documents.json", "cinema.json", "live.json"]); // titoli tradotti solo qui (documenti, schede); i titoli dei brani no
 function trContent(o, file, key = "") {
   if (IS_IT) return o;
@@ -322,6 +322,10 @@ function photoItem(p, c) {
   return `<figure class="ph-item ${esc(p.shape || "square")}" data-cat="${esc(p.category)}">${inner}<figcaption class="mono"><span>${p.caption ? esc(p.caption) : esc(T(p.category))}</span><span>${p.credit ? "© " + esc(p.credit) : ""}</span></figcaption></figure>`;
 }
 
+function portrait(p, c, cls = "") {
+  return `<figure class="portrait ${cls}"><img src="${esc(img(c, p.src, 960))}" alt="${esc(p.alt)}" loading="lazy" decoding="async"><figcaption class="mono">${p.credit ? `${T("foto")} ${esc(p.credit)}` : ""}</figcaption></figure>`;
+}
+
 function secHead({ label, meta = [], title, lede }) {
   return `<div class="rail sec-head"><div class="rail-meta"><span class="mono">${label}</span>${meta.map((m) => `<span class="mono mute">${m}</span>`).join("")}</div><div class="stack" style="--s:16px"><h2>${title}</h2>${lede ? `<p class="lede">${lede}</p>` : ""}</div></div>`;
 }
@@ -478,7 +482,7 @@ pages.home = layout("home", {
 <section class="band t-paper ident" aria-labelledby="h-ident">
   <div class="wrap rail">
     <div class="rail-meta"><span class="mono" id="h-ident">${T("Chi è")}</span><span class="mono mute">Jediz</span></div>
-    <div class="ident-body"><p>${esc(bio.short)}</p><div class="links-row"><a class="link-arrow" href="${c.to("bio")}">${T("Bio")}</a><a class="link-arrow" href="${c.to("contatti")}">${T("Contatti")}</a></div></div>
+    <div class="ident-wrap"><div class="ident-body"><p>${esc(bio.short)}</p><div class="links-row"><a class="link-arrow" href="${c.to("bio")}">${T("Bio")}</a><a class="link-arrow" href="${c.to("foto")}">${T("Foto")}</a><a class="link-arrow" href="${c.to("contatti")}">${T("Contatti")}</a></div></div>${bio.photo && bio.photo.src ? portrait(bio.photo, c, "ident-photo") : ""}</div>
   </div>
 </section>
 
@@ -588,7 +592,8 @@ ${next ? `<section class="band t-night" aria-labelledby="h-next" data-expires="$
 <section class="band t-night" aria-labelledby="h-lmedia">
   <div class="wrap">
     ${secHead({ label: T("Dal palco"), meta: [T("Foto e video")], title: `<span id="h-lmedia">${T("Immagini dal live")}</span>` })}
-    <div class="vgrid">${videosData.videos.filter((v) => v.category === "Live").map((v) => videoCard(v, c)).join("")}${photosData.photos.filter((p) => p.category === "Live" && p.src).slice(0, 2).map((p) => photoItem({ ...p, shape: "wide" }, c)).join("")}</div>
+    <div class="vgrid">${videosData.videos.filter((v) => v.category === "Live").map((v) => videoCard(v, c)).join("")}${photosData.photos.filter((p) => p.category === "Live" && p.src).sort((a, b) => (b.feature ? 1 : 0) - (a.feature ? 1 : 0)).slice(0, 2).map((p) => photoItem({ ...p, shape: "wide" }, c)).join("")}</div>
+    <div class="sec-foot"><a class="link-arrow" href="${c.to("foto")}">${T("Tutte le foto")}</a></div>
   </div>
 </section>
 <section class="band t-paper" aria-labelledby="h-past">
@@ -776,9 +781,9 @@ ${textGroups.map((g, gi) => `<section class="band t-paper"${gi ? ' style="paddin
 pages.foto = layout("foto", {
   theme: "t-night",
   title: T("Foto"),
-  description: T("Fotografie di Jediz: live, backstage, ritratti, cinema."),
+  description: T("Fotografie di Jediz: ritratti, lo shooting di Dr. Jediz & Mr. I, i concerti."),
   body: (c) => `
-${pageHead({ c, label: T("Foto"), title: T("Foto"), lede: T("Una selezione: live, backstage, ritratti, set.") })}
+${pageHead({ c, label: T("Foto"), title: T("Foto"), lede: T("Ritratti, lo shooting del disco, i concerti. Sotto ogni foto, chi l'ha scattata.") })}
 <section class="band t-night" style="padding-top:0" aria-label="${T("Fotografie")}">
   <div class="wrap">
     ${filters(photosData.categories, "foto")}
@@ -800,6 +805,9 @@ ${pageHead({ c, label: T("Bio"), title: T("Bio") })}
 <section class="band t-paper" style="padding-top:0" aria-label="${T("Bio breve")}">
   <div class="wrap rail"><div class="rail-meta"><span class="mono">${T("Breve")}</span><span class="mono mute">${T("{n} battute", { n: bio.short.length })}</span></div><p class="bio-short">${esc(bio.short)}</p></div>
 </section>
+${[bio.photo, bio.photo_alt].some((x) => x && x.src) ? `<section class="band t-paper" style="padding-top:0" aria-label="${T("Fotografie")}">
+  <div class="wrap rail"><div class="rail-meta"><span class="mono mute">${T("Foto")}</span></div><div class="bio-pair">${[bio.photo, bio.photo_alt].filter((x) => x && x.src).map((x) => portrait(x, c)).join("")}</div></div>
+</section>` : ""}
 <section class="band t-paper" style="padding-top:0" aria-label="${T("Bio estesa")}">
   <div class="wrap rail"><div class="rail-meta"><span class="mono">${T("Estesa")}</span>${bioDoc ? `<a class="link-arrow" style="margin-top:12px;align-self:start" href="${c.to("archivio", "#" + slug(bioDoc.code))}">${T("Bio in PDF")}</a>` : ""}</div>
   <div class="bio-long">${bio.long.map((p) => `<p>${esc(p)}</p>`).join("")}</div></div>

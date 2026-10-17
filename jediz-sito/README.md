@@ -30,6 +30,7 @@ Il generatore produce anche `sitemap.xml`, `robots.txt`, meta Open Graph, dati s
 - Repository: `github.com/managementjediz-hash/Jediz-sito` (i file sono nella cartella `jediz-sito/`).
 - Hosting: Cloudflare Pages — root directory `jediz-sito`, build `node build.mjs`, output `dist`. Ogni modifica su `main` pubblica il sito da sola. Netlify (progetto `sitodijediz`) resta solo per il login del pannello, con i build fermati.
 - Immagini: dopo averne aggiunte di nuove, `node build.mjs && sh tools/resize.sh` crea le versioni leggere in `assets/_r/` (serve ImageMagick). Senza, il sito usa l'originale: caricare foto già leggere (sotto 500 KB).
+- Foto stampa: le versioni per i giornali (lato lungo 3000 px) stanno in `assets/docs/foto-stampa/`, con lo stesso nome della foto del sito; il PDF JDZ/06 rimanda a quei file.
 - Pannello: `/admin`, accesso con GitHub (OAuth App "Jediz sito" installata in Netlify → Access & security → OAuth).
 
 ## Aggiornare i contenuti
@@ -53,8 +54,8 @@ Esempi:
 - [x] Dominio `jedizmusic.com` su Cloudflare Registrar, collegato a Cloudflare Pages (anche `www`)
 - [x] `www.jedizmusic.com` rimanda a `jedizmusic.com` (Cloudflare → Rules → Redirect Rules, 301)
 - [x] Scheda tecnica live (JDZ/05): tre setup, da 16 a 32 canali
-- [ ] Foto stampa (JDZ/06) e selezione foto per la pagina Foto
-- [ ] PDF della bio (JDZ/04)
+- [x] Foto stampa (JDZ/06): 25 foto in quattro serie (Ferramosca, Jacinto, Luzi, Facchinetti), anche nella pagina Foto, in home e in bio
+- [x] PDF della bio (JDZ/04)
 - [ ] Making of: caricare le clip per ciascun disco (Video → categoria "Making of")
 - [ ] Video Instagram/Facebook: aggiungere una "Miniatura" (Instagram non dà l'anteprima da solo)
 - [ ] Email per Booking, Press, Collaborazioni, Generale (`site.json`), link YouTube e TikTok

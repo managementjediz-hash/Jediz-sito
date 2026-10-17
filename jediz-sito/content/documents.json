@@ -62,16 +62,16 @@
       "description": "Tre setup, da 16 a 32 canali: input list, ascolti in-ear e spie, stage plot, backline."
     },
     {
-      "pages": "",
+      "pages": "7",
       "code": "JDZ/06",
-      "date": "",
-      "status": "draft",
+      "date": "2026-10-17",
+      "status": "ready",
       "kind": "Immagini",
       "thumb": "",
-      "version": "",
+      "version": "2026",
       "title": "Foto stampa",
-      "file": "",
-      "description": "Ritratti e foto live in alta risoluzione, con crediti."
+      "file": "assets/docs/jediz-foto-stampa-2026.pdf",
+      "description": "Venticinque foto in quattro serie, con i crediti. Ogni foto si apre in alta risoluzione."
     }
   ]
 }

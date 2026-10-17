@@ -215,7 +215,11 @@
     "Copia": "Copiar",
     "Copiato": "Copiado",
     "Nell'oggetto": "En el asunto",
-    "Così arriva prima a chi deve": "Así llega antes a quien corresponde"
+    "Così arriva prima a chi deve": "Así llega antes a quien corresponde",
+    "Dr. Jediz & Mr. I": "Dr. Jediz & Mr. I",
+    "Fotografie di Jediz: ritratti, lo shooting di Dr. Jediz & Mr. I, i concerti.": "Fotos de Jediz: retratos, la sesión de Dr. Jediz & Mr. I, los conciertos.",
+    "Ritratti, lo shooting del disco, i concerti. Sotto ogni foto, chi l'ha scattata.": "Retratos, la sesión del disco, los conciertos. Bajo cada foto, quién la hizo.",
+    "Tutte le foto": "Todas las fotos"
   },
   "content": {
     "Due nomi, la stessa penna.": "Dos nombres, la misma pluma.",
@@ -297,6 +301,33 @@
     "Nel 2026 il disco va sul palco: Barcellona a febbraio, la release party a Roma ad aprile, poi l’estate. Il 2 settembre apre il concerto di Ernia al Festival Dannunziano di Pescara; il 27 settembre chiude la stagione ai Giardini dell’Acqua Paola, sopra il Fontanone del Gianicolo, con il primo concerto a Roma insieme alla band.": "En 2026 el disco sube al escenario: Barcelona en febrero, la release party en Roma en abril, luego el verano. El 2 de septiembre abre el concierto de Ernia en el Festival Dannunziano de Pescara; el 27 de septiembre cierra la temporada en los Giardini dell’Acqua Paola, sobre el Fontanone del Gianicolo, con su primer concierto en Roma junto a la banda.",
     "Tempo al tempo è la colonna sonora di Straordinaria, cortometraggio di Antonio Maria Castaldo prodotto da Yagi Media. Jediz collabora anche alla colonna sonora di Conquer the Jungle, documentario di Iker Cimadevilla (Mendigo Films), in uscita nel 2027.": "Tempo al tempo es la banda sonora de Straordinaria, cortometraje de Antonio Maria Castaldo producido por Yagi Media. Jediz colabora también en la banda sonora de Conquer the Jungle, documental de Iker Cimadevilla (Mendigo Films), que se estrenará en 2027.",
     "Dal vivo canta con Marianna Vernuccio e suona con Tommaso Marino alla chitarra, Tommaso Bonifazi Razzanti al basso, Gregorio De Rosa al piano e Luca Lo Presti alla batteria. Con loro ha riarrangiato i brani per il live e lavora al nuovo album, Oramai siamo cresciuti.": "En directo canta con Marianna Vernuccio y toca con Tommaso Marino a la guitarra, Tommaso Bonifazi Razzanti al bajo, Gregorio De Rosa al piano y Luca Lo Presti a la batería. Con ellos ha rearreglado los temas para el directo y trabaja en el nuevo álbum, Oramai siamo cresciuti.",
-    "Accanto alla musica resta il diritto: dopo la laurea, la pratica forense a Roma.": "Junto a la música sigue el derecho: tras la licenciatura, la pasantía como abogado en Roma."
+    "Accanto alla musica resta il diritto: dopo la laurea, la pratica forense a Roma.": "Junto a la música sigue el derecho: tras la licenciatura, la pasantía como abogado en Roma.",
+    "Jediz con la giacca verde davanti a uno specchio che riflette Elia, a Campo Imperatore": "Jediz con chaqueta verde ante un espejo que refleja a Elia, en Campo Imperatore",
+    "Jediz in completo scuro davanti allo specchio, a Campo Imperatore": "Jediz con traje oscuro ante el espejo, en Campo Imperatore",
+    "Jediz si toglie la giacca sotto il cielo di Campo Imperatore": "Jediz se quita la chaqueta bajo el cielo de Campo Imperatore",
+    "Jediz in giacca, in bianco e nero, sulla strada di montagna": "Jediz con chaqueta, en blanco y negro, en la carretera de montaña",
+    "Jediz cammina da solo nel prato, di spalle": "Jediz camina solo por el prado, de espaldas",
+    "Jediz con i guantoni da boxe rossi": "Jediz con guantes de boxeo rojos",
+    "Jediz con la felpa chiara, guarda lontano": "Jediz con sudadera clara, mira a lo lejos",
+    "Jediz con la felpa chiara, al tramonto": "Jediz con sudadera clara, al atardecer",
+    "Jediz con un mazzo di fiori in fiamme, al crepuscolo": "Jediz con un ramo de flores en llamas, al anochecer",
+    "Ritratto di Elia in giacca e cravatta, sorride": "Retrato de Elia con chaqueta y corbata, sonriendo",
+    "Ritratto in giacca e cravatta, appoggiato al muro": "Retrato con chaqueta y corbata, apoyado en la pared",
+    "Primo piano in giacca e cravatta, luce laterale": "Primer plano con chaqueta y corbata, luz lateral",
+    "Ritratto frontale in giacca e cravatta": "Retrato frontal con chaqueta y corbata",
+    "Ritratto di profilo in giacca e cravatta": "Retrato de perfil con chaqueta y corbata",
+    "Jediz ride, in giacca e cravatta": "Jediz se ríe, con chaqueta y corbata",
+    "Jediz sul palco di Pescara davanti al pubblico": "Jediz en el escenario de Pescara, ante el público",
+    "Jediz canta davanti al logo sullo schermo": "Jediz canta delante del logo en la pantalla",
+    "Jediz sorride al microfono": "Jediz sonríe al micrófono",
+    "Jediz canta verso il pubblico illuminato di rosso": "Jediz canta hacia el público iluminado de rojo",
+    "Jediz con le braccia alzate verso il pubblico": "Jediz con los brazos en alto hacia el público",
+    "Jediz canta, primo piano con luce viola": "Jediz canta, primer plano con luz violeta",
+    "Il concerto al Fontanone del Gianicolo, al tramonto": "El concierto en el Fontanone del Gianicolo, al atardecer",
+    "Jediz canta in camicia bianca, luce calda": "Jediz canta con camisa blanca, luz cálida",
+    "Jediz in camicia bianca su fondo scuro": "Jediz con camisa blanca sobre fondo oscuro",
+    "Jediz sul palco con la band": "Jediz en el escenario con la banda",
+    "Roma, in studio · 2025": "Roma, en estudio · 2025",
+    "Venticinque foto in quattro serie, con i crediti. Ogni foto si apre in alta risoluzione.": "Veinticinco fotos en cuatro series, con créditos. Cada foto se abre en alta resolución."
   }
 }

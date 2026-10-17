@@ -311,12 +311,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (min-width: 900px) { .pgrid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
 .ph-item { margin: 0; display: grid; gap: 8px; align-content: start; }
 .ph-item .pf { position: relative; aspect-ratio: 1; max-width: 100%; background: var(--bg-2); overflow: hidden; }
-.ph-item.tall { grid-row: span 2; } .ph-item.tall .pf { aspect-ratio: 3 / 4.6; }
-.ph-item.wide { grid-column: span 2; } .ph-item.wide .pf { aspect-ratio: 16 / 10; }
+.ph-item.tall { grid-row: span 2; display: flex; flex-direction: column; gap: 8px; } .ph-item.tall .pf { aspect-ratio: auto; flex: 1; min-height: 240px; }
+.ph-item.wide { grid-column: span 2; } .ph-item.wide .pf { aspect-ratio: 2 / 1; }
 .ph-item .pf img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease, filter .6s ease; }
 .ph-item button.pf:hover img { transform: scale(1.02); }
 .ph-item .pf .ph-block { position: absolute; inset: 0; }
-.ph-item figcaption { display: flex; justify-content: space-between; gap: 8px; color: var(--mute); }
+.ph-item figcaption { display: flex; flex-direction: column; gap: 2px; color: var(--mute); }
+.ph-item figcaption span:last-child { opacity: .75; }
 .lightbox { position: fixed; inset: 0; z-index: 90; background: rgba(8,9,11,.96); color: var(--night-ink); display: grid; grid-template-rows: auto 1fr auto; padding: calc(12px + env(safe-area-inset-top, 0px)) var(--gutter) calc(16px + env(safe-area-inset-bottom, 0px)); }
 .lightbox[hidden] { display: none; }
 .lightbox .lb-top { display: flex; justify-content: space-between; align-items: center; min-height: 44px; }
@@ -525,3 +526,13 @@ body { padding-top: calc(var(--header-h) + 1px + env(safe-area-inset-top, 0px));
 .foot-langs a:hover { color: var(--fg); }
 .foot-langs b { font-weight: 400; border-bottom: 1px solid currentColor; }
 .doc-lang { font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; }
+
+/* Ritratti (home, bio) */
+.ident-wrap { display: grid; gap: 28px; }
+@media (min-width: 900px) { .ident-wrap { grid-template-columns: minmax(0, 1fr) minmax(220px, 30%); align-items: end; gap: clamp(32px, 5vw, 72px); } }
+.portrait { margin: 0; display: grid; gap: 8px; }
+.portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; background: var(--bg-2); }
+.portrait figcaption { color: var(--mute); }
+.ident-photo { max-width: 420px; }
+.bio-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 760px; }
+@media (min-width: 900px) { .bio-pair { gap: 16px; } }

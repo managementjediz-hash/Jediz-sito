@@ -1,12 +1,212 @@
 {
-  "_help": "Foto. Mettere i file in /assets/img/foto/ (lato lungo 2000px, jpg qualità 80). Facoltativo \"thumb\": versione leggera da 800px per la griglia. \"shape\": \"tall\", \"wide\" o \"square\".",
-  "categories": ["Live", "Backstage", "Ritratti", "Cinema"],
+  "_help": "Foto. Mettere i file in /assets/img/foto/ (lato lungo 2000px, jpg qualità 80). \"shape\": \"tall\", \"wide\" o \"square\". Le versioni in alta risoluzione per la stampa stanno in /assets/docs/foto-stampa/ (stesso nome, 3000px). Dopo aver aggiunto foto: node build.mjs && sh tools/resize.sh.",
+  "categories": [
+    "Ritratti",
+    "Dr. Jediz & Mr. I",
+    "Live"
+  ],
   "photos": [
-    { "src": "", "alt": "", "category": "Ritratti", "caption": "", "credit": "", "shape": "tall" },
-    { "src": "", "alt": "", "category": "Live", "caption": "", "credit": "", "shape": "wide" },
-    { "src": "", "alt": "", "category": "Backstage", "caption": "", "credit": "", "shape": "square" },
-    { "src": "", "alt": "", "category": "Live", "caption": "", "credit": "", "shape": "square" },
-    { "src": "", "alt": "", "category": "Cinema", "caption": "", "credit": "", "shape": "wide" },
-    { "src": "", "alt": "", "category": "Ritratti", "caption": "", "credit": "", "shape": "tall" }
+    {
+      "src": "assets/img/foto/jediz-campo-01.jpg",
+      "alt": "Jediz con la giacca verde davanti a uno specchio che riflette Elia, a Campo Imperatore",
+      "category": "Dr. Jediz & Mr. I",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "tall"
+    },
+    {
+      "src": "assets/img/foto/jediz-studio-04.jpg",
+      "alt": "Ritratto frontale in giacca e cravatta",
+      "category": "Ritratti",
+      "caption": "Roma, in studio · 2025",
+      "credit": "Jerome Jacinto",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-pescara-01.jpg",
+      "alt": "Jediz sul palco di Pescara davanti al pubblico",
+      "category": "Live",
+      "caption": "Pescara · 02.09.2026",
+      "credit": "Alessio Luzi",
+      "shape": "wide",
+      "feature": true
+    },
+    {
+      "src": "assets/img/foto/jediz-campo-03.jpg",
+      "alt": "Jediz si toglie la giacca sotto il cielo di Campo Imperatore",
+      "category": "Dr. Jediz & Mr. I",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-studio-02.jpg",
+      "alt": "Ritratto in giacca e cravatta, appoggiato al muro",
+      "category": "Ritratti",
+      "caption": "Roma, in studio · 2025",
+      "credit": "Jerome Jacinto",
+      "shape": "tall"
+    },
+    {
+      "src": "assets/img/foto/jediz-gianicolo-02.jpg",
+      "alt": "Il concerto al Fontanone del Gianicolo, al tramonto",
+      "category": "Live",
+      "caption": "Roma, Gianicolo · 27.09.2026",
+      "credit": "Nicolò Facchinetti",
+      "shape": "tall",
+      "feature": true
+    },
+    {
+      "src": "assets/img/foto/jediz-campo-04.jpg",
+      "alt": "Jediz in giacca, in bianco e nero, sulla strada di montagna",
+      "category": "Dr. Jediz & Mr. I",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-pescara-03.jpg",
+      "alt": "Jediz sorride al microfono",
+      "category": "Live",
+      "caption": "Pescara · 02.09.2026",
+      "credit": "Alessio Luzi",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-campo-09.jpg",
+      "alt": "Jediz con un mazzo di fiori in fiamme, al crepuscolo",
+      "category": "Dr. Jediz & Mr. I",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "tall"
+    },
+    {
+      "src": "assets/img/foto/jediz-studio-06.jpg",
+      "alt": "Jediz ride, in giacca e cravatta",
+      "category": "Ritratti",
+      "caption": "Roma, in studio · 2025",
+      "credit": "Jerome Jacinto",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-gianicolo-01.jpg",
+      "alt": "Jediz canta, primo piano con luce viola",
+      "category": "Live",
+      "caption": "Roma, Gianicolo · 27.09.2026",
+      "credit": "Nicolò Facchinetti",
+      "shape": "wide"
+    },
+    {
+      "src": "assets/img/foto/jediz-campo-07.jpg",
+      "alt": "Jediz con la felpa chiara, guarda lontano",
+      "category": "Dr. Jediz & Mr. I",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-studio-05.jpg",
+      "alt": "Ritratto di profilo in giacca e cravatta",
+      "category": "Ritratti",
+      "caption": "Roma, in studio · 2025",
+      "credit": "Jerome Jacinto",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-pescara-05.jpg",
+      "alt": "Jediz con le braccia alzate verso il pubblico",
+      "category": "Live",
+      "caption": "Pescara · 02.09.2026",
+      "credit": "Alessio Luzi",
+      "shape": "tall"
+    },
+    {
+      "src": "assets/img/foto/jediz-campo-02.jpg",
+      "alt": "Jediz in completo scuro davanti allo specchio, a Campo Imperatore",
+      "category": "Dr. Jediz & Mr. I",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-gianicolo-03.jpg",
+      "alt": "Jediz canta in camicia bianca, luce calda",
+      "category": "Live",
+      "caption": "Roma, Gianicolo · 27.09.2026",
+      "credit": "Nicolò Facchinetti",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-studio-03.jpg",
+      "alt": "Primo piano in giacca e cravatta, luce laterale",
+      "category": "Ritratti",
+      "caption": "Roma, in studio · 2025",
+      "credit": "Jerome Jacinto",
+      "shape": "tall"
+    },
+    {
+      "src": "assets/img/foto/jediz-campo-06.jpg",
+      "alt": "Jediz con i guantoni da boxe rossi",
+      "category": "Dr. Jediz & Mr. I",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-pescara-04.jpg",
+      "alt": "Jediz canta verso il pubblico illuminato di rosso",
+      "category": "Live",
+      "caption": "Pescara · 02.09.2026",
+      "credit": "Alessio Luzi",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-gianicolo-05.jpg",
+      "alt": "Jediz sul palco con la band",
+      "category": "Live",
+      "caption": "Roma, Gianicolo · 27.09.2026",
+      "credit": "Nicolò Facchinetti",
+      "shape": "wide"
+    },
+    {
+      "src": "assets/img/foto/jediz-campo-08.jpg",
+      "alt": "Jediz con la felpa chiara, al tramonto",
+      "category": "Dr. Jediz & Mr. I",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-studio-01.jpg",
+      "alt": "Ritratto di Elia in giacca e cravatta, sorride",
+      "category": "Ritratti",
+      "caption": "Roma, in studio · 2025",
+      "credit": "Jerome Jacinto",
+      "shape": "tall"
+    },
+    {
+      "src": "assets/img/foto/jediz-gianicolo-04.jpg",
+      "alt": "Jediz in camicia bianca su fondo scuro",
+      "category": "Live",
+      "caption": "Roma, Gianicolo · 27.09.2026",
+      "credit": "Nicolò Facchinetti",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-campo-05.jpg",
+      "alt": "Jediz cammina da solo nel prato, di spalle",
+      "category": "Dr. Jediz & Mr. I",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "wide"
+    },
+    {
+      "src": "assets/img/foto/jediz-pescara-02.jpg",
+      "alt": "Jediz canta davanti al logo sullo schermo",
+      "category": "Live",
+      "caption": "Pescara · 02.09.2026",
+      "credit": "Alessio Luzi",
+      "shape": "square"
+    }
   ]
 }

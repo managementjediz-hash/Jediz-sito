@@ -246,6 +246,7 @@ collections:
               - { name: caption, label: "Didascalia", widget: string, required: false }
               - { name: credit, label: "Fotografo", widget: string, required: false }
               - { name: shape, label: "Formato", widget: select, options: ["tall", "wide", "square"] }
+              - { name: feature, label: "In evidenza nella pagina Live", widget: boolean, required: false, default: false }
 
   - name: "about"
     label: "Bio e impostazioni"
@@ -257,6 +258,22 @@ collections:
           - { name: short, label: "Bio breve", widget: text }
           - { name: long, label: "Bio estesa (paragrafi)", widget: list, field: { name: p, label: "Paragrafo", widget: text } }
           - { name: pdf_code, label: "Codice PDF in archivio", widget: string }
+          - name: photo
+            label: "Ritratto (home e bio)"
+            widget: object
+            required: false
+            fields:
+              - { name: src, label: "Immagine", widget: image, media_folder: "/jediz-sito/assets/img/foto", public_folder: "assets/img/foto" }
+              - { name: alt, label: "Descrizione per accessibilità", widget: string }
+              - { name: credit, label: "Fotografo", widget: string, required: false }
+          - name: photo_alt
+            label: "Seconda foto (pagina bio)"
+            widget: object
+            required: false
+            fields:
+              - { name: src, label: "Immagine", widget: image, media_folder: "/jediz-sito/assets/img/foto", public_folder: "assets/img/foto" }
+              - { name: alt, label: "Descrizione per accessibilità", widget: string }
+              - { name: credit, label: "Fotografo", widget: string, required: false }
       - name: "site"
         label: "Impostazioni, social e contatti"
         file: "jediz-sito/content/site.json"

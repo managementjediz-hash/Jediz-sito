@@ -10,5 +10,15 @@
     "Dal vivo canta con Marianna Vernuccio e suona con Tommaso Marino alla chitarra, Tommaso Bonifazi Razzanti al basso, Gregorio De Rosa al piano e Luca Lo Presti alla batteria. Con loro ha riarrangiato i brani per il live e lavora al nuovo album, Oramai siamo cresciuti.",
     "Accanto alla musica resta il diritto: dopo la laurea, la pratica forense a Roma."
   ],
-  "pdf_code": "JDZ/04"
+  "pdf_code": "JDZ/04",
+  "photo": {
+    "src": "assets/img/foto/jediz-studio-04.jpg",
+    "alt": "Ritratto frontale in giacca e cravatta",
+    "credit": "Jerome Jacinto"
+  },
+  "photo_alt": {
+    "src": "assets/img/foto/jediz-campo-01.jpg",
+    "alt": "Jediz con la giacca verde davanti a uno specchio che riflette Elia, a Campo Imperatore",
+    "credit": "Marco Ferramosca"
+  }
 }
