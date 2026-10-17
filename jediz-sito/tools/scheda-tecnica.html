@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>JEDIZ — Scheda tecnica live 2026</title>
+<style>
+@font-face { font-family: "Bodoni Moda"; src: url("bodoni-moda.woff2") format("woff2"); font-weight: 400 900; }
+@font-face { font-family: "Bodoni Moda"; src: url("bodoni-moda-italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; }
+@font-face { font-family: "Archivo"; src: url("archivo.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; }
+@font-face { font-family: "Plex"; src: url("plex-mono-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Plex"; src: url("plex-mono-500.woff2") format("woff2"); font-weight: 500; }
+@page { size: 210mm 297mm; margin: 0; }
+:root { --paper: #ECEDE8; --ink: #131519; --night: #0E0F12; --cream: #E8E6DF; --mute: #6B6E72; --rule: #C4C7C0; --red: #C2412D; --a: #F4F4F0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Archivo"; font-size: 8.6pt; line-height: 1.45; color: var(--ink); }
+.page { width: 210mm; height: 297mm; position: relative; overflow: hidden; page-break-after: always; background: var(--paper); }
+.page:last-child { page-break-after: auto; }
+.dark { background: var(--night); color: var(--cream); }
+.mono { font-family: "Plex"; font-size: 6.4pt; letter-spacing: .12em; text-transform: uppercase; }
+.mute { color: var(--mute); } .dark .mute { color: #8A8D92; }
+.red { color: var(--red); }
+.top { position: absolute; top: 12mm; left: 15mm; right: 15mm; display: flex; justify-content: space-between; padding-bottom: 3mm; border-bottom: .5pt solid var(--rule); }
+.dark .top { border-color: #2A2D33; }
+.foot { position: absolute; bottom: 9mm; left: 15mm; right: 15mm; display: flex; justify-content: space-between; }
+.body { position: absolute; top: 25mm; left: 15mm; right: 15mm; bottom: 18mm; }
+h1, h2 { font-stretch: 72%; font-weight: 800; text-transform: uppercase; line-height: .92; }
+h1 { font-size: 46pt; }
+h2 { font-size: 24pt; margin-bottom: 2mm; }
+h3 { font-family: "Plex"; font-weight: 500; font-size: 6.6pt; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin: 5mm 0 2mm; }
+.sub { font-family: "Bodoni Moda"; font-style: italic; font-size: 10.5pt; color: var(--mute); margin-bottom: 5mm; }
+p + p { margin-top: 1.8mm; }
+table { width: 100%; border-collapse: collapse; }
+th { font-family: "Plex"; font-weight: 500; font-size: 5.8pt; letter-spacing: .1em; text-transform: uppercase; text-align: left; color: var(--mute); padding: 1.3mm 1.6mm; border-bottom: .8pt solid var(--ink); }
+td { padding: 1.15mm 1.6mm; border-bottom: .4pt solid var(--rule); vertical-align: top; font-size: 7.8pt; }
+td.n { font-family: "Plex"; font-size: 7pt; width: 7mm; color: var(--mute); }
+tr.grp td { font-family: "Plex"; font-size: 5.8pt; letter-spacing: .12em; text-transform: uppercase; color: var(--red); padding-top: 2.2mm; border-bottom: none; }
+td.opt { color: var(--mute); }
+.tag { display: inline-block; font-family: "Plex"; font-size: 5.6pt; letter-spacing: .08em; text-transform: uppercase; border: .5pt solid currentColor; padding: .2mm 1.2mm; margin-left: 1.5mm; color: var(--red); vertical-align: 1px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+.card { border-top: 1.2pt solid var(--ink); padding-top: 2.4mm; }
+.card .big { font-stretch: 72%; font-weight: 800; font-size: 20pt; line-height: 1; text-transform: uppercase; margin: 1mm 0 2mm; }
+.card ul { list-style: none; }
+.card li { padding: 1mm 0; border-bottom: .4pt solid var(--rule); }
+.dark .card { border-color: var(--cream); }
+.dark .card li { border-color: #2A2D33; }
+.note { border-left: 1.2pt solid var(--red); padding-left: 3.5mm; }
+ul.dots { list-style: none; }
+ul.dots li { padding-left: 4mm; position: relative; margin-bottom: 1.2mm; }
+ul.dots li::before { content: ""; position: absolute; left: 0; top: 1.8mm; width: 1.6mm; height: 1.6mm; background: var(--red); }
+.kv { display: grid; grid-template-columns: 30mm 1fr; border-top: .4pt solid var(--rule); }
+.kv > * { padding: 1.4mm 0; border-bottom: .4pt solid var(--rule); }
+.kv dt { font-family: "Plex"; font-size: 6pt; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); padding-top: 1.8mm; }
+svg text { font-family: "Plex"; }
+.tight td { padding-top: .75mm; padding-bottom: .75mm; }
+.tight tr.grp td { padding-top: 1.6mm; }
+.tight .sub { margin-bottom: 3mm; }
+.tight .kv > * { padding: 1mm 0; }
+.tight h3 { margin-top: 3mm; }
+</style>
+</head>
+<body>
+
+<!-- 1. COPERTINA E SINTESI -->
+<section class="page dark">
+  <div class="top mono"><span>Scheda tecnica live</span><span class="mute">Versione ottobre 2026</span></div>
+  <div class="body" style="top:40mm">
+    <img src="logo-light.svg" alt="JEDIZ" style="width:46mm; margin-bottom:10mm">
+    <h1>Scheda tecnica<br>live</h1>
+    <p class="sub" style="color:#8A8D92; margin-top:4mm">Jediz con la band — voce, seconda voce, chitarra e voce, basso, piano, batteria</p>
+    <div class="grid3" style="margin-top:14mm">
+      <div class="card"><p class="mono red">A — Essenziale</p><p class="big">16 ch</p><ul><li>Club e sale piccole</li><li>Batteria tutta microfonata</li><li>In-ear per Jediz, 4 mix monitor</li><li>Palco minimo 5 × 3 m</li></ul></div>
+      <div class="card"><p class="mono red">B — Standard</p><p class="big">24 ch</p><ul><li>Club, teatri, rassegne</li><li>Doppi microfoni su cassa e rullante</li><li>In-ear per Jediz, 6 mix monitor</li><li>Palco consigliato 6 × 4 m</li></ul></div>
+      <div class="card"><p class="mono red">C — Completo</p><p class="big">32 ch</p><ul><li>Festival e palchi grandi</li><li>Radiomicrofoni, microfoni ambiente</li><li>In-ear per tutta la band</li><li>Palco 8 × 6 m, pedana batteria</li></ul></div>
+    </div>
+    <div class="note" style="margin-top:12mm; max-width:150mm">
+      <p>In tutte le versioni: <b>Jediz canta in in-ear</b>, ci sono <b>almeno tre microfoni voce</b> (Jediz, Marianna Vernuccio, Tommaso Marino), <b>chitarra e basso suonano con pedaliera</b> e <b>la batteria è microfonata per intero</b>. Cambia la quantità di canali, non la qualità.</p>
+    </div>
+  </div>
+  <div class="foot mono mute"><span>Jediz — management.jediz@gmail.com</span><span>01 / 07</span></div>
+</section>
+
+<!-- 2. FORMAZIONE E REGOLE COMUNI -->
+<section class="page">
+  <div class="top mono"><span>Scheda tecnica live</span><span class="red">01 — Formazione e richieste comuni</span></div>
+  <div class="body">
+    <h2>Formazione</h2>
+    <p class="sub">Sei persone sul palco</p>
+    <table>
+      <tr><th>Ruolo</th><th>Nome</th><th>Sul palco</th><th>Ascolto</th></tr>
+      <tr><td>Voce</td><td>Elia Pergola — Jediz</td><td>Microfono voce principale (+ riserva nei setup B e C); si muove su tutto il fronte palco</td><td>In-ear, mix stereo</td></tr>
+      <tr><td>Seconda voce</td><td>Marianna Vernuccio</td><td>Microfono voce su asta</td><td>Spia (A, B) · in-ear (C)</td></tr>
+      <tr><td>Chitarra e voce</td><td>Tommaso Marino</td><td>Pedaliera + amplificatore; microfono voce su giraffa (terzo microfono voce)</td><td>Spia (A, B) · in-ear (C)</td></tr>
+      <tr><td>Basso</td><td>Tommaso Bonifazi Razzanti</td><td>Pedaliera + amplificatore, uscita DI; in prima fila</td><td>Spia (A, B) · in-ear (C)</td></tr>
+      <tr><td>Piano</td><td>Gregorio De Rosa</td><td>Tastiera / stage piano, uscita stereo; in seconda fila</td><td>Spia (A, B) · in-ear (C)</td></tr>
+      <tr><td>Batteria</td><td>Luca Lo Presti</td><td>Batteria acustica, tutta microfonata</td><td>Spia o sidefill (A) · in-ear (B, C)</td></tr>
+    </table>
+
+    <div class="grid2" style="margin-top:7mm">
+      <div>
+        <h3>Voce e in-ear</h3>
+        <ul class="dots">
+          <li>Jediz canta sempre in in-ear: serve un sistema wireless stereo (tipo Shure PSM 300/900, Sennheiser G4/2000 IEM o equivalente) con mix dedicato.</li>
+          <li>Almeno tre microfoni voce in ogni versione: Jediz, seconda voce (Marianna Vernuccio), Tommaso Marino alla chitarra.</li>
+          <li>Nei setup B e C il microfono di riserva di Jediz deve stare acceso e pronto vicino alla pedana batteria, sulla stessa catena della voce principale.</li>
+          <li>La voce principale si muove molto sul fronte palco: nei setup B e C preferibile radiomicrofono.</li>
+        </ul>
+        <h3>Chitarra e basso</h3>
+        <ul class="dots">
+          <li>Entrambi suonano con pedaliera: servono due prese di corrente 230 V dedicate per ciascuna postazione, accanto all'amplificatore.</li>
+          <li>Basso: DI attiva dopo la pedaliera (o uscita DI dell'amplificatore) + microfono sulla cassa nei setup B e C.</li>
+          <li>Chitarra: microfono sulla cassa dell'amplificatore; nel setup C secondo microfono o seconda cassa. Microfono voce su giraffa alla postazione.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Batteria</h3>
+        <ul class="dots">
+          <li>Batteria microfonata per intero in tutte le versioni: cassa, rullante, charleston, tutti i tom, due panoramici.</li>
+          <li>Setup B: cassa dentro + fuori, rullante sopra + sotto. Setup C: anche ride e microfoni ambiente.</li>
+          <li>Pedana batteria consigliata (2 × 2 m, h 40 cm) nel setup C.</li>
+        </ul>
+        <h3>Regia e impianto</h3>
+        <ul class="dots">
+          <li>Mixer digitale con almeno i canali del setup scelto + 2 di riserva, effetti interni (riverbero, delay con tap), compressori e gate su tutti i canali.</li>
+          <li>Impianto adeguato alla sala, coperto su tutta l'area pubblico, con sub; regia al centro della sala, non sotto balconate.</li>
+          <li>Un fonico del service per tutta la durata di montaggio, prove e concerto.</li>
+          <li>Talkback dalla regia alle spie / in-ear.</li>
+        </ul>
+        <h3>Tempi</h3>
+        <ul class="dots">
+          <li>Montaggio e cambio palco: 30 min (A) · 45 min (B) · 60 min (C).</li>
+          <li>Soundcheck: 60 min (A) · 90 min (B, C). Line check prima delle porte: 15 min.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot mono mute"><span>Jediz — Scheda tecnica live</span><span>02 / 07</span></div>
+</section>
+
+<!-- 3. SETUP A -->
+<section class="page">
+  <div class="top mono"><span>Scheda tecnica live</span><span class="red">02 — Setup A · Essenziale</span></div>
+  <div class="body">
+    <h2>Setup A — Essenziale <span class="tag">16 canali</span></h2>
+    <p class="sub">Il minimo per suonare bene: club e sale piccole</p>
+    <table>
+      <tr><th>Ch</th><th>Fonte</th><th>Microfono / DI (o equivalente)</th><th>Asta</th><th>Note</th></tr>
+      <tr class="grp"><td colspan="5">Batteria</td></tr>
+      <tr><td class="n">1</td><td>Cassa</td><td>Shure Beta 52A / Beta 91A / AKG D112</td><td>Corta</td><td>Gate</td></tr>
+      <tr><td class="n">2</td><td>Rullante</td><td>Shure SM57 / Beta 57A</td><td>Corta</td><td></td></tr>
+      <tr><td class="n">3</td><td>Charleston</td><td>Condensatore a stilo (Shure SM81, AKG C451)</td><td>Corta</td><td></td></tr>
+      <tr><td class="n">4</td><td>Tom</td><td>Sennheiser e604 / e904</td><td>Clip</td><td>Gate</td></tr>
+      <tr><td class="n">5</td><td>Timpano</td><td>Sennheiser e604 / e904</td><td>Clip</td><td>Gate</td></tr>
+      <tr><td class="n">6</td><td>Panoramico L</td><td>Condensatore (AKG C414, Neumann KM184, Rode NT5)</td><td>Alta</td><td></td></tr>
+      <tr><td class="n">7</td><td>Panoramico R</td><td>Condensatore</td><td>Alta</td><td></td></tr>
+      <tr class="grp"><td colspan="5">Basso, chitarra, piano</td></tr>
+      <tr><td class="n">8</td><td>Basso</td><td>DI attiva (Radial J48, BSS AR-133)</td><td>—</td><td>Dopo la pedaliera</td></tr>
+      <tr><td class="n">9</td><td>Chitarra</td><td>Shure SM57 / Sennheiser e906</td><td>Corta</td><td>Sulla cassa</td></tr>
+      <tr><td class="n">10</td><td>Piano L</td><td>DI attiva</td><td>—</td><td></td></tr>
+      <tr><td class="n">11</td><td>Piano R</td><td>DI attiva</td><td>—</td><td></td></tr>
+      <tr class="grp"><td colspan="5">Voci</td></tr>
+      <tr><td class="n">12</td><td>Voce Jediz</td><td>Shure SM58 / Beta 58A</td><td>Dritta, base tonda</td><td>Voce principale</td></tr>
+      <tr><td class="n">13</td><td>Seconda voce — Marianna</td><td>Shure SM58 / Beta 58A</td><td>Giraffa</td><td></td></tr>
+      <tr><td class="n">14</td><td>Voce — Tommaso Marino</td><td>Shure SM58 / Beta 58A</td><td>Giraffa</td><td>Alla postazione chitarra</td></tr>
+      <tr class="grp"><td colspan="5">Riserva</td></tr>
+      <tr><td class="n">15</td><td class="opt">Base / sequenze L</td><td class="opt">DI stereo</td><td class="opt">—</td><td class="opt">Solo se prevista</td></tr>
+      <tr><td class="n">16</td><td class="opt">Base / sequenze R</td><td class="opt">DI stereo</td><td class="opt">—</td><td class="opt">Solo se prevista</td></tr>
+    </table>
+    <div class="grid2" style="margin-top:5mm">
+      <div><h3>Ascolti</h3><dl class="kv">
+        <dt>IEM 1</dt><dd>Jediz — in-ear wireless, stereo</dd>
+        <dt>Mix 2</dt><dd>Seconda voce — spia</dd>
+        <dt>Mix 3</dt><dd>Chitarra + basso — spia condivisa</dd>
+        <dt>Mix 4</dt><dd>Piano — spia</dd>
+        <dt>Mix 5</dt><dd>Batteria — spia (meglio con sub) o sidefill</dd>
+      </dl></div>
+      <div><h3>Palco e corrente</h3><dl class="kv">
+        <dt>Palco</dt><dd>Minimo 5 × 3 m</dd>
+        <dt>Corrente</dt><dd>230 V a chitarra, basso (pedaliere + ampli), piano, batteria</dd>
+        <dt>Leggio</dt><dd>Nessuno</dd>
+        <dt>Regia</dt><dd>Mixer digitale ≥ 16 in / 6 out</dd>
+      </dl></div>
+    </div>
+  </div>
+  <div class="foot mono mute"><span>Jediz — Scheda tecnica live</span><span>03 / 07</span></div>
+</section>
+
+<!-- 4. SETUP B -->
+<section class="page tight">
+  <div class="top mono"><span>Scheda tecnica live</span><span class="red">03 — Setup B · Standard</span></div>
+  <div class="body">
+    <h2>Setup B — Standard <span class="tag">24 canali</span></h2>
+    <p class="sub">Il setup di riferimento: club, teatri, rassegne all'aperto</p>
+    <table>
+      <tr><th>Ch</th><th>Fonte</th><th>Microfono / DI (o equivalente)</th><th>Asta</th><th>Note</th></tr>
+      <tr class="grp"><td colspan="5">Batteria</td></tr>
+      <tr><td class="n">1</td><td>Cassa dentro</td><td>Shure Beta 91A / Sennheiser e901</td><td>—</td><td>Gate</td></tr>
+      <tr><td class="n">2</td><td>Cassa fuori</td><td>Shure Beta 52A / AKG D112 / Audix D6</td><td>Corta</td><td></td></tr>
+      <tr><td class="n">3</td><td>Rullante sopra</td><td>Shure SM57 / Beta 57A</td><td>Corta</td><td></td></tr>
+      <tr><td class="n">4</td><td>Rullante sotto</td><td>Shure SM57 / Beta 98</td><td>Corta / clip</td><td>Fase invertita</td></tr>
+      <tr><td class="n">5</td><td>Charleston</td><td>Shure SM81 / AKG C451</td><td>Corta</td><td></td></tr>
+      <tr><td class="n">6</td><td>Tom 1</td><td>Sennheiser e604 / e904</td><td>Clip</td><td>Gate</td></tr>
+      <tr><td class="n">7</td><td>Tom 2</td><td>Sennheiser e604 / e904</td><td>Clip</td><td>Gate · se presente</td></tr>
+      <tr><td class="n">8</td><td>Timpano</td><td>Sennheiser e604 / e904</td><td>Clip</td><td>Gate</td></tr>
+      <tr><td class="n">9</td><td>Panoramico L</td><td>AKG C414 / Neumann KM184</td><td>Alta</td><td></td></tr>
+      <tr><td class="n">10</td><td>Panoramico R</td><td>AKG C414 / Neumann KM184</td><td>Alta</td><td></td></tr>
+      <tr class="grp"><td colspan="5">Basso, chitarra, piano</td></tr>
+      <tr><td class="n">11</td><td>Basso DI</td><td>DI attiva (Radial J48, BSS AR-133)</td><td>—</td><td>Dopo la pedaliera</td></tr>
+      <tr><td class="n">12</td><td>Basso cassa</td><td>Electro-Voice RE20 / Shure Beta 52A</td><td>Corta</td><td></td></tr>
+      <tr><td class="n">13</td><td>Chitarra</td><td>Shure SM57 / Sennheiser e906</td><td>Corta</td><td>Sulla cassa</td></tr>
+      <tr><td class="n">14</td><td>Chitarra 2</td><td>Royer R121 / Sennheiser MD421</td><td>Corta</td><td>Opzionale</td></tr>
+      <tr><td class="n">15</td><td>Piano L</td><td>DI attiva</td><td>—</td><td></td></tr>
+      <tr><td class="n">16</td><td>Piano R</td><td>DI attiva</td><td>—</td><td></td></tr>
+      <tr class="grp"><td colspan="5">Voci</td></tr>
+      <tr><td class="n">17</td><td>Voce Jediz</td><td>Radiomicrofono, capsula SM58 / Beta 58A / KSM9</td><td>Dritta, base tonda</td><td>Voce principale</td></tr>
+      <tr><td class="n">18</td><td>Voce Jediz — riserva</td><td>Shure SM58 / Beta 58A (a filo)</td><td>Dritta</td><td>Accesa, vicino alla batteria</td></tr>
+      <tr><td class="n">19</td><td>Seconda voce — Marianna</td><td>Shure Beta 58A / Neumann KMS 105</td><td>Giraffa</td><td></td></tr>
+      <tr><td class="n">20</td><td>Voce — Tommaso Marino</td><td>Shure SM58 / Beta 58A</td><td>Giraffa</td><td>Alla postazione chitarra</td></tr>
+      <tr class="grp"><td colspan="5">Altro</td></tr>
+      <tr><td class="n">21</td><td class="opt">Base / sequenze L</td><td class="opt">DI stereo</td><td class="opt">—</td><td class="opt">Solo se prevista</td></tr>
+      <tr><td class="n">22</td><td class="opt">Base / sequenze R</td><td class="opt">DI stereo</td><td class="opt">—</td><td class="opt">Solo se prevista</td></tr>
+      <tr><td class="n">23</td><td>Talkback</td><td>Microfono in regia</td><td>—</td><td>Verso spie e in-ear</td></tr>
+      <tr><td class="n">24</td><td class="opt">Voce ospite</td><td class="opt">Shure SM58 / Beta 58A</td><td class="opt">Dritta</td><td class="opt">Se previsto un feat.</td></tr>
+    </table>
+    <div class="grid2" style="margin-top:4mm">
+      <div><h3>Ascolti</h3><dl class="kv">
+        <dt>IEM 1</dt><dd>Jediz — in-ear wireless, stereo</dd>
+        <dt>IEM 2</dt><dd>Batteria — in-ear (cablato va bene)</dd>
+        <dt>Mix 3</dt><dd>Seconda voce — spia</dd>
+        <dt>Mix 4</dt><dd>Chitarra e voce — spia</dd>
+        <dt>Mix 5</dt><dd>Basso — spia</dd>
+        <dt>Mix 6</dt><dd>Piano — spia</dd>
+      </dl></div>
+      <div><h3>Palco e corrente</h3><dl class="kv">
+        <dt>Palco</dt><dd>Consigliato 6 × 4 m</dd>
+        <dt>Corrente</dt><dd>230 V dedicata a chitarra e basso (pedaliera + ampli), piano, batteria, fronte palco</dd>
+        <dt>Regia</dt><dd>Mixer digitale ≥ 24 in / 8 out</dd>
+      </dl></div>
+    </div>
+  </div>
+  <div class="foot mono mute"><span>Jediz — Scheda tecnica live</span><span>04 / 07</span></div>
+</section>
+
+<!-- 5. SETUP C -->
+<section class="page">
+  <div class="top mono"><span>Scheda tecnica live</span><span class="red">04 — Setup C · Completo</span></div>
+  <div class="body">
+    <h2>Setup C — Completo <span class="tag">32 canali</span></h2>
+    <p class="sub">Festival e palchi grandi: in-ear per tutti, radiomicrofoni, ambiente</p>
+    <table>
+      <tr><th>Ch</th><th>Fonte</th><th>Microfono / DI (o equivalente)</th><th>Note</th><th>Ch</th><th>Fonte</th><th>Microfono / DI</th><th>Note</th></tr>
+      <tr><td class="n">1</td><td>Cassa dentro</td><td>Beta 91A / e901</td><td>Gate</td><td class="n">17</td><td>Piano L</td><td>DI attiva</td><td></td></tr>
+      <tr><td class="n">2</td><td>Cassa fuori</td><td>Beta 52A / D6</td><td></td><td class="n">18</td><td>Piano R</td><td>DI attiva</td><td></td></tr>
+      <tr><td class="n">3</td><td>Rullante sopra</td><td>SM57 / Beta 57A</td><td></td><td class="n">19</td><td>Voce Jediz</td><td>Radiomic. KSM9 / Beta 58A</td><td>Principale</td></tr>
+      <tr><td class="n">4</td><td>Rullante sotto</td><td>SM57 / Beta 98</td><td>Fase inv.</td><td class="n">20</td><td>Voce Jediz B</td><td>Radiomic. stesso modello</td><td>Riserva accesa</td></tr>
+      <tr><td class="n">5</td><td>Charleston</td><td>SM81 / C451</td><td></td><td class="n">21</td><td>Seconda voce</td><td>Radiomic. / KMS 105</td><td>Marianna</td></tr>
+      <tr><td class="n">6</td><td>Tom 1</td><td>e604 / e904</td><td>Gate</td><td class="n">22</td><td>Voce chitarra</td><td>SM58 / Beta 58A, giraffa</td><td>Tommaso Marino</td></tr>
+      <tr><td class="n">7</td><td>Tom 2</td><td>e604 / e904</td><td>Gate</td><td class="n">23</td><td>Voce ospite</td><td>Radiomic. Beta 58A</td><td>Feat.</td></tr>
+      <tr><td class="n">8</td><td>Timpano</td><td>e604 / e904</td><td>Gate</td><td class="n">24</td><td>Microfono parlato</td><td>SM58 con interruttore</td><td>Comunicazioni</td></tr>
+      <tr><td class="n">9</td><td>Ride</td><td>SM81 / KM184</td><td></td><td class="n">25</td><td class="opt">Base L</td><td class="opt">DI stereo</td><td class="opt">Se prevista</td></tr>
+      <tr><td class="n">10</td><td>Panoramico L</td><td>C414 / KM184</td><td></td><td class="n">26</td><td class="opt">Base R</td><td class="opt">DI stereo</td><td class="opt">Se prevista</td></tr>
+      <tr><td class="n">11</td><td>Panoramico R</td><td>C414 / KM184</td><td></td><td class="n">27</td><td class="opt">Click</td><td class="opt">DI</td><td class="opt">Solo in-ear</td></tr>
+      <tr><td class="n">12</td><td>Ambiente batteria</td><td>Condensatore</td><td>Mono</td><td class="n">28</td><td>Ambiente pubblico L</td><td>Condensatore</td><td>Solo in-ear</td></tr>
+      <tr><td class="n">13</td><td>Basso DI</td><td>Radial J48 / AR-133</td><td>Post pedaliera</td><td class="n">29</td><td>Ambiente pubblico R</td><td>Condensatore</td><td>Solo in-ear</td></tr>
+      <tr><td class="n">14</td><td>Basso cassa</td><td>RE20 / Beta 52A</td><td></td><td class="n">30</td><td>Talkback FOH</td><td>—</td><td></td></tr>
+      <tr><td class="n">15</td><td>Chitarra A</td><td>SM57 / e906</td><td></td><td class="n">31</td><td>Talkback palco</td><td>—</td><td>Per la band</td></tr>
+      <tr><td class="n">16</td><td>Chitarra B</td><td>R121 / MD421</td><td>2° mic o cassa</td><td class="n">32</td><td class="opt">Riserva</td><td class="opt">—</td><td class="opt"></td></tr>
+    </table>
+    <div class="grid2" style="margin-top:5mm">
+      <div><h3>Ascolti — in-ear per tutta la band</h3><dl class="kv">
+        <dt>IEM 1</dt><dd>Jediz — wireless, stereo</dd>
+        <dt>IEM 2</dt><dd>Seconda voce — wireless, stereo</dd>
+        <dt>IEM 3</dt><dd>Chitarra e voce — stereo</dd>
+        <dt>IEM 4</dt><dd>Basso — stereo</dd>
+        <dt>IEM 5</dt><dd>Piano — stereo</dd>
+        <dt>IEM 6</dt><dd>Batteria — stereo + shaker/sub sullo sgabello se disponibile</dd>
+        <dt>Sidefill</dt><dd>Una coppia, per il fronte palco</dd>
+        <dt>Riserva</dt><dd>Due spie a pavimento sul fronte, per ospiti</dd>
+      </dl></div>
+      <div><h3>Palco, corrente, regia</h3><dl class="kv">
+        <dt>Palco</dt><dd>8 × 6 m, pedana batteria 2 × 2 m h 40 cm</dd>
+        <dt>Corrente</dt><dd>230 V dedicata a ogni postazione + fronte palco, separata dalle luci</dd>
+        <dt>Regia FOH</dt><dd>Mixer digitale ≥ 32 in, con stagebox</dd>
+        <dt>Monitor</dt><dd>Mixer palco dedicato con fonico, oppure split digitale e controllo dalla regia</dd>
+        <dt>Radio</dt><dd>4 radiomicrofoni + 2 trasmettitori in-ear wireless, frequenze coordinate dal service</dd>
+      </dl></div>
+    </div>
+  </div>
+  <div class="foot mono mute"><span>Jediz — Scheda tecnica live</span><span>05 / 07</span></div>
+</section>
+
+<!-- 6. STAGE PLOT -->
+<section class="page">
+  <div class="top mono"><span>Scheda tecnica live</span><span class="red">05 — Stage plot</span></div>
+  <div class="body">
+    <h2>Stage plot</h2>
+    <p class="sub">Disposizione di riferimento, valida per i tre setup. Pubblico in basso.</p>
+    <svg viewBox="0 0 180 150" style="width:100%; height:auto; display:block; margin-top:2mm">
+      <defs><pattern id="h" width="2" height="2" patternUnits="userSpaceOnUse"><path d="M0 2 L2 0" stroke="#C4C7C0" stroke-width=".3"/></pattern></defs>
+      <rect x="2" y="2" width="176" height="120" fill="#F4F4F0" stroke="#131519" stroke-width=".5"/>
+      <text x="90" y="8" text-anchor="middle" font-size="2.6" fill="#6B6E72" letter-spacing=".4">FONDO PALCO</text>
+      <!-- pedana batteria -->
+      <rect x="70" y="14" width="40" height="34" fill="url(#h)" stroke="#131519" stroke-width=".4" stroke-dasharray="1.2 .8"/>
+      <text x="90" y="18.5" text-anchor="middle" font-size="2.2" fill="#6B6E72">PEDANA (SETUP C)</text>
+      <circle cx="90" cy="33" r="7" fill="none" stroke="#131519" stroke-width=".6"/><circle cx="82" cy="27" r="3" fill="none" stroke="#131519" stroke-width=".5"/><circle cx="98" cy="27" r="3.4" fill="none" stroke="#131519" stroke-width=".5"/><circle cx="100" cy="37" r="4" fill="none" stroke="#131519" stroke-width=".5"/><circle cx="80" cy="37" r="2.4" fill="none" stroke="#131519" stroke-width=".5"/>
+      <text x="90" y="52.5" text-anchor="middle" font-size="3.4" font-weight="500" fill="#131519">BATTERIA</text>
+      <text x="90" y="56.5" text-anchor="middle" font-size="2.4" fill="#C2412D">LUCA LO PRESTI · ⚡</text>
+      <!-- piano: dietro, a sinistra -->
+      <rect x="22" y="20" width="28" height="7" fill="none" stroke="#131519" stroke-width=".6"/><text x="36" y="24.8" text-anchor="middle" font-size="2.2" fill="#131519">STAGE PIANO</text>
+      <circle cx="36" cy="33" r="3.5" fill="#131519"/>
+      <text x="36" y="41" text-anchor="middle" font-size="3.4" font-weight="500" fill="#131519">PIANO</text>
+      <text x="36" y="45" text-anchor="middle" font-size="2.4" fill="#C2412D">GREGORIO DE ROSA · ⚡</text>
+      <path d="M32 49 l8 0 l-1.5 4 l-5 0z" fill="#6B6E72"/>
+      <!-- basso: davanti, a sinistra -->
+      <rect x="16" y="60" width="16" height="10" fill="#131519"/><text x="24" y="66" text-anchor="middle" font-size="2.2" fill="#E8E6DF">AMPLI</text>
+      <rect x="18" y="76" width="12" height="4" fill="none" stroke="#C2412D" stroke-width=".5"/><text x="24" y="78.9" text-anchor="middle" font-size="1.9" fill="#C2412D">PEDALIERA</text>
+      <circle cx="24" cy="88" r="3.5" fill="#131519"/>
+      <text x="24" y="96" text-anchor="middle" font-size="3.4" font-weight="500" fill="#131519">BASSO</text>
+      <text x="24" y="100" text-anchor="middle" font-size="2.4" fill="#C2412D">T. BONIFAZI RAZZANTI · ⚡ ⚡</text>
+      <path d="M20 106 l8 0 l-1.5 4 l-5 0z" fill="#6B6E72"/>
+      <!-- chitarra e voce -->
+      <rect x="136" y="20" width="16" height="10" fill="#131519"/><text x="144" y="26" text-anchor="middle" font-size="2.2" fill="#E8E6DF">AMPLI</text>
+      <rect x="138" y="38" width="12" height="4" fill="none" stroke="#C2412D" stroke-width=".5"/><text x="144" y="40.9" text-anchor="middle" font-size="1.9" fill="#C2412D">PEDALIERA</text>
+      <circle cx="144" cy="50" r="3.5" fill="#131519"/>
+      <circle cx="144" cy="55.6" r="1.6" fill="none" stroke="#131519" stroke-width=".5"/>
+      <text x="144" y="61.5" text-anchor="middle" font-size="3.4" font-weight="500" fill="#131519">CHITARRA · VOCE</text>
+      <text x="144" y="65.5" text-anchor="middle" font-size="2.4" fill="#C2412D">TOMMASO MARINO · ⚡ ⚡</text>
+      <path d="M140 70 l8 0 l-1.5 4 l-5 0z" fill="#6B6E72"/>
+      <!-- seconda voce -->
+      <circle cx="132" cy="92" r="3.5" fill="#131519"/><line x1="132" y1="92" x2="132" y2="99" stroke="#131519" stroke-width=".4"/>
+      <text x="132" y="104" text-anchor="middle" font-size="3.4" font-weight="500" fill="#131519">SECONDA VOCE</text>
+      <text x="132" y="108" text-anchor="middle" font-size="2.4" fill="#C2412D">MARIANNA VERNUCCIO</text>
+      <!-- jediz -->
+      <circle cx="90" cy="96" r="4.5" fill="#C2412D"/>
+      <text x="90" y="105" text-anchor="middle" font-size="4" font-weight="500" fill="#131519">JEDIZ · VOCE</text>
+      <text x="90" y="109" text-anchor="middle" font-size="2.4" fill="#C2412D">IN-EAR · SI MUOVE SU TUTTO IL FRONTE</text>
+      <line x1="40" y1="114" x2="140" y2="114" stroke="#C2412D" stroke-width=".4" stroke-dasharray="1.5 1"/>
+      <!-- mic riserva e ospite -->
+      <circle cx="112" cy="70" r="2" fill="none" stroke="#131519" stroke-width=".5"/><text x="108.5" y="71" text-anchor="end" font-size="2.2" fill="#131519">MIC RISERVA JEDIZ (B, C)</text>
+      <circle cx="62" cy="80" r="2" fill="none" stroke="#131519" stroke-width=".5"/><text x="66" y="81" font-size="2.2" fill="#131519">MIC OSPITE (B, C)</text>
+      <!-- spie fronte e batteria -->
+      <path d="M118 112 l8 0 l-1.5 4 l-5 0z" fill="#6B6E72"/><path d="M84 60 l12 0 l-2 4 l-8 0z" fill="#6B6E72"/>
+      <text x="90" y="128" text-anchor="middle" font-size="2.6" fill="#6B6E72" letter-spacing=".4">PUBBLICO</text>
+    </svg>
+    <div class="grid2" style="margin-top:4mm">
+      <div><h3>Legenda</h3><ul class="dots">
+        <li>⚡ = presa 230 V; due prese (⚡ ⚡) per chitarra e basso: pedaliera + amplificatore.</li>
+        <li>Cerchi vuoti = microfoni voce su asta. Tommaso Marino canta dalla sua postazione, con giraffa.</li>
+        <li>Trapezi grigi = spie a pavimento (setup A e B). Nel setup C le spie restano solo per gli ospiti.</li>
+        <li>La linea tratteggiata rossa è l'area in cui si muove Jediz: lasciarla libera da cavi.</li>
+      </ul></div>
+      <div><h3>Da sapere</h3><ul class="dots">
+        <li>Il basso sta in prima fila, il piano in seconda fila, accanto alla batteria.</li>
+        <li>Jediz è sempre al centro e sul fronte palco.</li>
+        <li>Su palchi stretti la seconda voce può stare in seconda fila, accanto alla batteria.</li>
+        <li>Per palchi molto piccoli, scriveteci: troviamo una disposizione insieme.</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="foot mono mute"><span>Jediz — Scheda tecnica live</span><span>06 / 07</span></div>
+</section>
+
+<!-- 7. BACKLINE E CONTATTI -->
+<section class="page dark">
+  <div class="top mono"><span>Scheda tecnica live</span><span class="red">06 — Backline e contatti</span></div>
+  <div class="body">
+    <h2>Backline, accordi, contatti</h2>
+    <p class="sub" style="color:#8A8D92">Cosa portiamo e cosa chiediamo si concorda per ogni data</p>
+    <div class="grid2" style="margin-top:4mm">
+      <div class="card"><p class="mono red">La band porta</p><ul>
+        <li>Strumenti personali, pedaliere di chitarra e basso</li>
+        <li>Piatti, rullante e pedale cassa</li>
+        <li>Auricolari in-ear personali</li>
+        <li>Base / sequenze, se previste</li>
+      </ul></div>
+      <div class="card"><p class="mono red">Da chiedere al service o al locale</p><ul>
+        <li>Impianto, regia, microfoni, aste, DI, cavi secondo il setup scelto</li>
+        <li>Sistema in-ear wireless per Jediz (e per la band nel setup C)</li>
+        <li>Se non portata dalla band: batteria (cassa 20–22″, tom, timpano, hardware), ampli basso con cassa 4×10″ o 1×15″, ampli chitarra a valvole o equivalente, tastiera 88 tasti pesati con supporto</li>
+        <li>Acqua e asciugamani sul palco</li>
+      </ul></div>
+    </div>
+    <div class="note" style="margin-top:9mm; max-width:160mm">
+      <p>Questa scheda descrive la situazione ideale per ogni versione. Se qualcosa non è disponibile, scriveteci prima della data: una soluzione si trova quasi sempre, ma va decisa insieme e non il giorno del concerto.</p>
+    </div>
+    <h3 style="margin-top:10mm">Contatti</h3>
+    <dl class="kv" style="max-width:150mm">
+      <dt style="color:#8A8D92">Booking e tecnica</dt><dd>management.jediz@gmail.com — oggetto: “Booking — Jediz”</dd>
+      <dt style="color:#8A8D92">Materiali</dt><dd>jedizmusic.com/archivio — press kit, scheda tecnica, foto</dd>
+      <dt style="color:#8A8D92">Versione</dt><dd>Ottobre 2026 · formazione: Jediz, Marianna Vernuccio, Tommaso Marino, Tommaso Bonifazi Razzanti, Gregorio De Rosa, Luca Lo Presti</dd>
+    </dl>
+  </div>
+  <div class="foot mono mute"><span>Jediz — Scheda tecnica live</span><span>07 / 07</span></div>
+</section>
+</body>
+</html>
