@@ -163,6 +163,12 @@ function logo(c, onLight = false) {
 // scegliendo la più piccola larga almeno quanto serve. Se non ci sono, si usa il file originale.
 const RW = [480, 960, 1600];
 const USED_IMAGES = new Set();
+// versione del file nell'URL: se un'immagine cambia mantenendo lo stesso nome, il browser scarica quella nuova
+const VER = new Map();
+function fileVer(f) {
+  if (!VER.has(f)) VER.set(f, createHash("md5").update(readFileSync(join(ROOT, f))).digest("hex").slice(0, 8));
+  return VER.get(f);
+}
 function img(c, path, w) {
   if (!path) return "";
   if (PREVIEW || isExt(path) || /\.svg$/i.test(path)) return c.asset(path);
@@ -171,7 +177,7 @@ function img(c, path, w) {
   const base = p.replace(/\.[^./]+$/, "");
   for (const rw of [...RW.filter((x) => x >= w), RW[RW.length - 1]]) {
     const f = `assets/_r/${base}-${rw}.webp`;
-    if (existsSync(join(ROOT, f))) return c.asset(f);
+    if (existsSync(join(ROOT, f))) return c.asset(f) + "?v=" + fileVer(f);
   }
   return c.asset(p);
 }
