@@ -324,9 +324,9 @@ function docCard(d, c) {
 const cap1 = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 function photoItem(p, c) {
   const inner = p.src
-    ? `<button class="pf" type="button" data-lb="${esc(img(c, p.src, 2000))}" data-cap="${esc([p.caption, p.date, p.credit && `${cap1(T("foto"))} ${p.credit}`].filter(Boolean).join(" · "))}" aria-label="${esc(T("Apri foto: {t}", { t: p.alt || p.caption }))}"><img src="${esc(p.thumb ? c.asset(p.thumb) : img(c, p.src, 900))}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></button>`
+    ? `<button class="pf" type="button" data-lb="${esc(img(c, p.src, 2000))}" data-cap="${esc([p.caption, p.date && T(p.date), p.credit && `${cap1(T("foto"))} ${p.credit}`].filter(Boolean).join(" · "))}" aria-label="${esc(T("Apri foto: {t}", { t: p.alt || p.caption }))}"><img src="${esc(p.thumb ? c.asset(p.thumb) : img(c, p.src, 900))}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></button>`
     : `<div class="pf">${phBlock(`${T("Foto")} · ${T(p.category)}`)}</div>`;
-  return `<figure class="ph-item ${esc(p.shape || "square")}" data-cat="${esc(p.category)}">${inner}<figcaption class="mono"><span>${p.caption ? esc(p.caption) : esc(T(p.category))}</span><span>${[p.date && esc(p.date), p.credit && `${cap1(T("foto"))} ${esc(p.credit)}`].filter(Boolean).join(" · ")}</span></figcaption></figure>`;
+  return `<figure class="ph-item ${esc(p.shape || "square")}" data-cat="${esc(p.category)}">${inner}<figcaption class="mono"><span>${p.caption ? esc(p.caption) : esc(T(p.category))}</span><span>${[p.date && esc(T(p.date)), p.credit && `${cap1(T("foto"))} ${esc(p.credit)}`].filter(Boolean).join(" · ")}</span></figcaption></figure>`;
 }
 
 function portrait(p, c, cls = "") {

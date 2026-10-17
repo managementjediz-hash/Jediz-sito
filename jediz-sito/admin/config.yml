@@ -244,7 +244,7 @@ collections:
               - { name: alt, label: "Descrizione per accessibilità", widget: string }
               - { name: category, label: "Categoria", widget: string }
               - { name: caption, label: "Luogo", widget: string, required: false }
-              - { name: date, label: "Data di scatto (es. 27.09.2026 o 2025)", widget: string, required: false }
+              - { name: date, label: "Data di scatto (mese e anno, es. Settembre 2026)", widget: string, required: false }
               - { name: credit, label: "Fotografo", widget: string, required: false }
               - { name: shape, label: "Formato", widget: select, options: ["tall", "wide", "square"] }
               - { name: feature, label: "In evidenza nella pagina Live", widget: boolean, required: false, default: false }
