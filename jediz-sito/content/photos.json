@@ -39,7 +39,7 @@
       "category": "Oramai",
       "caption": "Silvi Marina · 2022",
       "credit": "Marco Ferramosca",
-      "shape": "square"
+      "shape": "tall"
     },
     {
       "src": "assets/img/foto/jediz-ra-01.jpg",
@@ -123,12 +123,12 @@
       "shape": "tall"
     },
     {
-      "src": "assets/img/foto/jediz-tat-01.jpg",
-      "alt": "Jediz in piedi sul tetto di un'auto, contro il cielo",
-      "category": "Tempo al tempo",
-      "caption": "Campo Imperatore",
-      "credit": "Marco Ferramosca",
-      "shape": "tall"
+      "src": "assets/img/foto/jediz-gianicolo-03.jpg",
+      "alt": "Jediz canta in camicia bianca, luce calda",
+      "category": "Live",
+      "caption": "Roma, Gianicolo · 27.09.2026",
+      "credit": "Nicolò Facchinetti",
+      "shape": "square"
     },
     {
       "src": "assets/img/foto/jediz-oramai-04.jpg",
@@ -139,33 +139,9 @@
       "shape": "square"
     },
     {
-      "src": "assets/img/foto/jediz-gianicolo-03.jpg",
-      "alt": "Jediz canta in camicia bianca, luce calda",
-      "category": "Live",
-      "caption": "Roma, Gianicolo · 27.09.2026",
-      "credit": "Nicolò Facchinetti",
-      "shape": "square"
-    },
-    {
       "src": "assets/img/foto/jediz-drj-06.jpg",
       "alt": "Jediz con i guantoni da boxe rossi",
       "category": "Dr. Jediz & Mr. I",
-      "caption": "Campo Imperatore",
-      "credit": "Marco Ferramosca",
-      "shape": "square"
-    },
-    {
-      "src": "assets/img/foto/jediz-ra-04.jpg",
-      "alt": "Jediz in un giardino a Umbertide, controluce",
-      "category": "Rapper / Avvocato",
-      "caption": "Umbertide · 2025",
-      "credit": "Jerome Jacinto",
-      "shape": "tall"
-    },
-    {
-      "src": "assets/img/foto/jediz-tat-02.jpg",
-      "alt": "Jediz con la felpa chiara, guarda lontano",
-      "category": "Tempo al tempo",
       "caption": "Campo Imperatore",
       "credit": "Marco Ferramosca",
       "shape": "square"
@@ -179,11 +155,27 @@
       "shape": "square"
     },
     {
+      "src": "assets/img/foto/jediz-tat-02.jpg",
+      "alt": "Jediz con la felpa chiara, guarda lontano",
+      "category": "Tempo al tempo",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "square"
+    },
+    {
       "src": "assets/img/foto/jediz-pescara-04.jpg",
       "alt": "Jediz canta verso il pubblico illuminato di rosso",
       "category": "Live",
       "caption": "Pescara · 02.09.2026",
       "credit": "Alessio Luzi",
+      "shape": "square"
+    },
+    {
+      "src": "assets/img/foto/jediz-ra-03.jpg",
+      "alt": "Jediz con la giacca colorata, guarda in alto",
+      "category": "Rapper / Avvocato",
+      "caption": "Rapper / Avvocato · 2025",
+      "credit": "Jerome Jacinto",
       "shape": "square"
     },
     {
@@ -203,28 +195,12 @@
       "shape": "square"
     },
     {
-      "src": "assets/img/foto/jediz-ra-03.jpg",
-      "alt": "Jediz con la giacca colorata, guarda in alto",
-      "category": "Rapper / Avvocato",
-      "caption": "Rapper / Avvocato · 2025",
-      "credit": "Jerome Jacinto",
-      "shape": "square"
-    },
-    {
       "src": "assets/img/foto/jediz-tat-04.jpg",
       "alt": "Jediz con la felpa chiara sulla collina, cielo rosa",
       "category": "Tempo al tempo",
       "caption": "Campo Imperatore",
       "credit": "Marco Ferramosca",
       "shape": "square"
-    },
-    {
-      "src": "assets/img/foto/jediz-oramai-03.jpg",
-      "alt": "Jediz si sistema la cravatta, primo piano",
-      "category": "Oramai",
-      "caption": "Silvi Marina · 2022",
-      "credit": "Marco Ferramosca",
-      "shape": "tall"
     },
     {
       "src": "assets/img/foto/jediz-pescara-02.jpg",
@@ -243,12 +219,12 @@
       "shape": "square"
     },
     {
-      "src": "assets/img/foto/jediz-gianicolo-05.jpg",
-      "alt": "Jediz sul palco con la band",
-      "category": "Live",
-      "caption": "Roma, Gianicolo · 27.09.2026",
-      "credit": "Nicolò Facchinetti",
-      "shape": "square"
+      "src": "assets/img/foto/jediz-oramai-03.jpg",
+      "alt": "Jediz si sistema la cravatta, primo piano",
+      "category": "Oramai",
+      "caption": "Silvi Marina · 2022",
+      "credit": "Marco Ferramosca",
+      "shape": "tall"
     },
     {
       "src": "assets/img/foto/jediz-tat-05.jpg",
@@ -259,11 +235,27 @@
       "shape": "square"
     },
     {
-      "src": "assets/img/foto/jediz-ra-05.jpg",
-      "alt": "Silhouette di Jediz davanti al microfono",
-      "category": "Rapper / Avvocato",
-      "caption": "Rapper / Avvocato · 2025",
-      "credit": "Jerome Jacinto",
+      "src": "assets/img/foto/jediz-oramai-06.jpg",
+      "alt": "Jediz in completo e cravatta rossa, primo piano sul balcone",
+      "category": "Oramai",
+      "caption": "Silvi Marina · 2022",
+      "credit": "Marco Ferramosca",
+      "shape": "tall"
+    },
+    {
+      "src": "assets/img/foto/jediz-tat-01.jpg",
+      "alt": "Jediz in piedi sul tetto di un'auto, contro il cielo",
+      "category": "Tempo al tempo",
+      "caption": "Campo Imperatore",
+      "credit": "Marco Ferramosca",
+      "shape": "tall"
+    },
+    {
+      "src": "assets/img/foto/jediz-gianicolo-05.jpg",
+      "alt": "Jediz sul palco con la band",
+      "category": "Live",
+      "caption": "Roma, Gianicolo · 27.09.2026",
+      "credit": "Nicolò Facchinetti",
       "shape": "square"
     }
   ]
