@@ -222,7 +222,19 @@
     "Tutte le foto": "Todas as fotos",
     "Oramai": "Oramai",
     "Rapper / Avvocato": "Rapper / Avvocato",
-    "Tempo al tempo": "Tempo al tempo"
+    "Tempo al tempo": "Tempo al tempo",
+    "Altri shooting": "Outros ensaios",
+    "Anno": "Ano",
+    "Fotografie di Jediz: gli shooting dei dischi e i concerti, con i crediti.": "Fotos de Jediz: os ensaios dos discos e os shows, com créditos.",
+    "Gli shooting dei dischi e i concerti. Ogni serie si apre per intero; sotto ogni foto, chi l'ha scattata.": "Os ensaios dos discos e os shows. Cada série abre por inteiro; abaixo de cada foto, quem a fez.",
+    "Luogo": "Local",
+    "Scatti": "Fotos",
+    "Selezione": "Seleção",
+    "Shooting": "Ensaios",
+    "Tutti gli shooting": "Todos os ensaios",
+    "{n} serie": "{n} séries",
+    "Doppio singolo": "Single duplo",
+    "{n} foto": "{n} fotos"
   },
   "content": {
     "Due nomi, la stessa penna.": "Dois nomes, a mesma caneta.",
@@ -347,6 +359,12 @@
     "Jediz si sistema la cravatta, primo piano": "Jediz ajeita a gravata, close",
     "Silhouette di Jediz davanti al microfono": "Silhueta de Jediz diante do microfone",
     "Trentuno foto in sei serie, con i crediti. Ogni foto si apre in alta risoluzione.": "Trinta e uma fotos em seis séries, com créditos. Cada foto abre em alta resolução.",
-    "Jediz in completo e cravatta rossa, primo piano sul balcone": "Jediz de terno e gravata vermelha, close na varanda"
+    "Jediz in completo e cravatta rossa, primo piano sul balcone": "Jediz de terno e gravata vermelha, close na varanda",
+    "2 settembre 2026: l'apertura del concerto di Ernia al porto turistico di Pescara.": "2 de setembro de 2026: a abertura do show de Ernia no porto turístico de Pescara.",
+    "27 settembre 2026: Jediz with the Band ai Giardini dell'Acqua Paola, il primo concerto a Roma con la band.": "27 de setembro de 2026: Jediz with the Band nos Giardini dell'Acqua Paola, o primeiro show em Roma com a banda.",
+    "Lo shooting dell'album, a Campo Imperatore: lo specchio, i guantoni, la giacca tolta.": "O ensaio do álbum em Campo Imperatore: o espelho, as luvas, o paletó tirado.",
+    "Lo shooting del singolo, nella stessa giornata a Campo Imperatore, fino al tramonto.": "O ensaio do single, no mesmo dia em Campo Imperatore, até o pôr do sol.",
+    "Lo shooting del doppio singolo con Caligola, a Silvi Marina: il mare, il completo e la cravatta rossa.": "O ensaio do single duplo com Caligola, em Silvi Marina: o mar, o terno e a gravata vermelha.",
+    "Gli scatti del singolo, tra Umbertide e lo studio.": "As fotos do single, entre Umbertide e o estúdio."
   }
 }

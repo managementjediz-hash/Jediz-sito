@@ -35,7 +35,7 @@ const T = (s, vars) => {
   return out;
 };
 // campi che il sito usa anche come "chiavi" (filtri, categorie): restano in italiano nei dati e si traducono solo quando si mostrano
-const KEEP = new Set(["category", "categories", "type", "role", "project", "release", "title", "url", "file", "slug", "id", "email", "youtube", "date", "audio", "src", "image", "poster", "thumb", "cover", "full", "excerpt", "preview", "outlet", "name", "code", "handle", "venue", "context", "address", "shape", "person", "credit", "pdf_code", "feat", "_help", "_note", "_logo_help", "_cover_note"]);
+const KEEP = new Set(["category", "categories", "type", "role", "project", "release", "title", "url", "file", "slug", "id", "email", "youtube", "date", "audio", "src", "image", "poster", "thumb", "cover", "full", "excerpt", "preview", "outlet", "name", "code", "handle", "venue", "context", "address", "shape", "person", "credit", "place", "year", "w", "h", "pdf_code", "feat", "_help", "_note", "_logo_help", "_cover_note"]);
 const TRANSLATE_TITLES = new Set(["documents.json", "cinema.json", "live.json"]); // titoli tradotti solo qui (documenti, schede); i titoli dei brani no
 function trContent(o, file, key = "") {
   if (IS_IT) return o;
@@ -57,6 +57,8 @@ const cinema = load("cinema.json");
 const docsData = load("documents.json");
 const videosData = load("videos.json");
 const photosData = load("photos.json");
+const shootsData = existsSync(join(ROOT, "content", "shoots.json")) ? load("shoots.json") : { shoots: [] };
+const shoots = shootsData.shoots.filter((s) => s.photos && s.photos.length);
 const textsData = load("texts.json");
 const bio = load("bio.json");
 const media = load("media.json");
@@ -114,18 +116,21 @@ const PAGES = [
   { id: "cinema", path: "cinema", label: T("Cinema") },
   { id: "testi", path: "testi", label: T("Testi") },
   { id: "foto", path: "foto", label: T("Foto") },
+  ...shoots.map((s) => ({ id: "shoot-" + s.slug, path: "foto/" + s.slug, label: s.title, sub: "foto" })),
   { id: "bio", path: "bio", label: T("Bio") },
   { id: "contatti", path: "contatti", label: T("Contatti") },
 ];
-const NAV = PAGES.filter((p) => p.id !== "home");
+const NAV = PAGES.filter((p) => p.id !== "home" && !p.sub);
+const fileOf = (p) => (p.id === "home" ? "index.html" : `${p.path.replace(/\//g, "-")}.html`);
 
 function ctx(pageId) {
-  const depth = PREVIEW ? 0 : (IS_IT ? 0 : 1) + (pageId === "home" || pageId === "404" ? 0 : 1);
+  const pg = PAGES.find((x) => x.id === pageId);
+  const depth = PREVIEW ? 0 : (IS_IT ? 0 : 1) + (pageId === "home" || pageId === "404" || !pg ? 0 : pg.path.split("/").length);
   const pre = "../".repeat(depth); // dalla pagina alla radice del sito
   const pathOf = (id) => { const p = PAGES.find((x) => x.id === id); return id === "home" || !p ? "" : `${p.path}/`; };
   const to = (id, hash = "") => {
     const p = PAGES.find((x) => x.id === id);
-    if (PREVIEW) return (id === "home" ? "index.html" : `${p.path}.html`) + hash;
+    if (PREVIEW) return fileOf(p) + hash;
     return (pre + L.dir + pathOf(id) || "./") + hash;
   };
   // stessa pagina in un'altra lingua
@@ -336,8 +341,8 @@ function secHead({ label, meta = [], title, lede }) {
   return `<div class="rail sec-head"><div class="rail-meta"><span class="mono">${label}</span>${meta.map((m) => `<span class="mono mute">${m}</span>`).join("")}</div><div class="stack" style="--s:16px"><h2>${title}</h2>${lede ? `<p class="lede">${lede}</p>` : ""}</div></div>`;
 }
 
-function pageHead({ label, title, lede, c }) {
-  return `<header class="page-head wrap"><nav class="crumbs mono" aria-label="${T("Percorso")}"><a href="${c.to("home")}">Jediz</a><span aria-hidden="true">/</span><span>${label}</span></nav><h1>${title}</h1>${lede ? `<p class="lede">${lede}</p>` : ""}</header>`;
+function pageHead({ label, title, lede, c, parent }) {
+  return `<header class="page-head wrap"><nav class="crumbs mono" aria-label="${T("Percorso")}"><a href="${c.to("home")}">Jediz</a><span aria-hidden="true">/</span>${parent ? `<a href="${c.to(parent.id)}">${parent.label}</a><span aria-hidden="true">/</span>` : ""}<span>${label}</span></nav><h1>${title}</h1>${lede ? `<p class="lede">${lede}</p>` : ""}</header>`;
 }
 
 // ---------- layout ----------
@@ -356,7 +361,7 @@ function layout(pageId, { title, description, theme = "t-paper", body, jsonld, o
   const fullTitle = pageId === "home" ? `${site.name} — ${T("Musica, live, materiali")}` : `${title} — ${site.name}`;
   const langMenu = PREVIEW ? "" : `<details class="lang-sw"><summary class="mono" aria-label="${T("Lingua")}: ${L.name}">${L.short}</summary><ul>${LANGS.map((l) => `<li><a href="${c.inLang(l)}" hreflang="${l.html}" lang="${l.html}"${l === L ? ' aria-current="true"' : ""}><span class="mono">${l.short}</span>${l.name}</a></li>`).join("")}</ul></details>`;
   const uiJs = { preview: T("Anteprima 30″"), noAudio: T("Audio non ancora caricato per questo brano."), playErr: T("Riproduzione non disponibile qui. Ascolta il brano sulle piattaforme qui sotto."), pause: T("Pausa"), play: T("Riproduci"), copied: T("Copiato"), page: T("Pagina"), menu: T("Menu"), close: T("Chiudi") };
-  const nav = NAV.map((p) => `<li><a href="${c.to(p.id)}" data-n="${esc(p.n || "")}"${p.id === pageId ? ' aria-current="page"' : ""}>${p.label}</a></li>`).join("");
+  const nav = NAV.map((p) => `<li><a href="${c.to(p.id)}" data-n="${esc(p.n || "")}"${p.id === pageId || (page && page.sub === p.id) ? ' aria-current="page"' : ""}>${p.label}</a></li>`).join("");
   const socials = site.social.map((s) => `<li>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>` : `<span>${esc(s.label)} ${ph("link")}</span>`}</li>`).join("");
   const styles = PREVIEW
     ? `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>${css.replace(/@font-face\s*{[^}]*}\s*/g, "")}</style>`
@@ -784,20 +789,62 @@ ${textGroups.map((g, gi) => `<section class="band t-paper"${gi ? ' style="paddin
 </section>`).join("")}`,
 });
 
+function shootCard(sh, c) {
+  const cov = sh.photos.find((x) => x.src === sh.cover) || sh.photos[0];
+  return `<a class="shoot" href="${c.to("shoot-" + sh.slug)}"><span class="shoot-img"><img src="${esc(img(c, cov.src, 960))}" alt="" loading="lazy" decoding="async"></span><span class="shoot-meta mono"><span>${esc(sh.kind)}${sh.year ? " · " + esc(sh.year) : ""}</span><span>${T("{n} foto", { n: sh.photos.length })}</span></span><span class="shoot-title">${esc(sh.title)}</span><span class="shoot-by mono">${T("foto")} ${esc(sh.credit)}</span></a>`;
+}
+
 pages.foto = layout("foto", {
   theme: "t-night",
   title: T("Foto"),
-  description: T("Fotografie di Jediz: ritratti, lo shooting di Dr. Jediz & Mr. I, i concerti."),
+  description: T("Fotografie di Jediz: gli shooting dei dischi e i concerti, con i crediti."),
   body: (c) => `
-${pageHead({ c, label: T("Foto"), title: T("Foto"), lede: T("Ritratti, lo shooting del disco, i concerti. Sotto ogni foto, chi l'ha scattata.") })}
-<section class="band t-night" style="padding-top:0" aria-label="${T("Fotografie")}">
+${pageHead({ c, label: T("Foto"), title: T("Foto"), lede: T("Gli shooting dei dischi e i concerti. Ogni serie si apre per intero; sotto ogni foto, chi l'ha scattata.") })}
+${shoots.length ? `<section class="band t-night" style="padding-top:0" aria-labelledby="h-shoots">
   <div class="wrap">
+    <div class="rail" style="margin-bottom:clamp(20px,3vw,32px)"><div class="rail-meta"><span class="mono" id="h-shoots">${T("Shooting")}</span><span class="mono mute">${T("{n} serie", { n: shoots.length })} · ${T("{n} foto", { n: shoots.reduce((a, x) => a + x.photos.length, 0) })}</span></div></div>
+    <div class="shoots">${shoots.map((sh) => shootCard(sh, c)).join("")}</div>
+  </div>
+</section>` : ""}
+<section class="band t-night" aria-labelledby="h-sel">
+  <div class="wrap">
+    <div class="rail" style="margin-bottom:clamp(20px,3vw,32px)"><div class="rail-meta"><span class="mono" id="h-sel">${T("Selezione")}</span><span class="mono mute">${T("{n} foto", { n: photosData.photos.length })}</span></div></div>
     ${filters(photosData.categories, "foto")}
     <div class="pgrid" data-filterable="foto">${photosData.photos.map((p) => photoItem(p, c)).join("")}</div>
     <div class="sec-foot"><a class="link-arrow" href="${c.to("archivio", "#jdz-06")}">${T("Foto stampa in alta risoluzione")}</a></div>
   </div>
 </section>
 `,
+});
+
+shoots.forEach((sh, i) => {
+  const id = "shoot-" + sh.slug;
+  const prev = shoots[(i - 1 + shoots.length) % shoots.length], nxt = shoots[(i + 1) % shoots.length];
+  const cov = sh.photos.find((x) => x.src === sh.cover) || sh.photos[0];
+  pages[id] = layout(id, {
+    theme: "t-night",
+    title: `${sh.title} — ${T("Foto")}`,
+    description: `${sh.title}: ${T("{n} foto", { n: sh.photos.length })}. ${T("foto")} ${sh.credit}${sh.place ? `, ${sh.place}` : ""}.`,
+    body: (c) => `
+${pageHead({ c, parent: { id: "foto", label: T("Foto") }, label: esc(sh.title), title: esc(sh.title), lede: sh.intro ? esc(sh.intro) : "" })}
+<section class="band t-night" style="padding-top:0" aria-label="${T("Fotografie")}">
+  <div class="wrap">
+    <dl class="shoot-facts mono">
+      <div><dt>${T("Foto")}</dt><dd>${esc(sh.credit)}</dd></div>
+      ${sh.place ? `<div><dt>${T("Luogo")}</dt><dd>${esc(sh.place)}</dd></div>` : ""}
+      ${sh.year ? `<div><dt>${T("Anno")}</dt><dd>${esc(sh.year)}</dd></div>` : ""}
+      <div><dt>${T("Scatti")}</dt><dd>${sh.photos.length}</dd></div>
+    </dl>
+    <div class="masonry">${sh.photos.map((p, n) => `<figure class="m-item"><button class="pf" type="button" data-lb="${esc(img(c, p.src, 2000))}" data-cap="${esc(sh.title)} — ${T("foto")} ${esc(sh.credit)}" aria-label="${esc(T("Apri foto: {t}", { t: `${sh.title} ${n + 1}` }))}"><img src="${esc(img(c, p.src, 960))}" alt="${esc(p.alt || `${sh.title}, ${T("foto")} ${n + 1}`)}"${p.w && p.h ? ` width="${p.w}" height="${p.h}"` : ""} loading="${n < 6 ? "eager" : "lazy"}" decoding="async"></button></figure>`).join("")}</div>
+    <nav class="shoot-nav" aria-label="${T("Altri shooting")}">
+      <a class="link-arrow" href="${c.to("shoot-" + prev.slug)}">← ${esc(prev.title)}</a>
+      <a class="link-arrow" href="${c.to("foto")}">${T("Tutti gli shooting")}</a>
+      <a class="link-arrow" href="${c.to("shoot-" + nxt.slug)}">${esc(nxt.title)} →</a>
+    </nav>
+    <div class="sec-foot"><a class="link-arrow" href="${c.to("archivio", "#jdz-06")}">${T("Foto stampa in alta risoluzione")}</a><a class="link-arrow" href="${c.to("contatti", "#press")}">Press</a></div>
+  </div>
+</section>`,
+  });
 });
 
 const bioDoc = docByCode(bio.pdf_code);
@@ -867,7 +914,7 @@ const page404 = layout("404", {
 if (IS_IT && existsSync(OUT)) rmSync(OUT, { recursive: true });
 mkdirSync(OUT, { recursive: true });
 for (const p of PAGES) {
-  const file = PREVIEW ? (p.id === "home" ? "index.html" : `${p.path}.html`) : join(p.path, "index.html");
+  const file = PREVIEW ? fileOf(p) : join(p.path, "index.html");
   mkdirSync(dirname(join(OUT, file)), { recursive: true });
   writeFileSync(join(OUT, file), pages[p.id]);
 }

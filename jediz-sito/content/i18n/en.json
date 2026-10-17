@@ -222,7 +222,19 @@
     "Tutte le foto": "All photos",
     "Oramai": "Oramai",
     "Rapper / Avvocato": "Rapper / Avvocato",
-    "Tempo al tempo": "Tempo al tempo"
+    "Tempo al tempo": "Tempo al tempo",
+    "Altri shooting": "Other shoots",
+    "Anno": "Year",
+    "Fotografie di Jediz: gli shooting dei dischi e i concerti, con i crediti.": "Photos of Jediz: the record shoots and the concerts, with credits.",
+    "Gli shooting dei dischi e i concerti. Ogni serie si apre per intero; sotto ogni foto, chi l'ha scattata.": "The record shoots and the concerts. Each series opens in full; under each photo, who took it.",
+    "Luogo": "Place",
+    "Scatti": "Shots",
+    "Selezione": "Selection",
+    "Shooting": "Shoots",
+    "Tutti gli shooting": "All shoots",
+    "{n} serie": "{n} series",
+    "Doppio singolo": "Double single",
+    "{n} foto": "{n} photos"
   },
   "content": {
     "Due nomi, la stessa penna.": "Two names, one pen.",
@@ -347,6 +359,12 @@
     "Jediz si sistema la cravatta, primo piano": "Jediz adjusting his tie, close-up",
     "Silhouette di Jediz davanti al microfono": "Silhouette of Jediz at the microphone",
     "Trentuno foto in sei serie, con i crediti. Ogni foto si apre in alta risoluzione.": "Thirty-one photos in six series, with credits. Each photo opens in high resolution.",
-    "Jediz in completo e cravatta rossa, primo piano sul balcone": "Jediz in a suit and red tie, close-up on the balcony"
+    "Jediz in completo e cravatta rossa, primo piano sul balcone": "Jediz in a suit and red tie, close-up on the balcony",
+    "2 settembre 2026: l'apertura del concerto di Ernia al porto turistico di Pescara.": "2 September 2026: opening for Ernia at the Pescara marina.",
+    "27 settembre 2026: Jediz with the Band ai Giardini dell'Acqua Paola, il primo concerto a Roma con la band.": "27 September 2026: Jediz with the Band at the Giardini dell'Acqua Paola, the first Rome show with the band.",
+    "Lo shooting dell'album, a Campo Imperatore: lo specchio, i guantoni, la giacca tolta.": "The album shoot at Campo Imperatore: the mirror, the gloves, the jacket coming off.",
+    "Lo shooting del singolo, nella stessa giornata a Campo Imperatore, fino al tramonto.": "The single's shoot, the same day at Campo Imperatore, until sunset.",
+    "Lo shooting del doppio singolo con Caligola, a Silvi Marina: il mare, il completo e la cravatta rossa.": "The shoot for the double single with Caligola, in Silvi Marina: the sea, the suit and the red tie.",
+    "Gli scatti del singolo, tra Umbertide e lo studio.": "The single's photos, between Umbertide and the studio."
   }
 }

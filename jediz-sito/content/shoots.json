@@ -1,0 +1,122 @@
+{
+  "_help": "Shooting: ogni serie ha una pagina in /foto/<slug>/ con tutte le foto. \"cover\" = foto di copertina nell'indice. Le immagini stanno in assets/img/shoots/<slug>/.",
+  "shoots": [
+    {
+      "slug": "live-pescara",
+      "title": "Live — Pescara",
+      "kind": "Live",
+      "year": "2026",
+      "place": "Pescara, Festival Dannunziano",
+      "credit": "Alessio Luzi",
+      "intro": "2 settembre 2026: l'apertura del concerto di Ernia al porto turistico di Pescara.",
+      "cover": "assets/img/shoots/live-pescara/001.jpg",
+      "photos": [
+        {
+          "src": "assets/img/shoots/live-pescara/001.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/002.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/003.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/004.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/005.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/006.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/007.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/008.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/009.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/010.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/011.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/012.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/013.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/014.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/015.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/016.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/017.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/018.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/019.jpg",
+          "w": 1800,
+          "h": 1200
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/020.jpg",
+          "w": 1440,
+          "h": 1800
+        },
+        {
+          "src": "assets/img/shoots/live-pescara/021.jpg",
+          "w": 1440,
+          "h": 1800
+        }
+      ]
+    }
+  ]
+}
