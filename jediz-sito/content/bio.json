@@ -1,13 +1,14 @@
 {
-  "_help": "Bio. Ogni paragrafo è un elemento della lista. Bozza scritta solo con fatti verificati: rileggere e riscrivere con la propria voce.",
-  "short": "Jediz è un rapper romano. Scrive e compone i suoi brani; dal vivo li suona con una band. Il primo album, Dr. Jediz & Mr. I, è uscito il 1° maggio 2026.",
+  "_help": "Bio. Ogni paragrafo è un elemento della lista. Stesso testo del PDF JDZ/04 (bio breve e bio estesa): se cambia qui, aggiornare anche il PDF.",
+  "short": "Jediz è il nome con cui Elia Pergola scrive, produce e sale sul palco. È romano, di San Lorenzo, e pubblica dal 2020. Il primo album, Dr. Jediz & Mr. I, è uscito il 1° maggio 2026. Dal vivo suona con una band di cinque musicisti. Tempo al tempo è la colonna sonora del cortometraggio Straordinaria di Antonio Maria Castaldo.",
   "long": [
-    "Jediz è il nome con cui Elia Pergola scrive, produce e sale sul palco. È romano, di San Lorenzo.",
-    "Pubblica dal 2020, con il singolo Piazzale Belvedere (Cala Piccola) e l'EP Hikikomori (La mia quarantena); seguono Il Folle Volo nel 2021, BurnOut in Barna e il singolo OraMai con Caligola nel 2022. Nel 2025 escono i singoli Cala Piccola (2025), Rapper / Avvocato e Tempo al tempo.",
-    "Il 1° maggio 2026 esce Dr. Jediz & Mr. I, il primo album: undici brani autoprodotti, con Lamia in Il Vaso di Pandora.",
-    "Nell'estate 2026 porta l'album in tour. Il 2 settembre apre il concerto di Ernia al porto turistico di Pescara. Tempo al tempo diventa la colonna sonora di Straordinaria, cortometraggio di Antonio Maria Castaldo prodotto da Yagi Media. Il 27 settembre chiude l'estate ai Giardini dell'Acqua Paola, sopra il Fontanone del Gianicolo, con il primo concerto a Roma insieme alla band.",
-    "Dal vivo suona con Tommaso Marino alla chitarra, Tommaso Bonifazi Razzanti al basso, Gregorio De Rosa al piano e Luca Lo Presti alla batteria. Con loro ha riarrangiato i brani per il live e sta lavorando al nuovo album.",
-    "Parallelamente alla musica, è praticante avvocato a Roma."
+    "Jediz è il nome con cui Elia Pergola scrive, produce e sale sul palco. È romano, di San Lorenzo. Il rap lo ha imparato in città, dal basso: freestyle, locali, incontri. Intanto studiava Giurisprudenza, fino alla laurea con 110 e lode. Roma gli ha dato il linguaggio, la boxe la disciplina, lo studio il metodo.",
+    "Pubblica dal 2020, con il singolo Piazzale Belvedere (Cala Piccola) e l’EP Hikikomori — La mia quarantena. Seguono gli EP Il folle volo (2021) e Burnout in Barna (2022) e il doppio singolo Oramai con Caligola. Nel 2025 escono Cala Piccola (2025), Rapper / Avvocato e Tempo al tempo.",
+    "Il 1° maggio 2026 esce Dr. Jediz & Mr. I, il primo album: undici brani autoprodotti, con Lamia in Il Vaso di Pandora. Il titolo rimanda a Jekyll e Hyde, ma qui non c’è un buono e un cattivo. Ci sono l’avvocato e il rapper, che in Harvey Specter si parlano.",
+    "Nel 2026 il disco va sul palco: Barcellona a febbraio, la release party a Roma ad aprile, poi l’estate. Il 2 settembre apre il concerto di Ernia al Festival Dannunziano di Pescara; il 27 settembre chiude la stagione ai Giardini dell’Acqua Paola, sopra il Fontanone del Gianicolo, con il primo concerto a Roma insieme alla band.",
+    "Tempo al tempo è la colonna sonora di Straordinaria, cortometraggio di Antonio Maria Castaldo prodotto da Yagi Media. Jediz collabora anche alla colonna sonora di Conquer the Jungle, documentario di Iker Cimadevilla (Mendigo Films), in uscita nel 2027.",
+    "Dal vivo canta con Marianna Vernuccio e suona con Tommaso Marino alla chitarra, Tommaso Bonifazi Razzanti al basso, Gregorio De Rosa al piano e Luca Lo Presti alla batteria. Con loro ha riarrangiato i brani per il live e lavora al nuovo album, Oramai siamo cresciuti.",
+    "Accanto alla musica resta il diritto: dopo la laurea, la pratica forense a Roma."
   ],
   "pdf_code": "JDZ/04"
 }
