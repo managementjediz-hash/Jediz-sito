@@ -54,7 +54,7 @@ Esempi:
 - [x] Dominio `jedizmusic.com` su Cloudflare Registrar, collegato a Cloudflare Pages (anche `www`)
 - [x] `www.jedizmusic.com` rimanda a `jedizmusic.com` (Cloudflare → Rules → Redirect Rules, 301)
 - [x] Scheda tecnica live (JDZ/05): tre setup, da 16 a 32 canali
-- [x] Foto stampa (JDZ/06): 32 foto in sei serie (Ferramosca, Jacinto, Luzi, Facchinetti), anche nella pagina Foto, in home e in bio. Le foto di Jacinto e Facchinetti sono editate sul look degli shooting di Ferramosca
+- [x] Foto stampa (JDZ/06): 32 foto in sei serie (Ferramosca, Jacinto, Luzi, Facchinetti), anche nella pagina Foto, in home e in bio. Le foto di Facchinetti sono editate sul look degli shooting di Ferramosca
 - [x] PDF della bio (JDZ/04)
 - [ ] Making of: caricare le clip per ciascun disco (Video → categoria "Making of")
 - [ ] Video Instagram/Facebook: aggiungere una "Miniatura" (Instagram non dà l'anteprima da solo)
