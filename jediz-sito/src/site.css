@@ -553,3 +553,5 @@ body { padding-top: calc(var(--header-h) + 1px + env(safe-area-inset-top, 0px));
 .date-row .what, .date-row .links-row { min-width: 0; }
 .date-row .btn-ticket { white-space: normal; max-width: 100%; text-align: left; }
 @media (max-width: 899px) { .date-row .btn-ticket { width: 100%; justify-content: space-between; } }
+.n-event.has-banner .n-pic img { object-position: center; }
+.n-event.has-banner .n-badge { left: auto; right: 12px; }

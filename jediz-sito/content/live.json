@@ -1,5 +1,5 @@
 {
-  "_help": "Date live. Il sito divide da solo le date in 'prossime' e 'passate'. Formato data: AAAA-MM-GG, ora: HH:MM. \"featured\": true = compare in home tra le date importanti. \"poster\" = locandina (jpg, lato lungo max 1600px). \"ticket_url\" = link per comprare i biglietti: diventa il tasto in evidenza in home, nelle Novità e nella pagina Live.",
+  "_help": "Date live. Il sito divide da solo le date in 'prossime' e 'passate'. Formato data: AAAA-MM-GG, ora: HH:MM. \"featured\": true = compare in home tra le date importanti. \"poster\" = locandina, \"banner\" = versione orizzontale 16:9 per le Novità in home (jpg, lato lungo max 1600px). \"ticket_url\" = link per comprare i biglietti: diventa il tasto in evidenza in home, nelle Novità e nella pagina Live.",
   "intro": "Dal vivo i brani cambiano forma: arrangiamenti nuovi, suonati da una band.",
   "band": [
     {
@@ -46,6 +46,7 @@
       "info_label": "Quindie su Instagram",
       "poster": "assets/img/live/2026-11-04-roma-alcazar.jpg",
       "poster_thumb": "assets/img/live/2026-11-04-roma-alcazar-480.jpg",
+      "banner": "assets/img/live/2026-11-04-roma-alcazar-16x9.jpg",
       "featured": true
     },
     {
