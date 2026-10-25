@@ -229,12 +229,12 @@ function slate(d, c, withLink = true) {
   return `<div class="slate" data-expires="${d.date}">
   <div class="slate-date"><span class="d num">${day}</span><span class="m mono"><span>${mShort(m)} ${y}</span><span class="mute">${d.time ? T("ore {t}", { t: esc(d.time) }) : ""}</span></span></div>
   <div class="slate-where"><span class="label mono">${T("Prossima data")}${d.context ? ` · ${esc(d.context)}` : ""}</span><span class="v">${esc(d.venue)}, ${esc(d.city)}</span></div>
-  <div class="slate-cta">${extLink(d.ticket_url, d.ticket_label || T("Biglietti"))}${d.info_url ? extLink(d.info_url, d.info_label || T("Informazioni")) : ""}${withLink ? `<a class="link-arrow" href="${c.to("live")}">${T("Tutte le date")}</a>` : ""}</div>
+  <div class="slate-cta">${extLink(d.ticket_url, d.ticket_label || T("Biglietti"), "btn-ticket")}${d.info_url ? extLink(d.info_url, d.info_label || T("Informazioni")) : ""}${withLink ? `<a class="link-arrow" href="${c.to("live")}">${T("Tutte le date")}</a>` : ""}</div>
 </div>`;
 }
 
 function dateRow(d, isPast = false) {
-  const links = [!isPast && (d.ticket_url || d.ticket_label !== "") ? extLink(d.ticket_url, d.ticket_label || T("Biglietti")) : "", d.info_url ? extLink(d.info_url, d.info_label || T("Informazioni")) : ""].join("");
+  const links = [!isPast && (d.ticket_url || d.ticket_label !== "") ? extLink(d.ticket_url, d.ticket_label || T("Biglietti"), "btn-ticket") : "", d.info_url ? extLink(d.info_url, d.info_label || T("Informazioni")) : ""].join("");
   return `<li class="date-row${isPast ? " past" : ""}">
   <span class="when">${dDot(d.date)}${d.time ? ` · ${esc(d.time)}` : ""}</span>
   <span class="what"><b>${esc(d.title)}</b>${d.context ? `<span class="mono mute">${esc(d.context)}</span>` : ""}${d.description ? `<span class="mute">${esc(d.description)}</span>` : ""}${d.lineup && isPast ? `<span class="mute small">${T("Con {x}", { x: esc(d.lineup) })}</span>` : ""}${!isPast && d.price ? `<span class="mono">${T("Ingresso {x}", { x: esc(d.price) })}</span>` : ""}${links ? `<span class="links-row" style="margin-top:8px">${links}</span>` : ""}</span>
@@ -434,7 +434,14 @@ ${script}
 // ---------- JSON-LD ----------
 const sameAs = site.social.filter((s) => s.url).map((s) => s.url);
 const ldArtist = { "@context": "https://schema.org", "@type": "MusicGroup", name: "Jediz", alternateName: site.person, url: site.url, genre: ["Hip-hop", "Rap"], foundingLocation: { "@type": "Place", name: "Roma" }, sameAs, member: live.band.filter((b) => b.name !== "Jediz").map((b) => ({ "@type": "Person", name: b.name, roleName: b.role })) };
-const ldEvents = upcoming.map((d) => ({ "@context": "https://schema.org", "@type": "MusicEvent", name: `${d.title}`, startDate: `${d.date}${d.time ? "T" + d.time + ":00+02:00" : ""}`, eventStatus: "https://schema.org/EventScheduled", eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode", location: { "@type": "Place", name: d.venue, address: { "@type": "PostalAddress", addressLocality: d.city, addressCountry: "IT" } }, performer: { "@type": "MusicGroup", name: "Jediz" }, ...(d.ticket_url ? { offers: { "@type": "Offer", url: d.ticket_url } } : {}) }));
+// ora legale in Italia: dall'ultima domenica di marzo all'ultima domenica di ottobre
+function romeOffset(date) {
+  const [y, m, dd] = date.split("-").map(Number);
+  const lastSun = (mm) => { const x = new Date(Date.UTC(y, mm, 0)); return x.getUTCDate() - x.getUTCDay(); };
+  const summer = (m > 3 && m < 10) || (m === 3 && dd >= lastSun(3)) || (m === 10 && dd < lastSun(10));
+  return summer ? "+02:00" : "+01:00";
+}
+const ldEvents = upcoming.map((d) => ({ "@context": "https://schema.org", "@type": "MusicEvent", name: `${d.title}`, startDate: `${d.date}${d.time ? "T" + d.time + ":00" + romeOffset(d.date) : ""}`, eventStatus: "https://schema.org/EventScheduled", eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode", location: { "@type": "Place", name: d.venue, address: { "@type": "PostalAddress", ...(d.address ? { streetAddress: d.address } : {}), addressLocality: d.city, addressCountry: "IT" } }, ...(d.poster ? { image: `${site.url || ""}/${d.poster}` } : {}), performer: { "@type": "MusicGroup", name: "Jediz" }, ...(d.ticket_url ? { offers: { "@type": "Offer", url: d.ticket_url } } : {}) }));
 const ldAlbum = { "@context": "https://schema.org", "@type": "MusicAlbum", name: album.title, byArtist: { "@type": "MusicGroup", name: "Jediz" }, datePublished: album.date, numTracks: album.tracks.length, track: album.tracks.map((t, i) => ({ "@type": "MusicRecording", position: i + 1, name: t.title, duration: `PT${t.duration.replace(":", "M")}S` })) };
 
 // ---------- pagine ----------
@@ -453,8 +460,15 @@ function newsCard(it, c) {
     : `<a class="vframe n-pic" href="${esc(it.url)}" target="_blank" rel="noopener" aria-label="${esc(T("Leggi: {t}", { t: it.title }))}">${pic ? `<img src="${esc(pic)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}${dm ? `<span class="vplay" aria-hidden="true">${play}</span>` : `<span class="n-outlet">${esc(it.outlet)}</span>`}</a>`;
   return `<article class="n-card">${media}<p class="n-src mono">${esc(it.outlet)} · ${esc(T(it.type))} · ${nDate(it.date)}</p><h3 class="n-t"><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h3></article>`;
 }
+// annuncio della prossima data (si toglie da solo il giorno dopo il concerto)
+function eventCard(d, c) {
+  if (!d) return "";
+  const where = [d.venue, d.city].filter(Boolean).join(", ");
+  const pic = d.poster ? `<img src="${esc(img(c, d.poster, 960))}" alt="${esc(T("Locandina: {t}, {c}", { t: d.title, c: d.city }))}" loading="lazy" decoding="async">` : "";
+  return `<article class="n-card n-event" data-expires="${d.date}"><a class="vframe n-pic" href="${c.to("live")}" aria-label="${esc(T("Prossima data: {d}, {v}, {c}.", { d: dDot(d.date), v: d.venue, c: d.city }))}">${pic}<span class="n-badge mono">${T("Prossima data")}</span></a><p class="n-src mono">${T("Live")}${d.context ? ` · ${esc(d.context)}` : ""} · ${dDot(d.date)}${d.time ? ` · ${esc(d.time)}` : ""}</p><h3 class="n-t"><a href="${c.to("live")}">${esc(d.title)} — ${esc(where)}</a></h3>${d.ticket_url ? `<div class="n-cta">${extLink(d.ticket_url, d.ticket_label || T("Biglietti"), "btn-ticket")}</div>` : ""}</article>`;
+}
 function newsCarousel(c) {
-  return `<div class="hero-news" aria-labelledby="h-news"><div class="n-head"><p class="mono mute" id="h-news">${T("Novità")}</p><div class="n-nav"><button type="button" class="n-btn" data-news="-1" aria-label="${T("Precedente")}">←</button><button type="button" class="n-btn" data-news="1" aria-label="${T("Successiva")}">→</button></div></div><div class="n-track" data-news-track tabindex="0">${newsItems.map((it) => newsCard(it, c)).join("")}</div><a class="link-arrow" href="${c.to("media")}">${T("Tutta la rassegna")}</a></div>`;
+  return `<div class="hero-news" aria-labelledby="h-news"><div class="n-head"><p class="mono mute" id="h-news">${T("Novità")}</p><div class="n-nav"><button type="button" class="n-btn" data-news="-1" aria-label="${T("Precedente")}">←</button><button type="button" class="n-btn" data-news="1" aria-label="${T("Successiva")}">→</button></div></div><div class="n-track" data-news-track tabindex="0">${eventCard(next, c)}${newsItems.map((it) => newsCard(it, c)).join("")}</div><a class="link-arrow" href="${c.to("media")}">${T("Tutta la rassegna")}</a></div>`;
 }
 function newsBlock(c) {
   if (!newsItems.length) return "";
@@ -478,7 +492,7 @@ pages.home = layout("home", {
     <div class="hero-main">
       <h1 class="wordmark" id="h-jediz">${logo(c)}${site.logo ? '<span class="sr-only">JEDIZ</span>' : ""}</h1>
       <div class="hero-claim">
-        ${newsItems.length ? newsCarousel(c) : `<p class="claim">${esc(site.claim)}</p><p class="mono mute">${esc(site.subclaim)}</p>`}
+        ${newsItems.length || next ? newsCarousel(c) : `<p class="claim">${esc(site.claim)}</p><p class="mono mute">${esc(site.subclaim)}</p>`}
         <div class="hero-actions"><a class="link-arrow" href="#ascolta">${T("Ascolta")}</a><a class="link-arrow" href="${c.to("live")}">${T("Live")}</a><a class="link-arrow" href="${c.to("video")}">${T("Video")}</a><a class="link-arrow" href="${c.to("archivio")}">${T("Archivio")}</a></div>
       </div>
     </div>
@@ -574,13 +588,14 @@ pages.live = layout("live", {
 ${pageHead({ c, label: T("Live"), title: T("Dal vivo"), lede: esc(live.intro) })}
 ${next ? `<section class="band t-night" aria-labelledby="h-next" data-expires="${next.date}">
   <div class="wrap big-date">
-    <div><p class="mono mute">${T("Prossima data")}</p><p class="dd num">${dDot(next.date).slice(0, 5)}</p></div>
+    <div class="bd-left"><p class="mono mute">${T("Prossima data")}</p><p class="dd num">${dDot(next.date).slice(0, 5)}</p>${next.poster ? `<button class="pf bd-poster" type="button" data-lb="${esc(img(c, next.poster, 1600))}" data-cap="${esc(`${dDot(next.date)} · ${next.city} — ${next.title}`)}" aria-label="${esc(T("Apri la locandina: {t}", { t: next.title }))}"><img src="${esc(next.poster_thumb ? c.asset(next.poster_thumb) : img(c, next.poster, 600))}" alt="${esc(T("Locandina: {t}, {c}", { t: next.title, c: next.city }))}" loading="lazy" decoding="async"></button>` : ""}</div>
     <div class="info">
       <p class="mono mute">${dLong(next.date)}${next.time ? ` · ${T("ore {t}", { t: esc(next.time) })}` : ""}${next.context ? ` · ${esc(next.context)}` : ""}</p>
       <h3 id="h-next">${next.venue.split(" — ").map(esc).join("<br>")}</h3>
-      <p class="mono">${esc(next.city)}</p>
+      <p class="mono">${next.address ? `${esc(next.address)} · ` : ""}${esc(next.city)}</p>
       ${next.description ? `<p class="measure">${esc(next.description)}</p>` : ""}
-      <div class="links-row">${extLink(next.ticket_url, next.ticket_label || T("Biglietti"))}${next.info_url ? extLink(next.info_url, next.info_label || T("Informazioni")) : ""}</div>
+      ${next.lineup ? `<p class="mute">${T("Con {x}", { x: esc(next.lineup) })}</p>` : ""}${next.price ? `<p class="mono">${T("Ingresso {x}", { x: esc(next.price) })}</p>` : ""}
+      <div class="links-row">${extLink(next.ticket_url, next.ticket_label || T("Biglietti"), "btn-ticket")}${next.info_url ? extLink(next.info_url, next.info_label || T("Informazioni")) : ""}</div>
     </div>
   </div>
 </section>` : ""}

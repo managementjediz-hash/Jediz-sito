@@ -1,5 +1,5 @@
 {
-  "_help": "Date live. Il sito divide da solo le date in 'prossime' e 'passate'. Formato data: AAAA-MM-GG, ora: HH:MM. \"featured\": true = compare in home tra le date importanti. \"poster\" = locandina (jpg, lato lungo max 1600px).",
+  "_help": "Date live. Il sito divide da solo le date in 'prossime' e 'passate'. Formato data: AAAA-MM-GG, ora: HH:MM. \"featured\": true = compare in home tra le date importanti. \"poster\" = locandina (jpg, lato lungo max 1600px). \"ticket_url\" = link per comprare i biglietti: diventa il tasto in evidenza in home, nelle Novità e nella pagina Live.",
   "intro": "Dal vivo i brani cambiano forma: arrangiamenti nuovi, suonati da una band.",
   "band": [
     {
@@ -29,6 +29,25 @@
   ],
   "formation_note": "",
   "dates": [
+    {
+      "date": "2026-11-04",
+      "time": "22:00",
+      "title": "Jediz with the Band",
+      "venue": "Alcazar Live",
+      "address": "Via Cardinale Merry del Val 14",
+      "city": "Roma",
+      "context": "Quindie Festival",
+      "description": "Jediz con la band al Quindie Festival. On stage alle 22:00.",
+      "lineup": "Marianna Vernuccio, Tommaso Marino, Tommaso Bonifazi Razzanti, Gregorio De Rosa, Luca Lo Presti",
+      "price": "",
+      "ticket_url": "https://xceed.me/en/roma/event/quindie-festival-8/249328/channel/artviva-srl",
+      "ticket_label": "Acquista i biglietti",
+      "info_url": "https://www.instagram.com/qu.indie/",
+      "info_label": "Quindie su Instagram",
+      "poster": "assets/img/live/2026-11-04-roma-alcazar.jpg",
+      "poster_thumb": "assets/img/live/2026-11-04-roma-alcazar-480.jpg",
+      "featured": true
+    },
     {
       "date": "2026-09-27",
       "time": "18:30",
