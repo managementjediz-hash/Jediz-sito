@@ -228,7 +228,7 @@ function slate(d, c, withLink = true) {
   const { d: day, m, y } = parts(d.date);
   return `<div class="slate" data-expires="${d.date}">
   <div class="slate-date"><span class="d num">${day}</span><span class="m mono"><span>${mShort(m)} ${y}</span><span class="mute">${d.time ? T("ore {t}", { t: esc(d.time) }) : ""}</span></span></div>
-  <div class="slate-where"><span class="label mono">${T("Prossima data")}${d.context ? ` · ${esc(d.context)}` : ""}</span><span class="v">${esc(d.venue)}, ${esc(d.city)}</span></div>
+  <div class="slate-where"><span class="label mono">${T("Prossima data")}${d.context ? ` · ${esc(d.context)}` : ""}${d.price ? ` · ${T("Ingresso {x}", { x: esc(d.price) })}` : ""}</span><span class="v">${esc(d.venue)}, ${esc(d.city)}</span></div>
   <div class="slate-cta">${extLink(d.ticket_url, d.ticket_label || T("Biglietti"), "btn-ticket")}${d.info_url ? extLink(d.info_url, d.info_label || T("Informazioni")) : ""}${withLink ? `<a class="link-arrow" href="${c.to("live")}">${T("Tutte le date")}</a>` : ""}</div>
 </div>`;
 }
@@ -465,7 +465,7 @@ function eventCard(d, c) {
   if (!d) return "";
   const where = [d.venue, d.city].filter(Boolean).join(", ");
   const pic = d.poster ? `<img src="${esc(img(c, d.poster, 960))}" alt="${esc(T("Locandina: {t}, {c}", { t: d.title, c: d.city }))}" loading="lazy" decoding="async">` : "";
-  return `<article class="n-card n-event" data-expires="${d.date}"><a class="vframe n-pic" href="${c.to("live")}" aria-label="${esc(T("Prossima data: {d}, {v}, {c}.", { d: dDot(d.date), v: d.venue, c: d.city }))}">${pic}<span class="n-badge mono">${T("Prossima data")}</span></a><p class="n-src mono">${T("Live")}${d.context ? ` · ${esc(d.context)}` : ""} · ${dDot(d.date)}${d.time ? ` · ${esc(d.time)}` : ""}</p><h3 class="n-t"><a href="${c.to("live")}">${esc(d.title)} — ${esc(where)}</a></h3>${d.ticket_url ? `<div class="n-cta">${extLink(d.ticket_url, d.ticket_label || T("Biglietti"), "btn-ticket")}</div>` : ""}</article>`;
+  return `<article class="n-card n-event" data-expires="${d.date}"><a class="vframe n-pic" href="${c.to("live")}" aria-label="${esc(T("Prossima data: {d}, {v}, {c}.", { d: dDot(d.date), v: d.venue, c: d.city }))}">${pic}<span class="n-badge mono">${T("Prossima data")}</span></a><p class="n-src mono">${T("Live")}${d.context ? ` · ${esc(d.context)}` : ""} · ${dDot(d.date)}${d.time ? ` · ${esc(d.time)}` : ""}${d.price ? ` · ${T("Ingresso {x}", { x: esc(d.price) })}` : ""}</p><h3 class="n-t"><a href="${c.to("live")}">${esc(d.title)} — ${esc(where)}</a></h3>${d.ticket_url ? `<div class="n-cta">${extLink(d.ticket_url, d.ticket_label || T("Biglietti"), "btn-ticket")}</div>` : ""}</article>`;
 }
 function newsCarousel(c) {
   return `<div class="hero-news" aria-labelledby="h-news"><div class="n-head"><p class="mono mute" id="h-news">${T("Novità")}</p><div class="n-nav"><button type="button" class="n-btn" data-news="-1" aria-label="${T("Precedente")}">←</button><button type="button" class="n-btn" data-news="1" aria-label="${T("Successiva")}">→</button></div></div><div class="n-track" data-news-track tabindex="0">${eventCard(next, c)}${newsItems.map((it) => newsCard(it, c)).join("")}</div><a class="link-arrow" href="${c.to("media")}">${T("Tutta la rassegna")}</a></div>`;
