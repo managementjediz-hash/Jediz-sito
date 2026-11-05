@@ -40,14 +40,11 @@
       "description": "Jediz con la band al Quindie Festival. On stage alle 22:00.",
       "lineup": "Marianna Vernuccio, Tommaso Marino, Tommaso Bonifazi Razzanti, Gregorio De Rosa, Luca Lo Presti",
       "price": "5 €",
-      "ticket_url": "https://xceed.me/en/roma/event/quindie-festival-8/249328/channel/artviva-srl",
-      "ticket_label": "Acquista i biglietti",
       "info_url": "https://www.instagram.com/qu.indie/",
       "info_label": "Quindie su Instagram",
       "poster": "assets/img/live/2026-11-04-roma-alcazar.jpg",
       "poster_thumb": "assets/img/live/2026-11-04-roma-alcazar-480.jpg",
-      "banner": "assets/img/live/2026-11-04-roma-alcazar-16x9.jpg",
-      "featured": true
+      "banner": "assets/img/live/2026-11-04-roma-alcazar-16x9.jpg"
     },
     {
       "date": "2026-09-27",
