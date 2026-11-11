@@ -520,6 +520,7 @@ pages.home = layout("home", {
     ${secHead({ label: T("Live"), meta: [T("{n} date", { n: datesSorted.length }), `${year(datesSorted[0]?.date)}–${year(datesSorted[datesSorted.length - 1]?.date)}`], title: `<span id="h-live">${T("Dal vivo")}</span>`, lede: esc(live.intro) })}
     <div class="gigs">${featuredDates.slice(0, 6).map((d) => gigCard(d, c)).join("")}</div>
     <div class="rail" style="margin-top:clamp(40px,6vw,72px)"><div class="rail-meta"><span class="mono mute">${T("Formazione")}</span></div>${lineup()}</div>
+    ${(() => { const bk = site.contacts.find((k) => k.id === "booking")?.email; return bk ? `<div class="city-cta"><p class="city-q">${T("Vuoi JEDIZ nella tua città?")}</p><a class="btn-mail" href="mailto:${esc(bk)}?subject=${encodeURIComponent(T("JEDIZ nella mia città"))}">${T("Clicca qui")}</a></div>` : ""; })()}
     <div class="sec-foot"><a class="link-arrow" href="${c.to("live")}">${T("Tutte le date e il live")}</a></div>
   </div>
 </section>
