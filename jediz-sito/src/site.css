@@ -547,6 +547,9 @@ body { padding-top: calc(var(--header-h) + 1px + env(safe-area-inset-top, 0px));
 .btn-mail::after { content: "→"; font-size: 1.1em; }
 .btn-mail:hover, .btn-mail:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 .slate-cta { align-items: center; }
+.city-cta.compact { grid-column: 1 / -1; margin-top: 8px; padding-top: 16px; justify-content: flex-start; gap: 12px 24px; }
+.city-cta.compact .city-q { font-size: var(--step-1); }
+.city-cta.compact .btn-mail { min-height: 44px; padding: 10px 18px; }
 .date-row .btn-ticket { min-height: 44px; padding: 10px 18px; }
 .n-event .n-pic img { object-position: 50% 42%; }
 .n-event .n-badge { position: absolute; left: 12px; top: 12px; font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; background: var(--night-ink); color: var(--night); padding: 4px 8px; }

@@ -223,13 +223,21 @@ function player(c, rels = [album]) {
 </div>`;
 }
 
+// "Vuoi JEDIZ nella tua città?" → mail al booking (home: prossima data e sezione Live)
+function cityCta(compact = false) {
+  const bk = site.contacts.find((k) => k.id === "booking")?.email;
+  if (!bk) return "";
+  return `<div class="city-cta${compact ? " compact" : ""}"><p class="city-q">${T("Vuoi JEDIZ nella tua città?")}</p><a class="btn-mail" href="mailto:${esc(bk)}?subject=${encodeURIComponent(T("JEDIZ nella mia città"))}">${T("Clicca qui")}</a></div>`;
+}
+
 function slate(d, c, withLink = true) {
-  if (!d) return `<div class="slate"><span class="label mono">${T("Prossima data")}</span><span>${T("Nuove date in arrivo.")} ${withLink ? `<a class="link-arrow" href="${c.to("live")}">${T("Live")}</a>` : ""}</span></div>`;
+  if (!d) return `<div class="slate"><span class="label mono">${T("Prossima data")}</span><span>${T("Nuove date in arrivo.")} ${withLink ? `<a class="link-arrow" href="${c.to("live")}">${T("Live")}</a>` : ""}</span>${cityCta(true)}</div>`;
   const { d: day, m, y } = parts(d.date);
   return `<div class="slate" data-expires="${d.date}">
   <div class="slate-date"><span class="d num">${day}</span><span class="m mono"><span>${mShort(m)} ${y}</span><span class="mute">${d.time ? T("ore {t}", { t: esc(d.time) }) : ""}</span></span></div>
   <div class="slate-where"><span class="label mono">${T("Prossima data")}${d.context ? ` · ${esc(d.context)}` : ""}${d.price ? ` · ${T("Ingresso {x}", { x: esc(d.price) })}` : ""}</span><span class="v">${esc(d.venue)}, ${esc(d.city)}</span></div>
   <div class="slate-cta">${extLink(d.ticket_url, d.ticket_label || T("Biglietti"), "btn-ticket")}${d.info_url ? extLink(d.info_url, d.info_label || T("Informazioni")) : ""}${withLink ? `<a class="link-arrow" href="${c.to("live")}">${T("Tutte le date")}</a>` : ""}</div>
+  ${cityCta(true)}
 </div>`;
 }
 
@@ -520,7 +528,7 @@ pages.home = layout("home", {
     ${secHead({ label: T("Live"), meta: [T("{n} date", { n: datesSorted.length }), `${year(datesSorted[0]?.date)}–${year(datesSorted[datesSorted.length - 1]?.date)}`], title: `<span id="h-live">${T("Dal vivo")}</span>`, lede: esc(live.intro) })}
     <div class="gigs">${featuredDates.slice(0, 6).map((d) => gigCard(d, c)).join("")}</div>
     <div class="rail" style="margin-top:clamp(40px,6vw,72px)"><div class="rail-meta"><span class="mono mute">${T("Formazione")}</span></div>${lineup()}</div>
-    ${(() => { const bk = site.contacts.find((k) => k.id === "booking")?.email; return bk ? `<div class="city-cta"><p class="city-q">${T("Vuoi JEDIZ nella tua città?")}</p><a class="btn-mail" href="mailto:${esc(bk)}?subject=${encodeURIComponent(T("JEDIZ nella mia città"))}">${T("Clicca qui")}</a></div>` : ""; })()}
+    ${cityCta()}
     <div class="sec-foot"><a class="link-arrow" href="${c.to("live")}">${T("Tutte le date e il live")}</a></div>
   </div>
 </section>
