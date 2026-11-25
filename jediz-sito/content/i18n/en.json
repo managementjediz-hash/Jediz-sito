@@ -232,13 +232,18 @@
     "JEDIZ nella mia città": "JEDIZ in my city",
     "Rubriche": "Series",
     "Le rubriche": "The series",
-    "Le sei rubriche": "The six series",
-    "Le rubriche di Jediz su TikTok, Instagram e YouTube: live, pillole, making of, lato B, testi, strofe.": "Jediz's series on TikTok, Instagram and YouTube: live, the stories behind the lines, making of, B-side, lyrics, freestyle verses.",
     "Gli episodi sono su TikTok": "The episodes are on TikTok",
     "Apri il profilo": "Open the profile",
     "Tutti gli episodi su TikTok": "All episodes on TikTok",
     "{n} episodi": "{n} episodes",
-    "Episodio": "Episode"
+    "Rubrica": "Series",
+    "{n} rubriche": "{n} series",
+    "Tutte le rubriche": "All the series",
+    "Ogni settimana su TikTok, Instagram e YouTube. Qui tre delle sei.": "Every week on TikTok, Instagram and YouTube. Three of the six are here.",
+    "Dal vivo, ogni settimana": "Live, every week",
+    "La rubrica 01: i pezzi dai concerti, sui social.": "Series 01: songs from the shows, on social media.",
+    "I testi, sui social": "The lyrics, on social media",
+    "La rubrica 05 mette le parole a schermo; la 06 è una strofa e basta.": "Series 05 puts the words on screen; 06 is just a verse."
   },
   "content": {
     "Due nomi, la stessa penna.": "Two names, one pen.",
@@ -368,12 +373,12 @@
     "Jediz con la band al Quindie Festival. On stage alle 22:00.": "Jediz with the band at Quindie Festival. On stage at 10 pm.",
     "Quindie su Instagram": "Quindie on Instagram",
     "Jediz with the Band · Alcazar Live, 04.11.2026": "Jediz with the Band · Alcazar Live, 04.11.2026",
-    "Sei rubriche che escono ogni settimana su TikTok, Instagram e YouTube. Qui gli ultimi episodi; tutti gli altri sui canali.": "Six series that come out every week on TikTok, Instagram and YouTube. The latest episodes are here; the rest are on the channels.",
     "Pezzi dai concerti, con la band.": "Songs from the shows, with the band.",
     "Una barra e da dove viene: un libro, un film, un posto, una persona.": "One line and where it comes from: a book, a film, a place, a person.",
     "In studio, mentre i pezzi prendono forma.": "In the studio, while the songs take shape.",
     "Una mia strofa sul beat di un pezzo che ho in vinile.": "One of my verses over the beat of a record I own on vinyl.",
     "Le parole a schermo, una strofa alla volta.": "The words on screen, one verse at a time.",
-    "Una strofa, la camera accesa, nient'altro.": "One verse, the camera on, nothing else."
+    "Una strofa, la camera accesa, nient'altro.": "One verse, the camera on, nothing else.",
+    "Sei rubriche che escono ogni settimana su TikTok, Instagram e YouTube. Ogni colore è una rubrica.": "Six series that come out every week on TikTok, Instagram and YouTube. Each colour is a series."
   }
 }

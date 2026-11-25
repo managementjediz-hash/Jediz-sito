@@ -35,7 +35,7 @@ const T = (s, vars) => {
   return out;
 };
 // campi che il sito usa anche come "chiavi" (filtri, categorie): restano in italiano nei dati e si traducono solo quando si mostrano
-const KEEP = new Set(["category", "categories", "type", "role", "project", "release", "title", "url", "file", "slug", "id", "email", "youtube", "date", "audio", "src", "image", "poster", "thumb", "cover", "full", "excerpt", "preview", "outlet", "name", "code", "handle", "venue", "context", "address", "shape", "person", "credit", "pdf_code", "feat", "_help", "_note", "_logo_help", "_cover_note"]);
+const KEEP = new Set(["note", "category", "categories", "type", "role", "project", "release", "title", "url", "file", "slug", "id", "email", "youtube", "date", "audio", "src", "image", "poster", "thumb", "cover", "full", "excerpt", "preview", "outlet", "name", "code", "handle", "venue", "context", "address", "shape", "person", "credit", "pdf_code", "feat", "_help", "_note", "_logo_help", "_cover_note"]);
 const TRANSLATE_TITLES = new Set(["documents.json", "cinema.json", "live.json"]); // titoli tradotti solo qui (documenti, schede); i titoli dei brani no
 function trContent(o, file, key = "") {
   if (IS_IT) return o;
@@ -124,7 +124,6 @@ const PAGES = [
   { id: "musica", path: "musica", label: T("Musica"), n: T("{n} brani", { n: releases.reduce((a, r) => a + (r.tracks || []).length, 0) }) },
   { id: "live", path: "live", label: T("Live"), n: next ? dDot(next.date).slice(0, 5) : "" },
   { id: "video", path: "video", label: T("Video") },
-  { id: "rubriche", path: "rubriche", label: T("Rubriche"), n: String(rubriche.rubriche.length) },
   { id: "archivio", path: "archivio", label: T("Archivio"), n: T("{n} doc.", { n: docs.length }) },
   { id: "media", path: "media", label: T("Media"), n: T("{n} uscite", { n: media.items.length }) },
   { id: "cinema", path: "cinema", label: T("Cinema") },
@@ -468,6 +467,60 @@ function romeOffset(date) {
 const ldEvents = upcoming.map((d) => ({ "@context": "https://schema.org", "@type": "MusicEvent", name: `${d.title}`, startDate: `${d.date}${d.time ? "T" + d.time + ":00" + romeOffset(d.date) : ""}`, eventStatus: "https://schema.org/EventScheduled", eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode", location: { "@type": "Place", name: d.venue, address: { "@type": "PostalAddress", ...(d.address ? { streetAddress: d.address } : {}), addressLocality: d.city, addressCountry: "IT" } }, ...(d.poster ? { image: `${site.url || ""}/${d.poster}` } : {}), performer: { "@type": "MusicGroup", name: "Jediz" }, ...(d.ticket_url ? { offers: { "@type": "Offer", url: d.ticket_url } } : {}) }));
 const ldAlbum = { "@context": "https://schema.org", "@type": "MusicAlbum", name: album.title, byArtist: { "@type": "MusicGroup", name: "Jediz" }, datePublished: album.date, numTracks: album.tracks.length, track: album.tracks.map((t, i) => ({ "@type": "MusicRecording", position: i + 1, name: t.title, duration: `PT${t.duration.replace(":", "M")}S` })) };
 
+// ---------- rubriche (format social) ----------
+// Le sei rubriche stanno in content/rubriche.json. Si vedono: tutte nella pagina Video, la 01 in Live,
+// la 05 e la 06 in Testi, la 02, 03 e 04 in home. Ogni episodio mostra la sua copertina; il lettore TikTok parte al click.
+const inkOn = (hex = "") => { const h = String(hex).replace("#", ""); if (!/^[0-9a-f]{6}$/i.test(h)) return "#fff"; const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.3 ? "#131519" : "#fff"; };
+const rbStyle = (r) => `--rc:${esc(r.color || "#8D9098")};--rc-ink:${inkOn(r.color)}`;
+const ttProfile = site.social.find((s) => s.label === "TikTok")?.url || "";
+const platOf = (u = "") => (ttId(u) || /tiktok/i.test(u) ? "TikTok" : ytId(u) ? "YouTube" : /instagram/i.test(u) ? "Instagram" : "");
+const RB = rubriche.rubriche;
+const rbNum = (r) => String(RB.indexOf(r) + 1).padStart(2, "0");
+const rbById = (id) => RB.find((r) => r.id === id);
+const SHOW = Number(rubriche.show) || 8;
+function epCard(e, r, c) {
+  const link = String(e.link || "").trim();
+  const tt = ttId(link), yt = ytId(link);
+  const label = esc(T("Guarda: {t}", { t: [e.title, e.note].filter(Boolean).join(" · ") || r.name }));
+  const play = `<span>${ICON.play.replace('class="i-play" ', "")}</span>`;
+  const face = e.cover
+    ? `<img src="${esc(c.asset(e.cover))}" alt="${esc(`${r.name} · ${e.title || ""}`)}" width="499" height="889" loading="lazy" decoding="async">`
+    : `<div class="ep-face" aria-hidden="true"><span class="mono">${esc(r.name)}</span><span class="ep-t">${esc(e.title || "")}</span><span class="mono">${esc(e.note || "")}</span></div>`;
+  const btn = tt
+    ? `<a class="vplay" href="${esc(link)}" target="_blank" rel="noopener" data-tt="${esc(tt)}" aria-label="${label}">${play}</a>`
+    : yt
+      ? `<a class="vplay" href="https://www.youtube.com/shorts/${esc(yt)}" target="_blank" rel="noopener" data-yt="${esc(yt)}" aria-label="${label}">${play}</a>`
+      : link ? `<a class="vplay" href="${esc(link)}" target="_blank" rel="noopener" aria-label="${label}">${play}</a>` : "";
+  return `<article class="vcard is-vertical ep"><div class="vframe vertical ep-frame">${face}${btn}</div><div class="vmeta mono"><span>${e.date ? dDot(e.date) : ""}</span><span>${platOf(link)}</span></div>${e.title ? `<h3>${esc(e.title)}</h3>` : ""}${e.note ? `<p>${esc(e.note)}</p>` : ""}</article>`;
+}
+function rbEmpty(r) {
+  return `<a class="vcard is-vertical ep ep-empty" href="${esc(ttProfile)}" target="_blank" rel="noopener"><div class="vframe vertical ep-frame"><div class="ep-face"><span class="mono">${esc(r.name)}</span><span class="ep-t">${T("Gli episodi sono su TikTok")}</span><span class="mono">${T("Apri il profilo")} ↗</span></div></div></a>`;
+}
+// una rubrica: nome, descrizione e striscia di episodi
+function rbBlock(r, c, { anchor = true } = {}) {
+  const eps = (r.episodes || []).filter((e) => e.link).slice(0, SHOW);
+  return `<div class="rail rb-block"${anchor ? ` id="rb-${esc(r.id)}"` : ""} style="${rbStyle(r)}">
+    <div class="rail-meta rb-meta"><span class="rb-bar" aria-hidden="true"></span><span class="mono">${T("Rubrica")} ${rbNum(r)}</span><h3 class="rb-h">${esc(r.name)}</h3><p class="mute">${esc(r.description)}</p>${ttProfile ? `<a class="link-arrow ext" href="${esc(ttProfile)}" target="_blank" rel="noopener">${T("Tutti gli episodi su TikTok")}</a>` : ""}</div>
+    <div class="making-strip rb-strip">${eps.length ? eps.map((e) => epCard(e, r, c)).join("") : rbEmpty(r)}</div>
+  </div>`;
+}
+// la fila dei sei colori: ogni colore porta alla sua rubrica nella pagina Video
+function rbSpectrum(c, here = false) {
+  return `<ol class="rb-spectrum">${RB.map((r) => `<li style="${rbStyle(r)}"><a href="${here ? "" : c.to("video")}#rb-${esc(r.id)}"><span class="rb-n num">${rbNum(r)}</span><span class="rb-name">${esc(r.name)}</span><span class="rb-d">${esc(r.description)}</span><span class="rb-c mono">${(r.episodes || []).length ? T("{n} episodi", { n: r.episodes.length }) : "TikTok ↗"}</span></a></li>`).join("")}</ol>`;
+}
+// sezione con una o più rubriche (home, Live, Testi)
+function rbBand(ids, c, { theme = "t-night", label, title, lede, more = true } = {}) {
+  const list = ids.map(rbById).filter(Boolean);
+  if (!list.length) return "";
+  return `<section class="band ${theme} rb-band" aria-labelledby="h-rb-${esc(list.map((r) => r.id).join("-"))}">
+  <div class="wrap">
+    ${secHead({ label: label || T("Rubriche"), meta: list.map((r) => `${rbNum(r)} · ${esc(r.name)}`), title: `<span id="h-rb-${esc(list.map((r) => r.id).join("-"))}">${title}</span>`, lede })}
+    <div class="stack rb-list">${list.map((r) => rbBlock(r, c, { anchor: false })).join("")}</div>
+    ${more ? `<div class="sec-foot"><a class="link-arrow" href="${c.to("video", "#rubriche")}">${T("Tutte le rubriche")}</a></div>` : ""}
+  </div>
+</section>`;
+}
+
 // ---------- pagine ----------
 const pages = {};
 
@@ -553,9 +606,10 @@ pages.home = layout("home", {
   <div class="wrap">
     ${secHead({ label: T("Video"), meta: videosData.categories.slice(0, 3).map((k) => esc(T(k))), title: `<span id="h-video">${T("Video")}</span>`, lede: T("Live, session, videoclip.") })}
     <div class="vgrid">${videosData.videos.slice(0, 3).map((v) => videoCard(v, c)).join("")}</div>
-    <div class="sec-foot"><a class="link-arrow" href="${c.to("video")}">${T("Tutti i video")}</a><a class="link-arrow" href="${c.to("rubriche")}">${T("Le rubriche")}</a></div>
+    <div class="sec-foot"><a class="link-arrow" href="${c.to("video")}">${T("Tutti i video")}</a></div>
   </div>
 </section>
+${rbBand(["in-pillole", "making-of", "lato-b"], c, { title: T("Le rubriche"), lede: T("Ogni settimana su TikTok, Instagram e YouTube. Qui tre delle sei.") })}
 
 <section class="band t-paper" aria-labelledby="h-arch">
   <div class="wrap">
@@ -643,6 +697,7 @@ ${next ? `<section class="band t-night" aria-labelledby="h-next" data-expires="$
     <div class="sec-foot"><a class="link-arrow" href="${c.to("foto")}">${T("Tutte le foto")}</a></div>
   </div>
 </section>
+${rbBand(["dal-vivo"], c, { title: T("Dal vivo, ogni settimana"), lede: T("La rubrica 01: i pezzi dai concerti, sui social.") })}
 <section class="band t-paper" aria-labelledby="h-past">
   <div class="wrap rail">
     <div class="rail-meta"><span class="mono" id="h-past">${T("Date passate")}</span><span class="mono mute">${past.length}</span></div>
@@ -667,7 +722,14 @@ ${pageHead({ c, label: T("Video"), title: T("Video"), lede: T("Live, session, vi
   <div class="wrap">
     ${filters(videosData.categories.filter((k) => k !== MAKING), "video")}
     <div class="vgrid feature" data-filterable="video">${mainVideos.map((v) => videoCard(v, c)).join("")}</div>
-    <div class="sec-foot"><a class="link-arrow" href="${c.to("rubriche")}">${T("Le rubriche")}</a><a class="link-arrow" href="#making-of">${T("Making of")}</a>${extLink(site.social.find((s) => s.label === "YouTube")?.url, T("Canale YouTube"))}</div>
+    <div class="sec-foot"><a class="link-arrow" href="#rubriche">${T("Le rubriche")}</a><a class="link-arrow" href="#making-of">${T("Making of")}</a>${extLink(site.social.find((s) => s.label === "YouTube")?.url, T("Canale YouTube"))}</div>
+  </div>
+</section>
+<section class="band t-night rb-band" id="rubriche" aria-labelledby="h-rubriche">
+  <div class="wrap">
+    ${secHead({ label: T("Rubriche"), meta: [T("{n} rubriche", { n: RB.length }), T("{n} episodi", { n: RB.reduce((a, r) => a + (r.episodes || []).length, 0) })], title: `<span id="h-rubriche">${T("Le rubriche")}</span>`, lede: esc(rubriche.intro) })}
+    ${rbSpectrum(c, true)}
+    <div class="stack rb-list">${RB.map((r) => rbBlock(r, c)).join("")}</div>
   </div>
 </section>
 <section class="band t-paper" id="making-of" aria-labelledby="h-making">
@@ -685,58 +747,6 @@ ${pageHead({ c, label: T("Video"), title: T("Video"), lede: T("Live, session, vi
 </section>`,
 });
 
-
-// ---------- rubriche (format social) ----------
-// colore del testo sopra il colore della rubrica: scuro sui colori chiari (giallo, arancio), chiaro sugli altri
-const inkOn = (hex = "") => { const h = String(hex).replace("#", ""); if (!/^[0-9a-f]{6}$/i.test(h)) return "#fff"; const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.3 ? "#131519" : "#fff"; };
-const rbStyle = (r) => `--rc:${esc(r.color || "#8D9098")};--rc-ink:${inkOn(r.color)}`;
-const ttProfile = site.social.find((s) => s.label === "TikTok")?.url || "";
-const platOf = (u = "") => (ttId(u) || /tiktok/i.test(u) ? "TikTok" : ytId(u) ? "YouTube" : /instagram/i.test(u) ? "Instagram" : "");
-function epCard(e, r, n, c) {
-  const link = String(e.link || "").trim();
-  const tt = ttId(link), yt = ytId(link);
-  const label = esc(T("Guarda: {t}", { t: e.title || r.name }));
-  const play = `<span>${ICON.play.replace('class="i-play" ', "")}</span>`;
-  const face = e.cover
-    ? `<img src="${esc(img(c, e.cover, 480))}" alt="" loading="lazy" decoding="async">`
-    : `<div class="ep-face" aria-hidden="true"><span class="mono">${esc(r.name)}</span><span class="ep-n num">${String(n).padStart(2, "0")}</span><span class="mono">${esc(T("Episodio"))}</span></div>`;
-  const btn = tt
-    ? `<a class="vplay" href="${esc(link)}" target="_blank" rel="noopener" data-tt="${esc(tt)}" aria-label="${label}">${play}</a>`
-    : yt
-      ? `<a class="vplay" href="https://www.youtube.com/shorts/${esc(yt)}" target="_blank" rel="noopener" data-yt="${esc(yt)}" aria-label="${label}">${play}</a>`
-      : link ? `<a class="vplay" href="${esc(link)}" target="_blank" rel="noopener" aria-label="${label}">${play}</a>` : "";
-  const plat = platOf(link);
-  return `<article class="vcard is-vertical ep"><div class="vframe vertical ep-frame">${face}${btn}</div><div class="vmeta mono"><span>${e.date ? dDot(e.date) : ""}</span><span>${plat}</span></div>${e.title ? `<h3>${esc(e.title)}</h3>` : ""}</article>`;
-}
-function rbEmpty(r) {
-  return `<a class="vcard is-vertical ep ep-empty" href="${esc(ttProfile)}" target="_blank" rel="noopener"><div class="vframe vertical ep-frame"><div class="ep-face"><span class="mono">${esc(r.name)}</span><span class="ep-t">${T("Gli episodi sono su TikTok")}</span><span class="mono">${T("Apri il profilo")} ↗</span></div></div></a>`;
-}
-const SHOW = Number(rubriche.show) || 6;
-pages.rubriche = layout("rubriche", {
-  theme: "t-night",
-  title: T("Rubriche"),
-  description: T("Le rubriche di Jediz su TikTok, Instagram e YouTube: live, pillole, making of, lato B, testi, strofe."),
-  body: (c) => `
-${pageHead({ c, label: T("Rubriche"), title: `<span class="it">${T("Le rubriche")}</span>`, lede: esc(rubriche.intro) })}
-<section class="band t-night" style="padding-top:0" aria-label="${T("Le sei rubriche")}">
-  <div class="wrap">
-    <ol class="rb-spectrum">${rubriche.rubriche.map((r, i) => `<li style="${rbStyle(r)}"><a href="#rb-${esc(r.id)}"><span class="rb-n num">${String(i + 1).padStart(2, "0")}</span><span class="rb-name">${esc(r.name)}</span><span class="rb-d">${esc(r.description)}</span><span class="rb-c mono">${(r.episodes || []).length ? T("{n} episodi", { n: r.episodes.length }) : "TikTok ↗"}</span></a></li>`).join("")}</ol>
-  </div>
-</section>
-${rubriche.rubriche.map((r, i) => {
-  const eps = (r.episodes || []).filter((e) => e.link || e.title).slice(0, SHOW);
-  return `<section class="band t-night rb-sec" id="rb-${esc(r.id)}" style="${rbStyle(r)}" aria-labelledby="h-rb-${esc(r.id)}">
-  <div class="wrap rail">
-    <div class="rail-meta rb-meta"><span class="rb-bar" aria-hidden="true"></span><span class="mono">${String(i + 1).padStart(2, "0")} / ${String(rubriche.rubriche.length).padStart(2, "0")}</span><h2 id="h-rb-${esc(r.id)}">${esc(r.name)}</h2><p class="mute">${esc(r.description)}</p>${ttProfile ? `<a class="link-arrow ext" href="${esc(ttProfile)}" target="_blank" rel="noopener">${T("Tutti gli episodi su TikTok")}</a>` : ""}</div>
-    <div class="making-strip rb-strip">${eps.length ? eps.map((e, k) => epCard(e, r, r.episodes.length - k, c)).join("") : rbEmpty(r)}</div>
-  </div>
-</section>`;
-}).join("")}
-<section class="band t-paper" aria-label="${T("Canali")}">
-  <div class="wrap rail"><div class="rail-meta"><span class="mono">${T("Canali")}</span></div>
-  <div class="links-row">${site.social.filter((s) => ["TikTok", "Instagram", "YouTube"].includes(s.label) && s.url).map((s) => extLink(s.url, s.label)).join("")}<a class="link-arrow" href="${c.to("video")}">${T("Video")}</a></div></div>
-</section>`,
-});
 
 pages.archivio = layout("archivio", {
   theme: "t-paper",
@@ -875,7 +885,8 @@ ${textGroups.map((g, gi) => `<section class="band t-paper"${gi ? ' style="paddin
     <div class="rail-meta"><span class="mono">${esc(g.release)}</span><span class="mono mute">${[T(g.kind || ""), g.year].filter(Boolean).map(esc).join(" · ")}</span></div>
     <ol class="tindex">${g.items.map((t) => `<li id="t-${slug(t.title)}">${t.full ? `<details><summary><span class="tt">${esc(t.title)}</span><span class="tr mono">${T("Leggi il testo")}</span></summary><div class="lyric">${esc(t.full)}</div></details>` : `<div class="row"><span class="tt">${esc(t.title)}</span>${pageLink(t, c) || `<span class="tr mono">${esc(t.year)}</span>`}</div>`}</li>`).join("")}</ol>
   </div>
-</section>`).join("")}`,
+</section>`).join("")}
+${rbBand(["angolo-dei-testi", "strofe-in-liberta"], c, { title: T("I testi, sui social"), lede: T("La rubrica 05 mette le parole a schermo; la 06 è una strofa e basta.") })}`,
 });
 
 pages.foto = layout("foto", {
@@ -978,6 +989,8 @@ if (!PREVIEW && IS_IT) {
   const loc = (l, p) => abs(l.dir + (p.path ? p.path + "/" : ""));
   writeFileSync(join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${LANGS.flatMap((l) => PAGES.map((p) => `  <url><loc>${loc(l, p)}</loc><lastmod>${todayRome}</lastmod>${LANGS.map((a) => `<xhtml:link rel="alternate" hreflang="${a.html}" href="${loc(a, p)}"/>`).join("")}</url>`)).join("\n")}\n</urlset>\n`);
   // cache: font e immagini ridimensionate non cambiano mai; PDF e caricamenti possono essere sostituiti con lo stesso nome
+  // la pagina Rubriche è diventata una sezione di Video: i vecchi link portano lì
+  writeFileSync(join(OUT, "_redirects"), LANGS.flatMap((l) => [`/${l.dir}rubriche /${l.dir}video/#rubriche 301`, `/${l.dir}rubriche/ /${l.dir}video/#rubriche 301`]).join("\n") + "\n");
   writeFileSync(join(OUT, "_headers"), [
     "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin",
     "/assets/fonts/*\n  Cache-Control: public, max-age=31536000, immutable",

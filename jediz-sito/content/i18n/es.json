@@ -232,13 +232,18 @@
     "JEDIZ nella mia città": "JEDIZ en mi ciudad",
     "Rubriche": "Series",
     "Le rubriche": "Las series",
-    "Le sei rubriche": "Las seis series",
-    "Le rubriche di Jediz su TikTok, Instagram e YouTube: live, pillole, making of, lato B, testi, strofe.": "Las series de Jediz en TikTok, Instagram y YouTube: directo, historias detrás de los versos, making of, cara B, letras, estrofas.",
     "Gli episodi sono su TikTok": "Los episodios están en TikTok",
     "Apri il profilo": "Abrir el perfil",
     "Tutti gli episodi su TikTok": "Todos los episodios en TikTok",
     "{n} episodi": "{n} episodios",
-    "Episodio": "Episodio"
+    "Rubrica": "Serie",
+    "{n} rubriche": "{n} series",
+    "Tutte le rubriche": "Todas las series",
+    "Ogni settimana su TikTok, Instagram e YouTube. Qui tre delle sei.": "Cada semana en TikTok, Instagram y YouTube. Aquí, tres de las seis.",
+    "Dal vivo, ogni settimana": "En directo, cada semana",
+    "La rubrica 01: i pezzi dai concerti, sui social.": "Serie 01: temas de los conciertos, en redes.",
+    "I testi, sui social": "Las letras, en redes",
+    "La rubrica 05 mette le parole a schermo; la 06 è una strofa e basta.": "La serie 05 pone la letra en pantalla; la 06 es una estrofa y nada más."
   },
   "content": {
     "Due nomi, la stessa penna.": "Dos nombres, la misma pluma.",
@@ -368,12 +373,12 @@
     "Jediz con la band al Quindie Festival. On stage alle 22:00.": "Jediz con la banda en el Quindie Festival. En el escenario a las 22:00.",
     "Quindie su Instagram": "Quindie en Instagram",
     "Jediz with the Band · Alcazar Live, 04.11.2026": "Jediz with the Band · Alcazar Live, 04.11.2026",
-    "Sei rubriche che escono ogni settimana su TikTok, Instagram e YouTube. Qui gli ultimi episodi; tutti gli altri sui canali.": "Seis series que salen cada semana en TikTok, Instagram y YouTube. Aquí los últimos episodios; los demás, en los canales.",
     "Pezzi dai concerti, con la band.": "Temas de los conciertos, con la banda.",
     "Una barra e da dove viene: un libro, un film, un posto, una persona.": "Un verso y de dónde viene: un libro, una película, un lugar, una persona.",
     "In studio, mentre i pezzi prendono forma.": "En el estudio, mientras los temas toman forma.",
     "Una mia strofa sul beat di un pezzo che ho in vinile.": "Una estrofa mía sobre el beat de un tema que tengo en vinilo.",
     "Le parole a schermo, una strofa alla volta.": "La letra en pantalla, una estrofa cada vez.",
-    "Una strofa, la camera accesa, nient'altro.": "Una estrofa, la cámara encendida, nada más."
+    "Una strofa, la camera accesa, nient'altro.": "Una estrofa, la cámara encendida, nada más.",
+    "Sei rubriche che escono ogni settimana su TikTok, Instagram e YouTube. Ogni colore è una rubrica.": "Seis series que salen cada semana en TikTok, Instagram y YouTube. Cada color es una serie."
   }
 }

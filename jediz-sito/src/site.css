@@ -578,7 +578,7 @@ body { padding-top: calc(var(--header-h) + 1px + env(safe-area-inset-top, 0px));
 .rb-c { font-size: .68rem; opacity: .8; border-top: 1px solid currentColor; padding-top: 8px; }
 .rb-sec { border-top: 1px solid var(--rule); }
 .rb-meta { gap: 10px !important; }
-.rb-meta h2 { font-family: var(--f-display); font-size: var(--step-2); line-height: 1.05; font-variation-settings: "opsz" 48; }
+.rb-meta h2, .rb-h { font-family: var(--f-display); font-size: var(--step-2); line-height: 1.05; font-variation-settings: "opsz" 48; }
 .rb-meta .link-arrow { align-self: start; margin-top: 6px; }
 .rb-bar { display: block; width: 48px; height: 6px; background: var(--rc); }
 .rb-strip { grid-auto-columns: max-content; }
@@ -599,3 +599,11 @@ body { padding-top: calc(var(--header-h) + 1px + env(safe-area-inset-top, 0px));
 .rb-strip .ep.playing { width: 325px; }
 .rb-strip .ep.playing .vframe { aspect-ratio: auto; height: 578px; }
 @media (prefers-reduced-motion: reduce) { .rb-spectrum a { transition: none; } .rb-spectrum a:hover { transform: none; } }
+.rb-band .rb-spectrum { margin-bottom: clamp(48px, 7vw, 88px); }
+.rb-list { --s: clamp(48px, 7vw, 80px); }
+.rb-block { padding-top: clamp(28px, 4vw, 40px); border-top: 1px solid var(--rule); }
+.rb-block .rb-h { margin: 0; }
+.ep-frame img { object-fit: cover; }
+.ep h3 { font-size: 1rem; line-height: 1.3; margin-top: 2px; }
+.ep p { font-size: .85rem; line-height: 1.4; color: var(--mute); margin: 0; }
+.rb-band + .rb-band, .t-night + .rb-band.t-night { padding-top: 0; }
