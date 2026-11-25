@@ -83,6 +83,39 @@ collections:
               - { name: poster, label: "Copertina del file mp4", widget: image, required: false }
               - { name: url, label: "Altro link (facoltativo)", widget: string, required: false, hint: "Non serve se hai già messo il link sopra." }
 
+  - name: "rubriche"
+    label: "Rubriche"
+    files:
+      - name: "rubriche"
+        label: "Rubriche e episodi"
+        file: "jediz-sito/content/rubriche.json"
+        fields:
+          - { name: intro, label: "Introduzione della pagina", widget: text }
+          - { name: show, label: "Episodi mostrati per rubrica", widget: number, value_type: int, min: 1, max: 20, default: 6, hint: "Gli altri restano su TikTok." }
+          - name: rubriche
+            label: "Rubriche"
+            label_singular: "Rubrica"
+            widget: list
+            allow_add: false
+            summary: "{{fields.name}}"
+            fields:
+              - { name: id, label: "ID (non cambiarlo)", widget: hidden }
+              - { name: name, label: "Nome", widget: string }
+              - { name: color, label: "Colore (#RRGGBB)", widget: string, pattern: ['^#[0-9A-Fa-f]{6}$', "Formato #RRGGBB, es. #2E8B57"] }
+              - { name: description, label: "Descrizione (una riga)", widget: string }
+              - name: episodes
+                label: "Episodi"
+                label_singular: "Episodio"
+                widget: list
+                add_to_top: true
+                summary: "{{fields.date}} — {{fields.title}}"
+                hint: "Il nuovo episodio va in cima: il primo della lista è il più recente."
+                fields:
+                  - { name: link, label: "Link del video", widget: string, hint: "Su TikTok: Condividi → Copia link. Meglio il link completo dal browser (tiktok.com/@eliajediz/video/…): con quello il video si guarda direttamente sul sito. Vanno bene anche YouTube Shorts e Instagram." }
+                  - { name: title, label: "Titolo breve", widget: string, required: false, hint: "Es. Harvey Specter su Love Yourz" }
+                  - { name: date, label: "Data di uscita (AAAA-MM-GG)", widget: string, required: false, pattern: ['^(\d{4}-\d{2}-\d{2})?$', "Formato AAAA-MM-GG"] }
+                  - { name: cover, label: "Copertina (facoltativa)", widget: image, required: false, hint: "Senza copertina la card usa il colore della rubrica." }
+
   - name: "documents"
     label: "Archivio"
     files:

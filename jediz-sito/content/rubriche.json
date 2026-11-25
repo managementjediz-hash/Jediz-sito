@@ -1,0 +1,49 @@
+{
+  "_help": "Rubriche social. Per aggiungere un episodio: apri la rubrica, premi \"Aggiungi episodio\" e incolla il link del TikTok (quello completo, preso dal browser: https://www.tiktok.com/@eliajediz/video/...). Il video si vede sul sito e parte solo quando qualcuno lo clicca. Funzionano anche link di YouTube Shorts e Instagram (Instagram apre il post). \"color\" = colore della rubrica in formato esadecimale (#RRGGBB). Il sito mostra gli episodi nell'ordine della lista: il primo è il più recente.",
+  "intro": "Sei rubriche che escono ogni settimana su TikTok, Instagram e YouTube. Qui gli ultimi episodi; tutti gli altri sui canali.",
+  "show": 6,
+  "rubriche": [
+    {
+      "id": "dal-vivo",
+      "name": "Jediz dal vivo",
+      "color": "#2E8B57",
+      "description": "Pezzi dai concerti, con la band.",
+      "episodes": []
+    },
+    {
+      "id": "in-pillole",
+      "name": "Jediz in pillole",
+      "color": "#E2B33C",
+      "description": "Una barra e da dove viene: un libro, un film, un posto, una persona.",
+      "episodes": []
+    },
+    {
+      "id": "making-of",
+      "name": "Jediz making of",
+      "color": "#C8372D",
+      "description": "In studio, mentre i pezzi prendono forma.",
+      "episodes": []
+    },
+    {
+      "id": "lato-b",
+      "name": "Jediz lato B",
+      "color": "#6A4C9C",
+      "description": "Una mia strofa sul beat di un pezzo che ho in vinile.",
+      "episodes": []
+    },
+    {
+      "id": "angolo-dei-testi",
+      "name": "L'angolo dei testi",
+      "color": "#2F5EA8",
+      "description": "Le parole a schermo, una strofa alla volta.",
+      "episodes": []
+    },
+    {
+      "id": "strofe-in-liberta",
+      "name": "Strofe in libertà",
+      "color": "#E07A2E",
+      "description": "Una strofa, la camera accesa, nient'altro.",
+      "episodes": []
+    }
+  ]
+}

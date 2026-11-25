@@ -563,3 +563,39 @@ body { padding-top: calc(var(--header-h) + 1px + env(safe-area-inset-top, 0px));
 @media (max-width: 899px) { .date-row .btn-ticket { width: 100%; justify-content: space-between; } }
 .n-event.has-banner .n-pic img { object-position: center; }
 .n-event.has-banner .n-badge { left: auto; right: 12px; }
+
+/* ---------- rubriche ----------
+   Ogni rubrica ha il suo colore (content/rubriche.json → "color"), passato come --rc.
+   Il colore resta un accento: dorso, barra, faccia della card. Lo sfondo della pagina resta quello del sito. */
+.rb-spectrum { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+@media (min-width: 700px) { .rb-spectrum { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .rb-spectrum { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.rb-spectrum a { display: grid; grid-template-rows: auto 1fr auto auto; gap: 10px; min-height: clamp(220px, 30vw, 380px); padding: 16px 14px 14px; background: var(--rc); color: var(--rc-ink); text-decoration: none; transition: transform .25s ease, filter .25s ease; }
+.rb-spectrum a:hover, .rb-spectrum a:focus-visible { transform: translateY(-6px); filter: saturate(1.08); }
+.rb-n { font-family: var(--f-display); font-size: var(--step-3); line-height: .9; font-variation-settings: "opsz" 72; }
+.rb-name { font-family: var(--f-display); font-size: var(--step-1); line-height: 1.1; align-self: end; font-variation-settings: "opsz" 40; }
+.rb-d { font-size: .9rem; line-height: 1.4; opacity: .88; }
+.rb-c { font-size: .68rem; opacity: .8; border-top: 1px solid currentColor; padding-top: 8px; }
+.rb-sec { border-top: 1px solid var(--rule); }
+.rb-meta { gap: 10px !important; }
+.rb-meta h2 { font-family: var(--f-display); font-size: var(--step-2); line-height: 1.05; font-variation-settings: "opsz" 48; }
+.rb-meta .link-arrow { align-self: start; margin-top: 6px; }
+.rb-bar { display: block; width: 48px; height: 6px; background: var(--rc); }
+.rb-strip { grid-auto-columns: max-content; }
+.ep-frame { background: var(--rc); }
+.ep-face { position: absolute; inset: 0; display: grid; grid-template-rows: auto 1fr auto; padding: 14px; color: var(--rc-ink); }
+.ep-face .mono { font-size: .66rem; opacity: .85; }
+.ep-t { font-family: var(--f-display); font-size: 1.35rem; line-height: 1.1; align-self: center; font-variation-settings: "opsz" 40; }
+.ep .vplay { place-items: end; padding: 12px; }
+.ep .vplay span { width: 52px; height: 52px; background: rgba(0,0,0,.28); }
+.ep-n { font-family: var(--f-display); font-size: clamp(3.5rem, 8vw, 5rem); line-height: .9; align-self: center; font-variation-settings: "opsz" 96; }
+.ep-empty { text-decoration: none; color: inherit; }
+.ep-empty .ep-frame { background: transparent; border: 1px solid var(--rc); }
+.ep-empty .ep-face { color: var(--fg); }
+.ep-empty .ep-face .mono:last-child { color: var(--rc); opacity: 1; }
+.ep-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+/* il lettore TikTok non disegna i comandi sotto 325×578: quando parte, la card si allarga */
+.rb-strip .ep { width: clamp(180px, 42vw, 230px); }
+.rb-strip .ep.playing { width: 325px; }
+.rb-strip .ep.playing .vframe { aspect-ratio: auto; height: 578px; }
+@media (prefers-reduced-motion: reduce) { .rb-spectrum a { transition: none; } .rb-spectrum a:hover { transform: none; } }

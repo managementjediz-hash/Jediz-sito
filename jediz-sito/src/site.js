@@ -126,6 +126,21 @@ const tx = (k, it) => (window.JDZ_T && window.JDZ_T[k]) || it;
     frame.replaceChildren(f);
   }));
 
+  /* ---------- TikTok: il lettore ufficiale si carica solo al click ---------- */
+  $$("[data-tt]").forEach((a) => a.addEventListener("click", (e) => {
+    const id = a.dataset.tt, frame = a.closest(".vframe");
+    if (!frame) return;
+    e.preventDefault();
+    const f = document.createElement("iframe");
+    f.src = `https://www.tiktok.com/player/v1/${encodeURIComponent(id)}?autoplay=1&music_info=0&description=0&rel=0`;
+    f.title = a.getAttribute("aria-label") || "TikTok";
+    f.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+    f.allowFullscreen = true;
+    const card = frame.closest(".ep"); if (card) card.classList.add("playing");
+    frame.replaceChildren(f);
+    document.dispatchEvent(new CustomEvent("jdz:pause-audio"));
+  }));
+
   /* un solo video alla volta; mette in pausa il player musicale */
   $$("video").forEach((vd) => vd.addEventListener("play", () => {
     $$("video").forEach((o) => { if (o !== vd) o.pause(); });

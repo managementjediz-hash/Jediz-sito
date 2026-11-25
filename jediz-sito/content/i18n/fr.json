@@ -229,7 +229,16 @@
     "Settembre 2026": "Septembre 2026",
     "Vuoi JEDIZ nella tua città?": "Vous voulez JEDIZ dans votre ville ?",
     "Clicca qui": "Cliquez ici",
-    "JEDIZ nella mia città": "JEDIZ dans ma ville"
+    "JEDIZ nella mia città": "JEDIZ dans ma ville",
+    "Rubriche": "Rubriques",
+    "Le rubriche": "Les rubriques",
+    "Le sei rubriche": "Les six rubriques",
+    "Le rubriche di Jediz su TikTok, Instagram e YouTube: live, pillole, making of, lato B, testi, strofe.": "Les rubriques de Jediz sur TikTok, Instagram et YouTube : live, coulisses des textes, making of, face B, paroles, couplets.",
+    "Gli episodi sono su TikTok": "Les épisodes sont sur TikTok",
+    "Apri il profilo": "Ouvrir le profil",
+    "Tutti gli episodi su TikTok": "Tous les épisodes sur TikTok",
+    "{n} episodi": "{n} épisodes",
+    "Episodio": "Épisode"
   },
   "content": {
     "Due nomi, la stessa penna.": "Deux noms, la même plume.",
@@ -358,6 +367,13 @@
     "Acquista i biglietti": "Acheter des billets",
     "Jediz con la band al Quindie Festival. On stage alle 22:00.": "Jediz avec le groupe au Quindie Festival. Sur scène à 22 h.",
     "Quindie su Instagram": "Quindie sur Instagram",
-    "Jediz with the Band · Alcazar Live, 04.11.2026": "Jediz with the Band · Alcazar Live, 04.11.2026"
+    "Jediz with the Band · Alcazar Live, 04.11.2026": "Jediz with the Band · Alcazar Live, 04.11.2026",
+    "Sei rubriche che escono ogni settimana su TikTok, Instagram e YouTube. Qui gli ultimi episodi; tutti gli altri sui canali.": "Six rubriques qui sortent chaque semaine sur TikTok, Instagram et YouTube. Ici les derniers épisodes ; les autres sont sur les réseaux.",
+    "Pezzi dai concerti, con la band.": "Des morceaux des concerts, avec le groupe.",
+    "Una barra e da dove viene: un libro, un film, un posto, una persona.": "Une ligne et d'où elle vient : un livre, un film, un lieu, une personne.",
+    "In studio, mentre i pezzi prendono forma.": "En studio, pendant que les morceaux prennent forme.",
+    "Una mia strofa sul beat di un pezzo che ho in vinile.": "Un de mes couplets sur le beat d'un morceau que j'ai en vinyle.",
+    "Le parole a schermo, una strofa alla volta.": "Les paroles à l'écran, un couplet à la fois.",
+    "Una strofa, la camera accesa, nient'altro.": "Un couplet, la caméra allumée, rien d'autre."
   }
 }

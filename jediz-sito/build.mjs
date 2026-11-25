@@ -60,6 +60,19 @@ const photosData = load("photos.json");
 const textsData = load("texts.json");
 const bio = load("bio.json");
 const media = load("media.json");
+const rubriche = load("rubriche.json");
+// link corti di TikTok (vm.tiktok.com, tiktok.com/t/…, quelli di "Copia link" dal telefono): durante la pubblicazione
+// si chiede a TikTok dove portano, per avere l'ID del video. Se non risponde, il link resta valido e apre TikTok.
+{
+  const short = (u = "") => /^https?:\/\/(vm|vt)\.tiktok\.com\/|^https?:\/\/(www\.)?tiktok\.com\/t\//i.test(String(u).trim());
+  const eps = rubriche.rubriche.flatMap((r) => r.episodes || []).filter((e) => short(e.link));
+  await Promise.all(eps.map(async (e) => {
+    try {
+      const r = await fetch(String(e.link).trim(), { redirect: "follow", signal: AbortSignal.timeout(6000), headers: { "user-agent": "Mozilla/5.0 (jedizmusic.com build)" } });
+      if (/\/video\/\d{8,}/.test(r.url)) e.link = r.url.split("?")[0];
+    } catch {}
+  }));
+}
 
 // ---------- utilità ----------
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -80,6 +93,8 @@ const toSec = (mmss) => { const [m, s] = mmss.split(":").map(Number); return m *
 const fmtTotal = (sec) => `${Math.floor(sec / 60)}′${String(sec % 60).padStart(2, "0")}″`;
 const slug = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 const ytId = (s = "") => { const m = String(s).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/); return m ? m[1] : /^[\w-]{11}$/.test(s) ? s : ""; };
+// TikTok: l'ID numerico del video sta nel link completo (…/video/1234567890123456789)
+const ttId = (s = "") => { const m = String(s).match(/tiktok\.com\/(?:@[^/]+\/video|video|player\/v1|embed(?:\/v2)?)\/(\d{8,})/); return m ? m[1] : /^\d{15,}$/.test(String(s).trim()) ? String(s).trim() : ""; };
 const dmId = (s = "") => { const m = String(s).match(/dailymotion\.com\/video\/([a-z0-9]+)|dai\.ly\/([a-z0-9]+)/i); return m ? m[1] || m[2] : ""; };
 const abs = (p) => site.url.replace(/\/$/, "") + "/" + p.replace(/^\//, "");
 
@@ -109,6 +124,7 @@ const PAGES = [
   { id: "musica", path: "musica", label: T("Musica"), n: T("{n} brani", { n: releases.reduce((a, r) => a + (r.tracks || []).length, 0) }) },
   { id: "live", path: "live", label: T("Live"), n: next ? dDot(next.date).slice(0, 5) : "" },
   { id: "video", path: "video", label: T("Video") },
+  { id: "rubriche", path: "rubriche", label: T("Rubriche"), n: String(rubriche.rubriche.length) },
   { id: "archivio", path: "archivio", label: T("Archivio"), n: T("{n} doc.", { n: docs.length }) },
   { id: "media", path: "media", label: T("Media"), n: T("{n} uscite", { n: media.items.length }) },
   { id: "cinema", path: "cinema", label: T("Cinema") },
@@ -537,7 +553,7 @@ pages.home = layout("home", {
   <div class="wrap">
     ${secHead({ label: T("Video"), meta: videosData.categories.slice(0, 3).map((k) => esc(T(k))), title: `<span id="h-video">${T("Video")}</span>`, lede: T("Live, session, videoclip.") })}
     <div class="vgrid">${videosData.videos.slice(0, 3).map((v) => videoCard(v, c)).join("")}</div>
-    <div class="sec-foot"><a class="link-arrow" href="${c.to("video")}">${T("Tutti i video")}</a></div>
+    <div class="sec-foot"><a class="link-arrow" href="${c.to("video")}">${T("Tutti i video")}</a><a class="link-arrow" href="${c.to("rubriche")}">${T("Le rubriche")}</a></div>
   </div>
 </section>
 
@@ -651,7 +667,7 @@ ${pageHead({ c, label: T("Video"), title: T("Video"), lede: T("Live, session, vi
   <div class="wrap">
     ${filters(videosData.categories.filter((k) => k !== MAKING), "video")}
     <div class="vgrid feature" data-filterable="video">${mainVideos.map((v) => videoCard(v, c)).join("")}</div>
-    <div class="sec-foot"><a class="link-arrow" href="#making-of">${T("Making of")}</a>${extLink(site.social.find((s) => s.label === "YouTube")?.url, T("Canale YouTube"))}</div>
+    <div class="sec-foot"><a class="link-arrow" href="${c.to("rubriche")}">${T("Le rubriche")}</a><a class="link-arrow" href="#making-of">${T("Making of")}</a>${extLink(site.social.find((s) => s.label === "YouTube")?.url, T("Canale YouTube"))}</div>
   </div>
 </section>
 <section class="band t-paper" id="making-of" aria-labelledby="h-making">
@@ -666,6 +682,59 @@ ${pageHead({ c, label: T("Video"), title: T("Video"), lede: T("Live, session, vi
     </div>`;
     }).join("")}
   </div>
+</section>`,
+});
+
+
+// ---------- rubriche (format social) ----------
+// colore del testo sopra il colore della rubrica: scuro sui colori chiari (giallo, arancio), chiaro sugli altri
+const inkOn = (hex = "") => { const h = String(hex).replace("#", ""); if (!/^[0-9a-f]{6}$/i.test(h)) return "#fff"; const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.3 ? "#131519" : "#fff"; };
+const rbStyle = (r) => `--rc:${esc(r.color || "#8D9098")};--rc-ink:${inkOn(r.color)}`;
+const ttProfile = site.social.find((s) => s.label === "TikTok")?.url || "";
+const platOf = (u = "") => (ttId(u) || /tiktok/i.test(u) ? "TikTok" : ytId(u) ? "YouTube" : /instagram/i.test(u) ? "Instagram" : "");
+function epCard(e, r, n, c) {
+  const link = String(e.link || "").trim();
+  const tt = ttId(link), yt = ytId(link);
+  const label = esc(T("Guarda: {t}", { t: e.title || r.name }));
+  const play = `<span>${ICON.play.replace('class="i-play" ', "")}</span>`;
+  const face = e.cover
+    ? `<img src="${esc(img(c, e.cover, 480))}" alt="" loading="lazy" decoding="async">`
+    : `<div class="ep-face" aria-hidden="true"><span class="mono">${esc(r.name)}</span><span class="ep-n num">${String(n).padStart(2, "0")}</span><span class="mono">${esc(T("Episodio"))}</span></div>`;
+  const btn = tt
+    ? `<a class="vplay" href="${esc(link)}" target="_blank" rel="noopener" data-tt="${esc(tt)}" aria-label="${label}">${play}</a>`
+    : yt
+      ? `<a class="vplay" href="https://www.youtube.com/shorts/${esc(yt)}" target="_blank" rel="noopener" data-yt="${esc(yt)}" aria-label="${label}">${play}</a>`
+      : link ? `<a class="vplay" href="${esc(link)}" target="_blank" rel="noopener" aria-label="${label}">${play}</a>` : "";
+  const plat = platOf(link);
+  return `<article class="vcard is-vertical ep"><div class="vframe vertical ep-frame">${face}${btn}</div><div class="vmeta mono"><span>${e.date ? dDot(e.date) : ""}</span><span>${plat}</span></div>${e.title ? `<h3>${esc(e.title)}</h3>` : ""}</article>`;
+}
+function rbEmpty(r) {
+  return `<a class="vcard is-vertical ep ep-empty" href="${esc(ttProfile)}" target="_blank" rel="noopener"><div class="vframe vertical ep-frame"><div class="ep-face"><span class="mono">${esc(r.name)}</span><span class="ep-t">${T("Gli episodi sono su TikTok")}</span><span class="mono">${T("Apri il profilo")} ↗</span></div></div></a>`;
+}
+const SHOW = Number(rubriche.show) || 6;
+pages.rubriche = layout("rubriche", {
+  theme: "t-night",
+  title: T("Rubriche"),
+  description: T("Le rubriche di Jediz su TikTok, Instagram e YouTube: live, pillole, making of, lato B, testi, strofe."),
+  body: (c) => `
+${pageHead({ c, label: T("Rubriche"), title: `<span class="it">${T("Le rubriche")}</span>`, lede: esc(rubriche.intro) })}
+<section class="band t-night" style="padding-top:0" aria-label="${T("Le sei rubriche")}">
+  <div class="wrap">
+    <ol class="rb-spectrum">${rubriche.rubriche.map((r, i) => `<li style="${rbStyle(r)}"><a href="#rb-${esc(r.id)}"><span class="rb-n num">${String(i + 1).padStart(2, "0")}</span><span class="rb-name">${esc(r.name)}</span><span class="rb-d">${esc(r.description)}</span><span class="rb-c mono">${(r.episodes || []).length ? T("{n} episodi", { n: r.episodes.length }) : "TikTok ↗"}</span></a></li>`).join("")}</ol>
+  </div>
+</section>
+${rubriche.rubriche.map((r, i) => {
+  const eps = (r.episodes || []).filter((e) => e.link || e.title).slice(0, SHOW);
+  return `<section class="band t-night rb-sec" id="rb-${esc(r.id)}" style="${rbStyle(r)}" aria-labelledby="h-rb-${esc(r.id)}">
+  <div class="wrap rail">
+    <div class="rail-meta rb-meta"><span class="rb-bar" aria-hidden="true"></span><span class="mono">${String(i + 1).padStart(2, "0")} / ${String(rubriche.rubriche.length).padStart(2, "0")}</span><h2 id="h-rb-${esc(r.id)}">${esc(r.name)}</h2><p class="mute">${esc(r.description)}</p>${ttProfile ? `<a class="link-arrow ext" href="${esc(ttProfile)}" target="_blank" rel="noopener">${T("Tutti gli episodi su TikTok")}</a>` : ""}</div>
+    <div class="making-strip rb-strip">${eps.length ? eps.map((e, k) => epCard(e, r, r.episodes.length - k, c)).join("") : rbEmpty(r)}</div>
+  </div>
+</section>`;
+}).join("")}
+<section class="band t-paper" aria-label="${T("Canali")}">
+  <div class="wrap rail"><div class="rail-meta"><span class="mono">${T("Canali")}</span></div>
+  <div class="links-row">${site.social.filter((s) => ["TikTok", "Instagram", "YouTube"].includes(s.label) && s.url).map((s) => extLink(s.url, s.label)).join("")}<a class="link-arrow" href="${c.to("video")}">${T("Video")}</a></div></div>
 </section>`,
 });
 

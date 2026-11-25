@@ -229,7 +229,16 @@
     "Settembre 2026": "Setembro de 2026",
     "Vuoi JEDIZ nella tua città?": "Quer o JEDIZ na sua cidade?",
     "Clicca qui": "Clique aqui",
-    "JEDIZ nella mia città": "JEDIZ na minha cidade"
+    "JEDIZ nella mia città": "JEDIZ na minha cidade",
+    "Rubriche": "Quadros",
+    "Le rubriche": "Os quadros",
+    "Le sei rubriche": "Os seis quadros",
+    "Le rubriche di Jediz su TikTok, Instagram e YouTube: live, pillole, making of, lato B, testi, strofe.": "Os quadros de Jediz no TikTok, Instagram e YouTube: ao vivo, histórias por trás dos versos, making of, lado B, letras, versos.",
+    "Gli episodi sono su TikTok": "Os episódios estão no TikTok",
+    "Apri il profilo": "Abrir o perfil",
+    "Tutti gli episodi su TikTok": "Todos os episódios no TikTok",
+    "{n} episodi": "{n} episódios",
+    "Episodio": "Episódio"
   },
   "content": {
     "Due nomi, la stessa penna.": "Dois nomes, a mesma caneta.",
@@ -358,6 +367,13 @@
     "Acquista i biglietti": "Comprar ingressos",
     "Jediz con la band al Quindie Festival. On stage alle 22:00.": "Jediz com a banda no Quindie Festival. No palco às 22h.",
     "Quindie su Instagram": "Quindie no Instagram",
-    "Jediz with the Band · Alcazar Live, 04.11.2026": "Jediz with the Band · Alcazar Live, 04.11.2026"
+    "Jediz with the Band · Alcazar Live, 04.11.2026": "Jediz with the Band · Alcazar Live, 04.11.2026",
+    "Sei rubriche che escono ogni settimana su TikTok, Instagram e YouTube. Qui gli ultimi episodi; tutti gli altri sui canali.": "Seis quadros que saem toda semana no TikTok, Instagram e YouTube. Aqui os últimos episódios; o resto nos canais.",
+    "Pezzi dai concerti, con la band.": "Músicas dos shows, com a banda.",
+    "Una barra e da dove viene: un libro, un film, un posto, una persona.": "Um verso e de onde ele vem: um livro, um filme, um lugar, uma pessoa.",
+    "In studio, mentre i pezzi prendono forma.": "No estúdio, enquanto as músicas ganham forma.",
+    "Una mia strofa sul beat di un pezzo che ho in vinile.": "Um verso meu sobre o beat de uma música que tenho em vinil.",
+    "Le parole a schermo, una strofa alla volta.": "A letra na tela, um verso de cada vez.",
+    "Una strofa, la camera accesa, nient'altro.": "Um verso, a câmera ligada, mais nada."
   }
 }
