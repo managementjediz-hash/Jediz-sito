@@ -1,49 +1,215 @@
 {
   "_help": "Rubriche social. Per aggiungere un episodio: apri la rubrica, premi \"Aggiungi episodio\" e incolla il link del TikTok (quello completo, preso dal browser: https://www.tiktok.com/@eliajediz/video/...). Il video si vede sul sito e parte solo quando qualcuno lo clicca. Funzionano anche link di YouTube Shorts e Instagram (Instagram apre il post). \"color\" = colore della rubrica in formato esadecimale (#RRGGBB). Il sito mostra gli episodi nell'ordine della lista: il primo è il più recente.",
   "intro": "Sei rubriche che escono ogni settimana su TikTok, Instagram e YouTube. Qui gli ultimi episodi; tutti gli altri sui canali.",
-  "show": 6,
+  "show": 8,
   "rubriche": [
     {
       "id": "dal-vivo",
       "name": "Jediz dal vivo",
       "color": "#2E8B57",
       "description": "Pezzi dai concerti, con la band.",
-      "episodes": []
+      "episodes": [
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7711352292825386273",
+          "title": "Ora, a Pescara",
+          "date": "2026-11-23"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7710238794531802400",
+          "title": "Marine Terrace, a Pescara",
+          "date": "2026-11-20"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7709125825802685729",
+          "title": "Tempo al tempo, a Trastevere (Tom & Jediz)",
+          "date": "2026-11-17"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7708383491989327137",
+          "title": "Questione di scelte (Tom & Jediz)",
+          "date": "2026-11-15"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7707640959508565280",
+          "title": "Marine Terrace",
+          "date": "2026-11-13"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7706929334015020321",
+          "title": "Aspidistra, la prima volta live",
+          "date": "2026-11-11"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7706587354458377494",
+          "title": "Jump, a Pescara",
+          "date": "2026-11-10"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7706244473495342339",
+          "title": "Pescara, prima di Ernia",
+          "date": "2026-11-09"
+        }
+      ]
     },
     {
       "id": "in-pillole",
       "name": "Jediz in pillole",
       "color": "#E2B33C",
       "description": "Una barra e da dove viene: un libro, un film, un posto, una persona.",
-      "episodes": []
+      "episodes": [
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7711723554710048033",
+          "title": "#3 Bergman, Il settimo sigillo",
+          "date": "2026-11-24"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7710610049927761184",
+          "title": "#2 Lo scritto di mio padre",
+          "date": "2026-11-21"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7709496627651792160",
+          "title": "#1 Rapper o avvocato? (Marracash)",
+          "date": "2026-11-18"
+        }
+      ]
     },
     {
       "id": "making-of",
       "name": "Jediz making of",
       "color": "#C8372D",
       "description": "In studio, mentre i pezzi prendono forma.",
-      "episodes": []
+      "episodes": [
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7712094431565876519",
+          "title": "La tromba su Cronaca",
+          "date": "2026-11-25"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7710981136607939872",
+          "title": "Eva registra il ritornello di Cronaca",
+          "date": "2026-11-22"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7709867976433978656",
+          "title": "Ep. 4 – Il vaso di Pandora con Lamia",
+          "date": "2026-11-19"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7709218528447974689",
+          "title": "Tempo al tempo, dall'idea alla strofa finale",
+          "date": "2026-11-17"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7708754594276347168",
+          "title": "Ep. 3 – Lamia registra il ritornello",
+          "date": "2026-11-16"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7708012282554354977",
+          "title": "Ep. 2 – Tutto è partito da Chopin",
+          "date": "2026-11-14"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7707362517651049761",
+          "title": "Ep. 1 – Qui è nato Il vaso di Pandora",
+          "date": "2026-11-12"
+        }
+      ]
     },
     {
       "id": "lato-b",
       "name": "Jediz lato B",
       "color": "#6A4C9C",
       "description": "Una mia strofa sul beat di un pezzo che ho in vinile.",
-      "episodes": []
+      "episodes": [
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7711445210382798113",
+          "title": "Cronaca su Violent Crimes (Kanye West)",
+          "date": "2026-11-23"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7710331401048050977",
+          "title": "Tempo al tempo su Kids See Ghosts",
+          "date": "2026-11-20"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7709589097647476001",
+          "title": "Rapper / Avvocato su Danger (Nitro)",
+          "date": "2026-11-18"
+        }
+      ]
     },
     {
       "id": "angolo-dei-testi",
       "name": "L'angolo dei testi",
       "color": "#2F5EA8",
       "description": "Le parole a schermo, una strofa alla volta.",
-      "episodes": []
+      "episodes": [
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7711816061183741217",
+          "title": "Cronaca in Val Camonica",
+          "date": "2026-11-24"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7710702526844177696",
+          "title": "Cronaca in montagna",
+          "date": "2026-11-21"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7709982687854906657",
+          "title": "Come si apre Dr. Jediz & Mr. I",
+          "date": "2026-11-19"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7708847406376324385",
+          "title": "Il vaso di Pandora, con Lamia",
+          "date": "2026-11-16"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7708104676603940128",
+          "title": "Harvey Specter",
+          "date": "2026-11-14"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7707207354726550816",
+          "title": "Harvey Specter, il consiglio",
+          "date": "2026-11-12"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7706990887422807329",
+          "title": "Harvey Specter a Parigi",
+          "date": "2026-11-11"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7706240719446461718",
+          "title": "Il ritornello in francese, a Parigi",
+          "date": "2026-11-09"
+        }
+      ]
     },
     {
       "id": "strofe-in-liberta",
       "name": "Strofe in libertà",
       "color": "#E07A2E",
       "description": "Una strofa, la camera accesa, nient'altro.",
-      "episodes": []
+      "episodes": [
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7711073592443702560",
+          "title": "Cronaca, dall'inizio alla fine",
+          "date": "2026-11-22"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7708475731487116577",
+          "title": "Prima volta su questo beat",
+          "date": "2026-11-15"
+        },
+        {
+          "link": "https://www.tiktok.com/@eliajediz/video/7707733500358806816",
+          "title": "Marine Terrace, in Messico",
+          "date": "2026-11-13"
+        }
+      ]
     }
   ]
 }
