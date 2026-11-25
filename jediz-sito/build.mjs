@@ -544,8 +544,21 @@ function eventCard(d, c) {
   const pic = d.banner || d.poster ? `<img src="${esc(img(c, d.banner || d.poster, 960))}" alt="${esc(T("Locandina: {t}, {c}", { t: d.title, c: d.city }))}" loading="lazy" decoding="async">` : "";
   return `<article class="n-card n-event${d.banner ? " has-banner" : ""}" data-expires="${d.date}"><a class="vframe n-pic" href="${c.to("live")}" aria-label="${esc(T("Prossima data: {d}, {v}, {c}.", { d: dDot(d.date), v: d.venue, c: d.city }))}">${pic}<span class="n-badge mono">${T("Prossima data")}</span></a><p class="n-src mono">${T("Live")}${d.context ? ` · ${esc(d.context)}` : ""} · ${dDot(d.date)}${d.time ? ` · ${esc(d.time)}` : ""}${d.price ? ` · ${T("Ingresso {x}", { x: esc(d.price) })}` : ""}</p><h3 class="n-t"><a href="${c.to("live")}">${esc(d.title)} — ${esc(where)}</a></h3>${d.ticket_url ? `<div class="n-cta">${extLink(d.ticket_url, d.ticket_label || T("Biglietti"), "btn-ticket")}</div>` : ""}</article>`;
 }
+// rubriche nelle Novità: l'ultimo episodio di ciascuna rubrica (con link), dal più recente
+const rbNews = RB.map((r) => { const e = (r.episodes || []).filter((x) => x.link).sort((a, b) => (b.date || "").localeCompare(a.date || ""))[0]; return e ? { r, e, date: e.date || "" } : null; }).filter(Boolean);
+function rbNewsCard({ r, e }, c) {
+  const link = String(e.link || "").trim();
+  const tt = ttId(link), yt = ytId(link);
+  const label = esc(T("Guarda: {t}", { t: [r.name, e.title, e.note].filter(Boolean).join(" · ") }));
+  const play = `<span>${ICON.play.replace('class="i-play" ', "")}</span>`;
+  const attr = tt ? ` data-tt="${esc(tt)}"` : yt ? ` data-yt="${esc(yt)}"` : "";
+  const href = yt && !tt ? `https://www.youtube.com/shorts/${esc(yt)}` : esc(link);
+  const cover = e.cover ? `<img class="n-rb-cover" src="${esc(c.asset(e.cover))}" alt="" loading="lazy" decoding="async" width="499" height="889">` : "";
+  return `<article class="n-card n-rb" style="${rbStyle(r)}"><div class="vframe n-rb-frame">${cover}<span class="n-badge mono">${T("Rubrica")} ${rbNum(r)} · ${esc(r.name)}</span><a class="vplay" href="${href}" target="_blank" rel="noopener"${attr} aria-label="${label}">${play}</a></div><p class="n-src mono">${platOf(link)} · ${dDot(e.date)}</p><h3 class="n-t"><a href="${c.to("video")}#rb-${esc(r.id)}">${esc(e.title || r.name)}${e.note ? ` — ${esc(e.note)}` : ""}</a></h3></article>`;
+}
 function newsCarousel(c) {
-  return `<div class="hero-news" aria-labelledby="h-news"><div class="n-head"><p class="mono mute" id="h-news">${T("Novità")}</p><div class="n-nav"><button type="button" class="n-btn" data-news="-1" aria-label="${T("Precedente")}">←</button><button type="button" class="n-btn" data-news="1" aria-label="${T("Successiva")}">→</button></div></div><div class="n-track" data-news-track tabindex="0">${eventCard(next, c)}${newsItems.map((it) => newsCard(it, c)).join("")}</div><a class="link-arrow" href="${c.to("media")}">${T("Tutta la rassegna")}</a></div>`;
+  const feed = [...rbNews.map((x) => ({ date: x.date, html: rbNewsCard(x, c) })), ...newsItems.map((it) => ({ date: it.date || "", html: newsCard(it, c) }))].sort((a, b) => b.date.localeCompare(a.date));
+  return `<div class="hero-news" aria-labelledby="h-news"><div class="n-head"><p class="mono mute" id="h-news">${T("Novità")}</p><div class="n-nav"><button type="button" class="n-btn" data-news="-1" aria-label="${T("Precedente")}">←</button><button type="button" class="n-btn" data-news="1" aria-label="${T("Successiva")}">→</button></div></div><div class="n-track" data-news-track tabindex="0">${eventCard(next, c)}${feed.map((x) => x.html).join("")}</div><a class="link-arrow" href="${c.to("media")}">${T("Tutta la rassegna")}</a></div>`;
 }
 function newsBlock(c) {
   if (!newsItems.length) return "";
@@ -569,7 +582,7 @@ pages.home = layout("home", {
     <div class="hero-main">
       <h1 class="wordmark" id="h-jediz">${logo(c)}${site.logo ? '<span class="sr-only">JEDIZ</span>' : ""}</h1>
       <div class="hero-claim">
-        ${newsItems.length || next ? newsCarousel(c) : `<p class="claim">${esc(site.claim)}</p><p class="mono mute">${esc(site.subclaim)}</p>`}
+        ${newsItems.length || next || rbNews.length ? newsCarousel(c) : `<p class="claim">${esc(site.claim)}</p><p class="mono mute">${esc(site.subclaim)}</p>`}
         <div class="hero-actions"><a class="link-arrow" href="#ascolta">${T("Ascolta")}</a><a class="link-arrow" href="${c.to("live")}">${T("Live")}</a><a class="link-arrow" href="${c.to("video")}">${T("Video")}</a><a class="link-arrow" href="${c.to("archivio")}">${T("Archivio")}</a></div>
       </div>
     </div>
