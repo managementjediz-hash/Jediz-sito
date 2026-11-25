@@ -622,7 +622,6 @@ pages.home = layout("home", {
     <div class="sec-foot"><a class="link-arrow" href="${c.to("video")}">${T("Tutti i video")}</a></div>
   </div>
 </section>
-${rbBand(["in-pillole", "making-of", "lato-b"], c, { title: T("Le rubriche"), lede: T("Ogni settimana su TikTok, Instagram e YouTube. Qui tre delle sei.") })}
 
 <section class="band t-paper" aria-labelledby="h-arch">
   <div class="wrap">
